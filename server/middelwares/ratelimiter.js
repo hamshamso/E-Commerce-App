@@ -16,4 +16,4 @@ const authLimiter = rateLimit({
   message: { message: "Too many auth attempts, please try again later" }
 });
 
-module.exports = { apiLimiter, authLimiter };
+export default { apiLimiter, authLimiter };

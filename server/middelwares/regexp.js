@@ -14,4 +14,5 @@ const validatemail = async(req,res,next) => {
     }
     next()
 }
-module.exports(emailRegex,normalizeEmail,validatemail)
+
+export default {emailRegex,normalizeEmail,validatemail}
