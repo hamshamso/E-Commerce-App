@@ -2,14 +2,14 @@ import mongoose from "mongoose";
 
 const orderschema = new mongoose.Schema({
     user:{
-        type:mongoose.SchemaType.ObjectId,
+        type:mongoose.Schema.Types.ObjectId,
         ref:'User',
         required:true,
     },
     items:{
         product:{
-            type:mongoose.SchemaType.ObjectId,
-            ref:'product',
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'Product',
             required:true,
         },
         name:{
@@ -40,3 +40,6 @@ const orderschema = new mongoose.Schema({
         default:'pending',
     }
 },{timestamps:true});
+
+const order = mongoose.model('order','orderschema')
+export default order
