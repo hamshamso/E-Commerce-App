@@ -1,0 +1,42 @@
+import mongoose from "mongoose";
+
+const orderschema = new mongoose.Schema({
+    user:{
+        type:mongoose.SchemaType.ObjectId,
+        ref:'User',
+        required:true,
+    },
+    items:{
+        product:{
+            type:mongoose.SchemaType.ObjectId,
+            ref:'product',
+            required:true,
+        },
+        name:{
+            type:String,
+            require:true,
+        },
+        price:{
+            type:Number,
+            require:true,
+        },
+        quantity:{
+            type:Number,
+            required:true,
+        },
+    },
+    total:{
+        type:Number,
+        required:true,
+    },
+    wilaya:{
+        type:String,
+        required:true,
+    },
+    status:{
+        type:String,
+        enum:['pending','confirmed','shipped','delivred','cancelled'],
+        required:true,
+        default:'pending',
+    }
+},{timestamps:true});
