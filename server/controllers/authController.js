@@ -16,7 +16,7 @@ const registeruser = async(req,res) => {
             password:hashedpassword,
             phone})
         const token = jwt.sign({
-        //put the smallest you can in payload no user needed so in protect midelware we will check like this decoded.id instead of decoded.user.id
+        //put the smallest you can in payload no user needed so in validateuser midelware we will check like this decoded.id instead of decoded.user.id
             id:newuser._id,     //save the newuser id in payload
         },process.env.JWT_SECRET,
         {expiresIn:"7d"}
@@ -27,4 +27,7 @@ const registeruser = async(req,res) => {
         res.status(400).json({success:false, msg:"Somthing went wrong"})
     }
 }
-export default registeruser
+const loginuser = async(req,res) => {
+
+}
+export default {registeruser, loginuser}
