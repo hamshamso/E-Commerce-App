@@ -1,0 +1,118 @@
+body{
+    margin: 0;
+    height: 110vh;
+    font-family: "Stack Sans Notch", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    background-color: rgb(234, 234, 234);
+    background-image: url('../assets/poster.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.logo{
+    height: 5.9rem;
+    border-radius: 50%;
+    width: 100px;
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:1rem 0rem 0rem 1rem;/*top-right-bottom-left*/
+}
+.links{
+    margin-left: 10rem;
+    display: flex;
+    width: 41rem;
+    justify-content: center;
+    gap:7rem;
+    align-items: center;
+    padding: 1rem 3rem;
+    flex:1.2;
+    font-size: large;
+}
+.links a {
+    text-decoration: none; 
+    color: rgb(255, 251, 251);
+    white-space: nowrap;
+    transition: 0.5s ease;
+}
+.links a:hover {
+    text-decoration: underline; 
+    color: blueviolet;
+    transition: 1 ease;
+}
+.login{
+    display: flex;
+    flex:1;
+    justify-content: center;
+    gap:1rem;
+    margin-left: 2rem;
+
+}
+.welcome{
+    margin: 9rem 0rem 10rem 5rem;
+    font-size:1.5rem;
+}
+.login button {
+    height: 2.3rem;
+    border-radius: 20px;
+    width: 5.5rem;
+    transition: 0.3s ease;
+}
+.loginbtn{
+    color:black;
+    border:none;
+    background: transparent;
+    font-weight: bold;
+    transition: 0.2s;
+
+}
+.signupbtn:hover{
+    text-decoration: underline;
+    transform: translateY(-2px);
+}
+.loginbtn:hover{
+    text-decoration: underline;
+    transform: translateY(-2px);
+}
+.signupbtn{
+    color:rgb(255, 255, 255);
+    border:none;
+    background: rgb(128, 31, 255);
+    font-weight: bold;
+    transition: 0.2s;
+}
+.welcome {
+    color:rgb(43, 35, 49)
+}
+.welcome button{
+    height: 3rem;
+    width: 13rem;
+    margin-top: 2rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    padding: 12px 35px;
+    transition: 0.3s ease;
+}
+.getstarted {
+    background: linear-gradient(135deg, #a855f7, #6366f1); 
+    color: white;
+    border: none;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4); 
+}
+.learnmore {
+    background: white;
+    color: #4b5563;
+    border: 2px solid;
+    border-color: #6366f1;; 
+}
+.getstarted:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+.learnmore:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
