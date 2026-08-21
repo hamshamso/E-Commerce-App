@@ -27,7 +27,7 @@ const registeruser = async(req,res) => {
         res.status(400).json({success:false, msg:"Somthing went wrong"})
     }
 }
-const loginuser = async(req,res) => {
+    const loginuser = async(req,res) => {
     try{
         const {email,password} = req.body  || {}
         const user = await User.findOne({email})

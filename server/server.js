@@ -4,7 +4,9 @@ const app = express()
 import connectDB from "./config/db.js";
 
 const PORT = process.env.PORT || 5000
-
+import authRoute from './routes/authRoute.js'
+app.use(express.json());
+app.use('/',authRoute)
 const start = async () => {
     try{
         await connectDB(process.env.MONGO_URI)
