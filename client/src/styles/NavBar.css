@@ -1,0 +1,68 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;           
+    box-sizing: border-box; 
+    z-index: 1000;
+}
+.links{
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    align-items: center;
+    font-size: large;
+}
+
+.links a {
+    text-decoration: none; 
+    color: rgb(255, 251, 251);
+    white-space: nowrap;
+    transition: 0.5s ease;
+}
+
+.links a:hover {
+    text-decoration: underline; 
+    color: rgb(127, 67, 17);
+}
+
+.login{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.login button {
+    height: 2.3rem;
+    border-radius: 20px;
+    width: 5.5rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.loginbtn{
+    color: rgb(192, 192, 192);
+    border: 1px solid #542f12;
+    background: transparent;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.signupbtn{
+    color: #542f12;
+    border: none;
+    background: rgb(192, 192, 192);
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.signupbtn:hover, .loginbtn:hover{
+    text-decoration: underline;
+    transform: translateY(-2px);
+}

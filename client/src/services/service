@@ -1,0 +1,26 @@
+const API_BASE = "htttps://localhost:5000/api"
+
+
+//Create "POST" a new user "text" parse it to JSON with stringify and send it to Backend 
+//and check if evreythink is good 
+export const registerUser = async(userData) =>{
+    const res =fetch (`${API_BASE}/auth/register`, {//front -> back
+        method:"POST",
+        headers:{"Content-Type":"application/json"},//to tell backend that we sending JSON data
+        body: JSON.stringify(userData)              //parse TEXT into a JSON
+    })
+    const data = await res.JSON()   //read the response and convert it into an object 
+    if(!res.ok) throw new error(data.msg ||"Regestration failed")
+        return data ;
+}
+
+export const loginUser = async(credentials) => {
+    const res =fetch (`${API_BASE}/auth/login`, {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify(credentials)              
+    })
+    const data = await res.JSON() 
+    if(!res.ok) throw new error(data.msg ||"Login failed")
+        return data ;
+}

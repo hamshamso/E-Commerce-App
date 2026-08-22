@@ -1,93 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&display=swap');
-body{
-    margin: 0;
-    height: 110vh;
-    font-family: "Stack Sans Notch", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 200;
-    font-style: normal;
-    background-color: rgb(234, 234, 234);
-    background-image: url('../assets/poster.png');
-    background-repeat: no-repeat;
-    background-size: cover;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Stack+Sans+Notch:wght@200..700&display=swap');
+::selection {
+    background-color: #d4a373; 
+    color: #ffffff;            
 }
 .logo{
     height: 5.9rem;
     border-radius: 50%;
     width: 100px;
 }
-.navbar{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding:1rem 0rem 0rem 1rem;/*top-right-bottom-left*/
-}
-.links{
-    margin-left: 10rem;
-    display: flex;
-    width: 41rem;
-    justify-content: center;
-    gap:7rem;
-    align-items: center;
-    padding: 1rem 3rem;
-    flex:1.2;
-    font-size: large;
-}
-.links a {
-    text-decoration: none; 
-    color: rgb(255, 251, 251);
-    white-space: nowrap;
-    transition: 0.5s ease;
-}
-.links a:hover {
-    text-decoration: underline; 
-    color: blueviolet;
-    transition: 1 ease;
-}
-.login{
-    display: flex;
-    flex:1;
-    justify-content: center;
-    gap:1rem;
-    margin-left: 2rem;
 
-}
-.welcome{
-    margin: 9rem 0rem 10rem 5rem;
-    font-size:1.5rem;
-}
-.login button {
-    height: 2.3rem;
-    border-radius: 20px;
-    width: 5.5rem;
-    transition: 0.3s ease;
-}
-.loginbtn{
-    color:black;
-    border:none;
-    background: transparent;
-    font-weight: bold;
-    transition: 0.2s;
-
-}
-.signupbtn:hover{
-    text-decoration: underline;
-    transform: translateY(-2px);
-}
-.loginbtn:hover{
-    text-decoration: underline;
-    transform: translateY(-2px);
-}
-.signupbtn{
-    color:rgb(255, 255, 255);
-    border:none;
-    background: rgb(128, 31, 255);
-    font-weight: bold;
-    transition: 0.2s;
+h1, h2 {
+  font-family: "Stack Sans Notch", sans-serif;
+ 
 }
 .welcome {
-    color:rgb(43, 35, 49)
+    margin: 10rem 0rem 10rem 5rem; 
+    color: rgb(244, 213, 173);   
 }
+
+.welcome h1 {
+    font-size: 2.5rem;
+}
+
 .welcome button{
     height: 3rem;
     width: 13rem;
@@ -95,25 +29,68 @@ body{
     border-radius: 2rem;
     font-weight: 600;
     padding: 12px 35px;
+    cursor: pointer;
     transition: 0.3s ease;
+    margin-top: 7rem;
 }
+
 .getstarted {
-    background: linear-gradient(135deg, #a855f7, #6366f1); 
+    background-color: #542f12;
     color: white;
     border: none;
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4); 
 }
+
 .learnmore {
-    background: white;
-    color: #4b5563;
-    border: 2px solid;
-    border-color: #6366f1;; 
+    background: transparent;
+    color: white;
+    border: 2px solid #542f12; 
+    margin-left: 1rem;
 }
-.getstarted:hover {
+
+.getstarted:hover, .learnmore:hover {
     opacity: 0.9;
     transform: translateY(-2px);
 }
-.learnmore:hover {
-    transform: translateY(-2px);
-    opacity: 0.9;
+footer {
+    color: antiquewhite;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background:transparent;
+    width: 100%;
+    box-sizing: border-box;
+}
+.fot {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+footer a {
+    text-decoration: none; 
+    color: rgb(255, 251, 251);
+    transition: 0.5s ease;
+    font-size: large;
+}
+footer a:hover {
+    text-decoration: underline; 
+    color: rgb(127, 67, 17);
+}
+.rights{
+    color:antiquewhite;
+    text-decoration: none; 
+}
+#root {
+    min-height: 100vh;
+}
+
+.pages {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: 5rem; /* match your navbar's real rendered height — check in DevTools */
+}
+
+.landing {
+    flex: 1;
 }
