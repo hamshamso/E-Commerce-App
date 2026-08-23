@@ -3,6 +3,7 @@ import "dotenv/config";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import authRoute from './routes/authRoute.js';
+import productRouter from './routes/productRoute.js'
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -15,7 +16,7 @@ app.use(cors({
 app.use(express.json());
 
 app.use('/api/auth', authRoute);
-
+app.use('/api',productRouter);//then in productRouter use ('/products') and ('/products/:id')
 const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);
