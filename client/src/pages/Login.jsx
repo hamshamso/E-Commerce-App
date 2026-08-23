@@ -21,9 +21,15 @@ function Login(){
         setloading(true)
         try{
             const data = await loginUser(formData)
+//services/api does fetch and put  this after the post and headers  
+            //const data = res.json() 
+//back end returns         -- res.json( success,msg,data:{ name: user.name, email: user.email},token})
+                                    //we request user here -- const user = await User.findOne({email})  
+ 
+            //return data
             //localStorage.setItem("token",data.token)
             //localStorage.setItem("user",JSON.stringify(data.data))
-            login(data.data, data.token)//All the localStorage codes is here
+            login(data.data, data.token)//All the localStorage codes is here          
             navigate("/")
         }catch(error){
             console.error(error)
