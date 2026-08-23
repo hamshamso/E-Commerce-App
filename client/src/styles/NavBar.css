@@ -1,8 +1,9 @@
 .navbar{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap:45%;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
     background-color: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(8px);
     position: fixed;
@@ -29,7 +30,7 @@
 
 .links a:hover {
     text-decoration: underline; 
-    color: rgb(127, 67, 17);
+    color:rgb(238, 183, 112);
 }
 
 .login{
@@ -45,7 +46,26 @@
     cursor: pointer;
     transition: 0.3s ease;
 }
-
+.state{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    color:rgb(192, 192, 192);
+}
+.state button {
+    color: rgb(192, 192, 192);
+    border: 1px solid #542f12;
+    border-radius: 20px;
+    background: transparent;
+    font-weight: bold;
+    transition: 0.2s;
+    width: 8rem;
+    height: 2rem;    
+}
+.hi{
+    margin-right: 10%;
+    white-space: nowrap;
+}
 .loginbtn{
     color: rgb(192, 192, 192);
     border: 1px solid #542f12;
@@ -62,7 +82,12 @@
     transition: 0.2s;
 }
 
-.signupbtn:hover, .loginbtn:hover{
+button:hover{
     text-decoration: underline;
     transform: translateY(-2px);
+}
+.state button:hover{
+    background-color: #542f12;
+    color:white;
+    opacity: 0.9;
 }

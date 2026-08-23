@@ -26,10 +26,16 @@ export function AuthProvider({children}){
         localStorage.removeItem("user")
         setUser(null)
     }
+    const isuser = () => {
+        if(!user){
+            return false
+        }
+        return true
+    }
     return (
-        <AuthProvider.Provider value={{user,login,logout}}>
+        <AuthContext.Provider value={{user,isuser,login,logout}}>
             {children}
-        </AuthProvider.Provider>
+        </AuthContext.Provider>
     )
 }
 export function useAuth(){

@@ -1,10 +1,10 @@
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../styles/NavBar.css";
+import {useAuth} from "../context/AuthContext";
 
 function NavBar() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const isAuthPage = location.pathname === "/login" || location.pathname === "/register";
+  const {isuser,logout,user} = useAuth()
 
   return (
     <>
@@ -16,11 +16,15 @@ function NavBar() {
           <a href="#">About Us</a>
         </div>
 
-        {!isAuthPage && (
+        { !isuser() ? (
           <div className="login">
             <button className="loginbtn" onClick={() => navigate('/login')}>Log In</button>
             <button className="signupbtn" onClick={() => navigate('/register')}>Register</button>
           </div>
+        ):(<div className="state">
+                <h2 className="hi">Hi {user.name}</h2>
+                <button onClick={() => { logout(); navigate('/'); }}>Logout</button>
+            </div>
         )}
       </div>
     </>

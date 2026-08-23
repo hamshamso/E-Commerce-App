@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { registerUser } from "../services/api";
 import "../styles/auth.css"
-import useAuth from "../context/AuthContext"
+import {useAuth} from "../context/AuthContext"
 function Register () {
     const [formData,setFormData] = useState({name:"",email:"",password:"",phone:""})
     const [error,setError] = useState("")//we use throw error(msg:...) so we put inside them (error.msg)
