@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const orderschema = new mongoose.Schema({
+const cartschema = new mongoose.Schema({
     user:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'User',
@@ -29,7 +29,7 @@ const orderschema = new mongoose.Schema({
         type:Number,
         required:true,
     },
-    wilaya:{
+    adress:{
         type:String,
         required:true,
     },
@@ -41,5 +41,5 @@ const orderschema = new mongoose.Schema({
     }
 },{timestamps:true});
 
-const order = mongoose.model('order','orderschema')
+const order = mongoose.model('cart','orderschema')
 export default order

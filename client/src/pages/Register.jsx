@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { registerUser } from "../services/api";
-import "./Register.css"
-
+import "../styles/auth.css"
+import useAuth from "../context/AuthContext"
 function Register () {
     const [formData,setFormData] = useState({name:"",email:"",password:"",phone:""})
     const [error,setError] = useState("")//we use throw error(msg:...) so we put inside them (error.msg)
+    const [loading,setLoading] = useState(false)
+    const {login} = useAuth()
     const navigate = useNavigate()       //when we you res.json(msg:"") we use in the font const data = res.json() 
                                                                                          //setError(data.msg)
     const handleChange = (e) =>{
@@ -19,11 +21,21 @@ function Register () {
         setError("")
         setLoading(true)
         try{
+            //backend returns 
+              //data
+              //  ├── success
+              //  ├── msg
+              //  ├── data
+              //  │   ├── name
+              //  │   └── email
+              //  └── token
             const data = await registerUser(formData)//api call
-            localStorage.setItem("token", data.token)
-            localStorage.setItem("token", JSON.stringify(data.data))//localStorage stores only strings 
+            //localStorage.setItem("token", data.token)   
+            //localStorage.setItem("user", JSON.stringify(data.data)) 
+            login(data.data,data.token)         
             navigate("/")
-        }catch(e){
+        }catch(error){
+            console.error(error.message)
             setError(error.message)
         }finally{
             setLoading(false)
