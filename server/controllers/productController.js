@@ -20,7 +20,7 @@ import Product from "../models/Product.js" //add .js because of ES Module
     try {
         const {name,price,quantity,category,image} = req.body
         if(!name|| !price || !quantity || !category || !image){
-            return res.status(405).json({success:false,msg:`Please complete all fields`})
+            return res.status(400).json({success:false,msg:`Please complete all fields`})
         }
         const product = await Product.create({name,price,quantity,category,image})
         return res.status(201).json({
@@ -76,7 +76,7 @@ import Product from "../models/Product.js" //add .js because of ES Module
             }
             //if user didn't choose a category
                 const AllProducts = await Product.find({})
-                return res.status(200).json({success:false ,data:AllProducts ,msg:"All products"})
+                return res.status(200).json({success:true ,data:AllProducts ,msg:"All products"})
             //if category didn't exsist (user types in the URL instead of choosing from menu)
         }catch(e){
             return res.status(400).json({success:false,msg: e.message})
