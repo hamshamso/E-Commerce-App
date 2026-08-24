@@ -7,7 +7,7 @@ const productSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
-    enum: ['Bags', 'Watches', 'Clothes', 'Accessories','Parfum','Phones','Cars','other'],
+    enum: ['Bags', 'Watches', 'Clothes', 'Accessories','Parfum','Phones','Cars','Other','Tools'],
     message: '{VALUE} is not a supported category' },
   image: { type: String, required: true },
 }, { timestamps: true });

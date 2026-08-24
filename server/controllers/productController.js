@@ -62,9 +62,27 @@ import Product from "../models/Product.js" //add .js because of ES Module
                 await Product.findByIdAndDelete(id)
                 return res.status(200).json({success:true, msg:"Product has been successfully deleted"})
             }
-            return res.status(404).jsob({uccess:false ,msg:`Id ${id} doesn't exist`})
+            return res.status(404).jsob({success:false ,msg:`Id ${id} doesn't exist`})
         } catch (error) {
             return res.status(400).json({success:false,msg: error.message})
         }
     }
-export { getAllProducts, getProductById, createProduct, updateProduct, deleteProduct};
+    const getAllProductsWithCategory = async (req,res) => {
+        try{
+            const {category} = req.query
+            if(category){
+                const products = await Product.find({category})
+                if(products.length > 0 ){
+                     return res.status(200).json({success:true, data:products, msg:"Product has been successfully geted"})
+                }
+                return res.status(404).json({success:false , msg: `No products with category ${category}`})
+            }
+            if(!category){
+                return res.status(404).json({success:false ,msg:"Please choose a category"})
+            }
+            return res.status(404).json({success:false ,msg:`Category ${category} doesn't exist`})
+        }catch(e){
+            return res.status(400).json({success:false,msg: error.message})
+        }
+    }
+export { getAllProducts, getProductById, createProduct, updateProduct, deleteProduct, getAllProductsWithCategory};
