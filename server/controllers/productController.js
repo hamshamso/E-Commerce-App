@@ -71,7 +71,6 @@ import Product from "../models/Product.js" //add .js because of ES Module
                 const AllProducts = await Product.find({})
                 return res.status(200).json({success:false ,data:AllProducts ,msg:"All products"})
             //if category didn't exsist (user types in the URL instead of choosing from menu)
-            return res.status(404).json({success:false ,msg:`Category ${category} doesn't exist`})
         }catch(e){
             return res.status(400).json({success:false,msg: error.message})
         }
