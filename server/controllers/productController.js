@@ -3,6 +3,9 @@ import Product from "../models/Product.js" //add .js because of ES Module
  const getProductById = async (req,res) => {
     try {
         const id = req.params.id
+        if(!id){
+            return res.status(400).json({success:false,msg:"Please enter an ID"})
+        }
         const product = await Product.findOne({_id: id})//or Product.findById(id)
         if(!product){
            return res.status(404).json({success:false,msg:`Product isn't found`})
@@ -39,7 +42,7 @@ import Product from "../models/Product.js" //add .js because of ES Module
                     data:newproduct,
                     msg:`Successfully created the product`})                                 
             }
-            return res.status(404).json({uccess:false ,msg:`Id ${id} doesn't exist or no update data`})
+            return res.status(404).json({success:false ,msg:`Id ${id} doesn't exist or no update data`})
         } catch (error) {
             return res.status(400).json({success:false,msg: error.message})
         }
@@ -47,11 +50,15 @@ import Product from "../models/Product.js" //add .js because of ES Module
     const deleteProduct = async (req,res) => {
         try {
             const id = req.params.id
-            if(id){
-                await Product.findByIdAndDelete(id)
-                return res.status(200).json({success:true, msg:"Product has been successfully deleted"})
+            if(!id){
+                return res.status(400).json({success:false,msg:"Please enter an ID"})
             }
-            return res.status(404).jsob({success:false ,msg:`Id ${id} doesn't exist`})
+            const deleted = await Product.findByIdAndDelete(id)
+            //if the ID isn't valid
+            if(!deleted){
+                return res.status(404).json({success:false ,msg:`Id ${id} doesn't exist`})
+            }
+            return res.status(200).json({success:true, msg:"Product has been successfully deleted"})
         } catch (error) {
             return res.status(400).json({success:false,msg: error.message})
         }
@@ -72,7 +79,7 @@ import Product from "../models/Product.js" //add .js because of ES Module
                 return res.status(200).json({success:false ,data:AllProducts ,msg:"All products"})
             //if category didn't exsist (user types in the URL instead of choosing from menu)
         }catch(e){
-            return res.status(400).json({success:false,msg: error.message})
+            return res.status(400).json({success:false,msg: e.message})
         }
     }
 export { getProductById, createProduct, updateProduct, deleteProduct, getAllProductsWithCategory};
