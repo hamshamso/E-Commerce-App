@@ -13,8 +13,8 @@ import Product from "../models/Product.js" //add .js because of ES Module
 }
  const getProductById = async (req,res) => {
     try {
-        const p = req.params.id
-        const product = await Product.findOne({_id: p})
+        const id = req.params.id
+        const product = await Product.findOne({_id: id})//or Product.findById(id)
         if(!product){
            return res.status(404).json({success:false,msg:`Product isn't found`})
         }
@@ -39,4 +39,32 @@ import Product from "../models/Product.js" //add .js because of ES Module
         return res.status(400).json({success:false,msg: error.message})
     }
 }
-export { getAllProducts, getProductById, createProduct };
+    const updateProduct = async(req,res) => {
+        try {
+            const id = req.params.id 
+            const updatedfields = req.body
+            if(id && updatedfields){                                        //new = return the updated products
+                const newproduct = await Product.findByIdAndUpdate(id, updatedfields, {new:true, runValidators: true})
+                return res.status(200).json({                                     //to Apply the shema rules
+                    success:true,
+                    data:newproduct,
+                    msg:`Successfully created the product`})                                 
+            }
+            return res.status(404).json({uccess:false ,msg:`Id ${id} doesn't exist or no update data`})
+        } catch (error) {
+            return res.status(400).json({success:false,msg: error.message})
+        }
+    }
+    const deleteProduct = async (req,res) => {
+        try {
+            const id = req.params.id
+            if(id){
+                await Product.findByIdAndDelete(id)
+                return res.status(200).json({success:true, msg:"Product has been successfully deleted"})
+            }
+            return res.status(404).jsob({uccess:false ,msg:`Id ${id} doesn't exist`})
+        } catch (error) {
+            return res.status(400).json({success:false,msg: error.message})
+        }
+    }
+export { getAllProducts, getProductById, createProduct, updateProduct, deleteProduct};
