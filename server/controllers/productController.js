@@ -1,16 +1,5 @@
 import Product from "../models/Product.js" //add .js because of ES Module
 
- const getAllProducts = async (req,res) => {
-    try{
-        const allProducts = await Product.find() 
-        if(!allProducts){
-        return res.status(404).json({success:false,msg:"No Products yet"})
-        }
-        return res.status(200).json({success:true,data:allProducts,msg:"Successfully get all products"})
-    }catch(e){
-        return res.status(400).json({success:false,msg:"Somthing went wrong"})
-    }
-}
  const getProductById = async (req,res) => {
     try {
         const id = req.params.id
@@ -68,21 +57,23 @@ import Product from "../models/Product.js" //add .js because of ES Module
         }
     }
     const getAllProductsWithCategory = async (req,res) => {
-        try{
+        try{            
             const {category} = req.query
             if(category){
                 const products = await Product.find({category})
+                //check if we find a products that match the category
                 if(products.length > 0 ){
                      return res.status(200).json({success:true, data:products, msg:"Product has been successfully geted"})
                 }
                 return res.status(404).json({success:false , msg: `No products with category ${category}`})
             }
-            if(!category){
-                return res.status(404).json({success:false ,msg:"Please choose a category"})
-            }
+            //if user didn't choose a category
+                const AllProducts = await Product.find({})
+                return res.status(200).json({success:false ,data:AllProducts ,msg:"All products"})
+            //if category didn't exsist (user types in the URL instead of choosing from menu)
             return res.status(404).json({success:false ,msg:`Category ${category} doesn't exist`})
         }catch(e){
             return res.status(400).json({success:false,msg: error.message})
         }
     }
-export { getAllProducts, getProductById, createProduct, updateProduct, deleteProduct, getAllProductsWithCategory};
+export { getProductById, createProduct, updateProduct, deleteProduct, getAllProductsWithCategory};
