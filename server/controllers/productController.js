@@ -56,7 +56,7 @@ import Product from "../models/Product.js" //add .js because of ES Module
             const deleted = await Product.findByIdAndDelete(id)
             //if the ID isn't valid
             if(!deleted){
-                return res.status(404).json({success:false ,msg:`Id ${id} doesn't exist`})
+                return res.status(404).json({success:false ,msg:"Product not found"})
             }
             return res.status(200).json({success:true, msg:"Product has been successfully deleted"})
         } catch (error) {
