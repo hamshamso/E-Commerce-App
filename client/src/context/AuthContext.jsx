@@ -1,7 +1,8 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
+//create a shared storage container
 const AuthContext= createContext()
-
+                //provide user state
 export function AuthProvider({children}){
     const [user,setUser] = useState(null)
 

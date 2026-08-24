@@ -25,6 +25,17 @@ export function CartProvider ({children}) {
         })
     }
     const removeFromCart = (productId => {
-        
+        setCart((prevCart) => prevCart.filter((item) => item._id !== productId))
     })
+
+    return (
+        <CartContext.Provider value={{addToCart,removeFromCart,removeFromCart}}>
+            {children}
+        </CartContext.Provider>    
+    )
+    
+    export function UNSAFE_createRouter() {
+        return useContext(CartContext)
+    }
+    
 }
