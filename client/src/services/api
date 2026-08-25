@@ -24,3 +24,10 @@ export const loginUser = async(credentials) => {
     if(!res.ok) throw new Error(data.msg || "Login failed")
         return data ;
 }
+//GET request so no need to (method, headers, body)
+export const getProducts  = async() => {
+    const res = await fetch (`${API_BASE}/products`)
+    const data = await res.json()
+    if(!res.ok) throw new Error(data.msg || "Failed to fetch products")
+    return data
+}

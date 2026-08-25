@@ -1,29 +1,74 @@
-import '../styles/home.css'
-import ProductCard from'../pages/ProductCard'
-function Home(){
-    return (
-        <>
-    <div className="landing">
-        <div className='welcome'>
-        <h1>Welcome to Our E-Commerce App </h1>
-        <h2>Every Purshase Will Be Made With Pleasure</h2>
-        <p>Buying and selling a good serices using the internet </p>
-        <button className="getstarted">Get Started</button>
-        <button className="learnmore" >About Us</button>
+import { useState, useEffect, useRef } from "react";
+import { getProducts } from "../services/api";
+import ProductCard from "../pages/ProductCard";
+import "../styles/home.css";
+
+function Home() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const shopRef = useRef(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await getProducts();
+        setProducts(data.data);
+      } catch (e) {
+        console.error(e);
+        setError(e.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
+
+  const scrollToShop = () => {
+    shopRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  return (
+    <>
+      <div className="landing">
+        <div className="welcome">
+          <h1>Welcome to Our E-Commerce App</h1>
+          <h2>Every Purshase Will Be Made With Pleasure</h2>
+          <p>Buying and selling a good serices using the internet</p>
+          <button className="getstarted" onClick={scrollToShop}>Get Started</button>
+          <button className="learnmore">About Us</button>
         </div>
         <img src="poster" alt="" />
-    </div>
-    <footer>
+      </div>
+
+      <section className="shop-section" ref={shopRef}>
+        <h2 className="shop-title">Our Products</h2>
+
+        {loading && <p className="shop-status">Loading products...</p>}
+        {error && <p className="shop-status shop-error">{error}</p>}
+
+        {!loading && !error && (
+          <div className="product-grid">
+            {products.map((product) => (
+              <ProductCard key={product._id} product={product} />
+            ))}
+          </div>
+        )}
+      </section>
+
+      <footer>
         <div>
-            <p className='rights'>© 2026 E-Commerce.    All rights reserved.</p>
+          <p className="rights">© 2026 E-Commerce.    All rights reserved.</p>
         </div>
         <div className="fot">
-            <a>Legal Notice</a>
-            <a>Privacy</a>
-            <a>Terms</a>
-            <a>· Algérie</a>
-    </div>
-    </footer>
-     </>
-    )}
-export default Home
+          <a>Legal Notice</a>
+          <a>Privacy</a>
+          <a>Terms</a>
+          <a>· Algérie</a>
+        </div>
+      </footer>
+    </>
+  );
+}
+
+export default Home;

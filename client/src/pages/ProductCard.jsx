@@ -1,17 +1,45 @@
- function ProductCard({product}) {
-    return(
-        <>
-            <div className="product-container">
-                <div className="card">
-                    <img className="product-img" src={product.image} alt={product.name}/>
-                    <h3 className="product-name">{product.name}</h3>
-                    <p className="product-price">{product.price}</p>
-                    <p className="product-category">{product.category}</p>
-                    <p className="product-quantity">{product.quantity}</p>
-                    <button type="submit" className="add-to-cart">Add to cart</button>
-                </div>
-            </div>
-        </>
-    )
+import { useState } from "react";
+import { useCart } from "../context/ProductContext";
+import "../styles/ProductCard.css";
+
+function ProductCard({ product }) {
+  const { addToCart } = useCart();
+  const [qty, setQty] = useState(1);
+
+  const decrease = () => setQty((q) => Math.max(1, q - 1));
+  const increase = () => setQty((q) => Math.min(product.quantity, q + 1));
+
+  return (
+    <div className="product-card-split">
+      <div className="product-image-panel">
+        <img src={product.image} alt={product.name} />
+      </div>
+
+      <div className="product-details-panel">
+        <span className="product-category-badge">{product.category}</span>
+        <h3 className="product-title">{product.name}</h3>
+        <p className="product-price">{product.price} DA</p>
+
+        <p className="product-stock">
+          {product.quantity > 0 ? `${product.quantity} in stock` : "Out of stock"}
+        </p>
+
+        <div className="qty-selector">
+          <button type="button" onClick={decrease}>−</button>
+          <span>{qty}</span>
+          <button type="button" onClick={increase}>+</button>
+        </div>
+
+        <button
+          className="add-to-cart-btn"
+          disabled={product.quantity === 0}
+          onClick={() => addToCart(product, qty)}
+        >
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  );
 }
-export default ProductCard
+
+export default ProductCard;

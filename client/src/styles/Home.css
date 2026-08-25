@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Stack+Sans+Notch:wght@200..700&display=swap');
-::selection {
-    background-color: #d4a373; 
-    color: #ffffff;            
-}
+
 .logo{
     height: 5.9rem;
     border-radius: 50%;
@@ -104,4 +101,28 @@ footer a:hover {
 }
 .landing {
     flex: 1;
+}
+.shop-section {
+  padding: 3rem 5rem;
+}
+
+.shop-title {
+  color: rgb(244, 213, 173);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.shop-status {
+  text-align: center;
+  color: antiquewhite;
+}
+
+.shop-error {
+  color: #e57373;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2rem;
 }
