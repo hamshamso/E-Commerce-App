@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client'
-import { CartProvider } from "./context/CartContext.jsx";
+import { CartProvider } from "./context/ProductContext.jsx";
 import { BrowserRouter } from 'react-router-dom' 
 import App from './App.jsx'
 import { AuthProvider } from './context/AuthContext.jsx'

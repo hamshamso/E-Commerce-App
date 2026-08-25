@@ -46,13 +46,12 @@ export function CartProvider ({children}) {
     })
 
     return (
-        <CartContext.Provider value={{addToCart,removeFromCart,removeFromCart}}>
+        <CartContext.Provider value={{addToCart,removeFromCart}}>
             {children}
         </CartContext.Provider>    
-    )
+    )   
+}
 
-    export function UNSAFE_createRouter() {
+export function useCart() {
         return useContext(CartContext)
     }
-    
-}

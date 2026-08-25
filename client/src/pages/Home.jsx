@@ -1,4 +1,5 @@
 import '../styles/home.css'
+import ProductCard from'../pages/ProductCard'
 function Home(){
     return (
         <>
