@@ -8,30 +8,17 @@
 
 h1, h2 {
   font-family: "Stack Sans Notch", sans-serif;
+  margin: 2rem 1rem;
 }
+
 .welcome {
-    margin: 10rem 0rem 10rem 5rem; 
-    color: rgb(244, 213, 173);   
+    margin: 2rem; 
+    color: rgb(244, 213, 173);    
+    padding: 3rem 1rem 0rem 1rem; 
+    
 }
-
-.welcome h1 {
-    font-size: 2.5rem;
-}
-
-.welcome button {
-    height: 3rem;
-    width: 13rem;
-    font-family: "Montserrat", sans-serif;;
-    margin-top: 7rem;
-    border-radius: 2rem;
-    font-weight: 600;
-    font-size: larger;
-    padding: 12px 35px;
-    cursor: pointer;
-    transition: background-color 0.3s ease,
-                border-color 0.3s ease,
-                transform 0.3s ease,
-                opacity 0.3s ease;
+.welcome p {
+    margin: 2rem 1rem;
 }
 
 .getstarted {
@@ -103,12 +90,13 @@ footer a:hover {
     flex: 1;
 }
 .shop-section {
-  padding: 3rem 5rem;
+  padding: 0rem 3rem 4rem 3rem;
+  background: transparent;
 }
 
 .shop-title {
   color: rgb(244, 213, 173);
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   text-align: center;
 }
 
@@ -124,5 +112,5 @@ footer a:hover {
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 2rem;
+  gap: 2.5rem;
 }

@@ -24,10 +24,6 @@ function Home() {
     fetchProducts();
   }, []);
 
-  const scrollToShop = () => {
-    shopRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <>
       <div className="landing">
@@ -35,10 +31,7 @@ function Home() {
           <h1>Welcome to Our E-Commerce App</h1>
           <h2>Every Purshase Will Be Made With Pleasure</h2>
           <p>Buying and selling a good serices using the internet</p>
-          <button className="getstarted" onClick={scrollToShop}>Get Started</button>
-          <button className="learnmore">About Us</button>
         </div>
-        <img src="poster" alt="" />
       </div>
 
       <section className="shop-section" ref={shopRef}>
