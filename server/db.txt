@@ -1,7 +1,0 @@
-{
-  "name": "machine a laver",
-  "price": "12000",
-  "quantity": "1",
-  "category": "Tools",
-  "image": "http://jaondedede"
-}
