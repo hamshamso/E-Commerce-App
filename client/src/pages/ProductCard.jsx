@@ -5,8 +5,9 @@ import "../styles/ProductCard.css";
 function ProductCard({ product }) {
   const { addToCart } = useCart();
   const [qty, setQty] = useState(1);
-
+  //Avoid rendering the negative and 0 
   const decrease = () => setQty((q) => Math.max(1, q - 1));
+  //aavoid passing the quantity limit 
   const increase = () => setQty((q) => Math.min(product.quantity, q + 1));
 
   return (

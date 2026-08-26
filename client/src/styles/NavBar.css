@@ -83,7 +83,6 @@
 }
 
 button:hover{
-    text-decoration: underline;
     transform: translateY(-2px);
 }
 .state button:hover{
