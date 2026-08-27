@@ -11,6 +11,7 @@ export function CartProvider ({children}) {
     //better then useState(JSON.parse(localStorage.getItem("cart"))) because : 1. If empty return Null not empty array like we want
     //                                                                         2. Runs evry render so less performance
     })
+
     //Save whenever the cart changes
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(cart))
@@ -46,7 +47,7 @@ export function CartProvider ({children}) {
     })
 
     return (
-        <CartContext.Provider value={{addToCart,removeFromCart}}>
+        <CartContext.Provider value={{addToCart,removeFromCart,cart}}>
             {children}
         </CartContext.Provider>    
     )   

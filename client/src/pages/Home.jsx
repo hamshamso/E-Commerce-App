@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { getProducts } from "../services/api";
 import ProductCard from "../pages/ProductCard";
 import "../styles/home.css";
@@ -41,8 +41,8 @@ function Home() {
 
         {!loading && !error && (
           <div className="product-grid">
-            {products.map((product) => (
-              <ProductCard key={product._id} product={product} />
+            {products.map((p) => (
+              <ProductCard key={p._id} product={p} />
             ))}
           </div>
         )}

@@ -6,3 +6,4 @@ HTTP request compose of
 4. Body     :   (email,password ...)
 
 and we can add new properties like 'user' in validatUser 
+composition of decoded : _id,iat,exp

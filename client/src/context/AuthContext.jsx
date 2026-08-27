@@ -8,6 +8,7 @@ export function AuthProvider({children}){
 
     useEffect(()=>{
         const storedUser = localStorage.getItem("user")
+        //to avoid setting a logedout user
         if(storedUser){
             setUser(JSON.parse(storedUser))
         }

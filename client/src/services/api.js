@@ -28,6 +28,8 @@ export const loginUser = async(credentials) => {
 export const getProducts  = async() => {
     const res = await fetch (`${API_BASE}/products`)
     const data = await res.json()
+    //if the server isn't running : The promise itself rejects, throwing somthing like TypeError: Failed to fetch
+    //So best practice here is try catch 
     if(!res.ok) throw new Error(data.msg || "Failed to fetch products")
     return data
 }
