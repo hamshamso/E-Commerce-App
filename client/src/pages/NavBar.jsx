@@ -1,22 +1,21 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link} from "react-router-dom";
 import "../styles/NavBar.css";
 import {useAuth} from "../context/AuthContext";
 
 function NavBar() {
   const navigate = useNavigate();
   const {isuser,logout,user} = useAuth()
-
   return (
     <>
       <div className="navbar">
         <div className="links">
-          <a href="/">Home</a>
-          <a href="#">Services</a>
-          <a href="#">Shop</a>
-          <a href="#">About Us</a>
+          <Link href="/">Home</Link>
+          <Link href="/">Shop</Link>
+          <Link href="/">About Us</Link>
+          {isuser ()&& (<Link href="/">Your cart</Link>) }
         </div>
 
-        { !isuser() ? (
+        {!isuser () ? (
           <div className="login">
             <button className="loginbtn" onClick={() => navigate('/login')}>Log In</button>
             <button className="signupbtn" onClick={() => navigate('/register')}>Register</button>

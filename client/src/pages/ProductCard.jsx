@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { useCart } from "../context/ProductContext";
+import {useCart} from "../context/ProductContext"
+
 import "../styles/ProductCard.css";
 
 function ProductCard({ product }) {
-  const { addToCart } = useCart();
+  const { addToCart,removeFromCart} = useCart();
   const [qty, setQty] = useState(1);
   //Avoid rendering the negative and 0 
   const decrease = () => setQty((q) => Math.max(1, q - 1));
