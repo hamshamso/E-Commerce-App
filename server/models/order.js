@@ -1,10 +1,7 @@
 import mongoose from "mongoose";
 
-const cartschema = new mongoose.Schema({
-    user:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'User',
-        required:true,
+const orderschema = new mongoose.Schema({
+    user:{type:mongoose.Schema.Types.ObjectId,ref:'User',required:true,
     },
     items: [{
         product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
@@ -12,21 +9,10 @@ const cartschema = new mongoose.Schema({
         price: { type: Number, required: true },
         quantity: { type: Number, required: true },
     }],
-    total:{
-        type:Number,
-        required:true,
-    },
-    adress:{
-        type:String,
-        required:true,
-    },
-    status:{
-        type:String,
-        enum:['pending','confirmed','shipped','delivred','cancelled'],
-        required:true,
-        default:'pending',
-    }
+    total:{type:Number,required:true},
+    adress:{type:String,required:true},
+    status:{type:String,enum:['pending','confirmed','shipped','delivred','cancelled'],required:true,default:'pending',}
 },{timestamps:true});
 
-const order = mongoose.model('cart','orderschema')
+const order = mongoose.model('Order',orderschema)
 export default order
