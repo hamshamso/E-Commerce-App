@@ -5,7 +5,7 @@ const createOrder = async (req, res) => {
   try {
     const userId = req.user._id;
     const { items, wilaya, phone } = req.body;
-    
+
     const orderItems = [];
     let total = 0;
 
@@ -27,7 +27,7 @@ const createOrder = async (req, res) => {
         quantity: item.quantity,
       });
 
-      total += product.price * item.quantity;
+      total = total + product.price * item.quantity;
     }
 
     const order = await Order.create({
@@ -39,8 +39,8 @@ const createOrder = async (req, res) => {
     });
 
     return res.status(201).json({ success: true, data: order });
-  } catch (error) {
-    return res.status(400).json({ success: false, msg: error.message });
+  } catch (ozi) {
+    return res.status(400).json({ success: false, msg: ozi.message });
   }
 };
 export {createOrder};
