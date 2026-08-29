@@ -5,7 +5,7 @@ import User from "../models/User.js";
 const registeruser = async(req,res) => {
     try {
         const {name,email,password,phone} = req.body  || {} //protect from empty reqs
-        const user = await User.findOne({email})
+        const user = await User.findOne({email})// This query is asking Mongo to match the field email
         if(user){
             return res.status(400).json({success:false, msg:"email is already exist"})
         }
