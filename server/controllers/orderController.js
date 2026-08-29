@@ -1,6 +1,7 @@
-import { useInsertionEffect } from "react";
 import Order from "../models/order.js";
 import Product from "../models/Product.js";
+
+//70%
 
 const createOrder = async (req, res) => {
   try {
@@ -43,8 +44,8 @@ const createOrder = async (req, res) => {
     });
 
     return res.status(201).json({ success: true, data: order });
-  } catch (ozi) {
-    return res.status(400).json({ success: false, msg: ozi.message });
+  } catch (ademozi) {
+    return res.status(400).json({ success: false, msg: ademozi.message });
 
   }
 };
@@ -55,19 +56,19 @@ const getMyOrders = async (req,res) => {
     
     const userOrders = await Order.find({ user:userId })
 
-    if(userOrders.length > 0){
+    if(userOrders){
       return res.status(200).json({success:true, data:userOrders, msg:"This is your current order"})
     }
     return res.status(404).json({success:false,msg:"You don't have any orders yes, Go to shop and buy some stuff to see it here!"})
-  } catch (ozi) {
-    return res.status(400).json({success: false, msg:ozi.message})
+  } catch (ademozi) {
+    return res.status(400).json({success: false, msg:ademozi.message})
   }
 }
 const getOredersWithId = async (req,res) => {
   try {
     const {orderId} = req.params  
     if(!orderId){
-      return res.status(404).json({success:false,msg:"User ID is inccorect"})
+      return res.status(404).json({success:false ,msg:"Please enter the Order ID"})
     }
     const userOrders = await Order.findById(orderId)
 
@@ -79,9 +80,46 @@ const getOredersWithId = async (req,res) => {
       return res.status(200).json({success:true, data:userOrders, msg:"This is the current user order"})
     }
     return res.status(404).json({success:false,msg:"This user have no orders yet!"})
-  } catch (ozi) {
-    return res.status(400).json({success: false, msg:ozi.message})
+  } catch (ademozi) {
+    return res.status(400).json({success: false, msg:ademozi.message})
   } 
 }
 
-export {createOrder,getMyOrders,getOredersWithId};
+const getAllOrders = async (req,res) => {
+  try {
+    const orders = await Order.find({})
+    //No need to if(order) cause .find even if DB is empty it returns []
+    return res.status(200).json({success:true, data:orders, msg:"This is all orders!"})
+  } catch (ademozi) {
+    return res.status(400).json({success: false, msg:ademozi.message})
+  }
+}
+
+const updateOrderStatus = async(req,res) => {
+  //Only admin can access this function
+  try {
+    const {orderId} = req.params
+    const {sts} = req.body
+    const validStatuses = ['pending','confirmed','shipped','delivred','cancelled']
+    if(!orderId){
+      return res.status(404).json({success:false ,msg:"Please enter the Order ID"})
+    }
+    const order = await Order.findById(orderId)
+    if(!order){
+      return res.status(404).json({success:false ,msg:"No order matches this ID!"})
+    }
+    if(!validStatuses.includes(sts)){
+      return res.status(403).json({success:false, msg:`Please enter a valid status like :${validStatuses}`})
+    }
+    order.status = sts
+    await order.save()
+    //elso we can use Order.findById(id, {status:sts}, { new:true, runValidators:true }) 
+    //runValidators:true so no need to validStatuses array 
+    //I didn't use it cause of learning a new stuffs
+    return res.status(200).json({success:true, data:order, msg:"Order status is updated successfully"})
+  } catch (ademozi) {
+      return res.status(400).json({success: false, msg:ademozi.message})
+  }
+}
+
+export {createOrder,getMyOrders,getOredersWithId,updateOrderStatus,getAllOrders};
