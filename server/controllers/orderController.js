@@ -1,12 +1,11 @@
 import Order from "../models/order.js";
 import Product from "../models/Product.js";
 
-//70%
-
+//70% 
 const createOrder = async (req, res) => {
   try {
     //req.params                     e.g. { id: "68f3a2..." } — the whole object
-    //const { id } = req.params;    {} here = "pull out the field called id"
+    //const {id} = req.params;     {} here = "pull out the field called id"
     //const orderId = req.params;    NO {} = orderId now IS the whole object, not just the id!
     const userId = req.user._id;
     const { items, wilaya, phone } = req.body;
@@ -55,11 +54,8 @@ const getMyOrders = async (req,res) => {
     const userId = req.user._id;
     
     const userOrders = await Order.find({ user:userId })
-
-    if(userOrders){
-      return res.status(200).json({success:true, data:userOrders, msg:"This is your current order"})
-    }
-    return res.status(404).json({success:false,msg:"You don't have any orders yes, Go to shop and buy some stuff to see it here!"})
+    //No need to if(order) cause .find even if DB is empty it returns []
+    return res.status(200).json({success:true, data:userOrders, msg:"This is your current order"})
   } catch (ademozi) {
     return res.status(400).json({success: false, msg:ademozi.message})
   }
@@ -74,7 +70,7 @@ const getOredersWithId = async (req,res) => {
 
     if(userOrders){
       //only admin or matched users with thier orders id can view the requested order
-      if(req.user._id.toString() !== userOrders.user.toString() && user.role !== "admin"){
+      if(req.user._id.toString() !== userOrders.user.toString() && req.user.role !== "admin"){
         return res.status(401).json({success:false,msg:"You are not authorized to view this order"})
       }
       return res.status(200).json({success:true, data:userOrders, msg:"This is the current user order"})
