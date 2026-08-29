@@ -2,7 +2,7 @@
 
 A full-stack e-commerce web application built from the ground up with the MERN stack, designed around a cash-on-delivery (COD) shopping experience tailored for the Algerian market — customers order by wilaya, no online payment gateway required.
 
-![Status](https://img.shields.io/badge/status-complete-brightgreen) ![Stack](https://img.shields.io/badge/stack-MERN-61DAFB)
+![Status](https://img.shields.io/badge/status-inprogress-orange) ![Stack](https://img.shields.io/badge/stack-MERN-61DAFB)
 
 ## ✨ Features
 
