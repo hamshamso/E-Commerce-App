@@ -1,109 +1,136 @@
-# E-Commerce App (MERN Stack)
+# 🛍️ E-Commerce App — MERN Stack
 
-A full-stack e-commerce web application built from scratch, focused on a simple, COD-based (cash on delivery) shopping flow for the Algerian market — no online payment gateway, delivery organized by wilaya.
+A full-stack e-commerce web application built from the ground up with the MERN stack, designed around a cash-on-delivery (COD) shopping experience tailored for the Algerian market — customers order by wilaya, no online payment gateway required.
 
-## Tech Stack
+![Status](https://img.shields.io/badge/status-complete-brightgreen) ![Stack](https://img.shields.io/badge/stack-MERN-61DAFB)
 
-- **Frontend:** React (Vite), React Router, Context API (Auth + Cart), pure CSS (no Tailwind/CSS frameworks)
-- **Backend:** Node.js, Express.js
-- **Database:** MongoDB (Atlas), Mongoose
-- **Auth:** JWT (stored in localStorage), bcrypt password hashing
+## ✨ Features
 
-## Features
+### For Customers
+- 🔐 Secure registration and login (JWT authentication, bcrypt-hashed passwords)
+- 🛒 Browse the full product catalog with category filtering
+- 🧺 Add products to cart with live quantity selection, respecting real stock levels
+- 📦 Checkout with delivery by wilaya + phone number (COD)
+- 📜 View personal order history and track order status
 
-### Customer
-- Browse products (category filtering via a fixed enum, no separate Category collection)
-- Register / Login (JWT-based)
-- Add to cart with quantity selection, respecting live stock
-- Checkout — registered users only (no guest checkout), delivery by wilaya + phone (COD)
-- View personal order history
+### For Admins
+- 🗂️ Full product management — create, update, delete
+- 📋 Order management — view all customer orders, update order status through their lifecycle (`pending → confirmed → shipped → delivered`), or mark as `cancelled`
+- 🔒 All admin actions protected by role-based access control
 
-### Admin
-- Product management: create, update, delete (soft-protected via role-based middleware)
-- Order management: view all orders, update order status (`pending → confirmed → shipped → delivered → cancelled`)
+## 🧰 Tech Stack
 
-## Project Structure
+| Layer | Technology |
+|---|---|
+| Frontend | React (Vite), React Router, Context API |
+| Styling | Pure CSS (component-scoped, no framework) |
+| Backend | Node.js, Express.js |
+| Database | MongoDB Atlas, Mongoose |
+| Auth | JSON Web Tokens (JWT), bcrypt |
+
+## 🏗️ Architecture
 
 ```
 ecommerce-app/
 ├── client/                  # React (Vite) frontend
 │   └── src/
-│       ├── components/      # Reusable UI (ProductCard, etc.)
-│       ├── context/         # AuthContext, CartContext (React Context API)
-│       ├── pages/           # Home, Login, Register, NavBar
-│       ├── services/        # api.js — centralized fetch calls to the backend
-│       └── styles/          # Plain CSS per page/component
+│       ├── components/      # Reusable UI components (ProductCard, etc.)
+│       ├── context/         # AuthContext & CartContext (global state)
+│       ├── pages/           # Home, Login, Register, Cart, Checkout, Orders, Admin
+│       ├── services/        # Centralized API layer (api.js)
+│       └── styles/          # Component and page-level CSS
 │
 ├── server/                  # Express backend
-│   └── src/ (or root, depending on setup)
-│       ├── config/          # db.js — MongoDB connection
-│       ├── controllers/     # authController, productController, orderController
-│       ├── middleware/      # ValidateUser (JWT check), adminOnly (role check)
-│       ├── models/          # User, Product, Order (Mongoose schemas)
-│       └── routes/          # authRoute, productRoute, orderRoute
+│   ├── config/               # Database connection
+│   ├── controllers/          # Business logic (auth, product, order)
+│   ├── middleware/            # Authentication & authorization guards
+│   ├── models/                # Mongoose schemas (User, Product, Order)
+│   └── routes/                 # REST API route definitions
 │
 └── README.md
 ```
 
-## Data Models
+## 🗃️ Data Models
 
-**User:** `name, email, password (hashed), phone, role ('user' | 'admin')`
+**User**
+```
+name, email (unique), password (hashed), phone, role: 'user' | 'admin'
+```
 
-**Product:** `name, price, quantity, category (enum), image (URL)`
+**Product**
+```
+name, price, quantity, category (enum), image (URL)
+```
 
-**Order:** `user (ref), items[] (product ref + snapshot name/price/quantity), total, wilaya, phone, status (enum)`
+**Order**
+```
+user (ref), items[] (product ref + snapshotted name/price/quantity), total, wilaya, phone,
+status: 'pending' | 'confirmed' | 'shipped' | 'delivered' | 'cancelled'
+```
 
-> Order line items snapshot the product's `name` and `price` at the time of purchase, rather than referencing live product data — so past orders remain accurate even if a product's price or name changes later.
+> Order line items snapshot each product's name and price at the moment of purchase, so historical orders stay accurate even if a product's details change later.
 
-## API Overview
+## 🔌 API Reference
 
-### Auth (`/api/auth`)
+### Auth — `/api/auth`
 | Method | Endpoint | Access |
 |---|---|---|
-| POST | `/register` | Public |
-| POST | `/login` | Public |
+| `POST` | `/register` | Public |
+| `POST` | `/login` | Public |
 
-### Products (`/api/products`)
+### Products — `/api/products`
 | Method | Endpoint | Access |
 |---|---|---|
-| GET | `/products` | Public |
-| GET | `/products/:id` | Public |
-| POST | `/products` | Admin |
-| PUT | `/products/:id` | Admin |
-| DELETE | `/products/:id` | Admin |
+| `GET` | `/products` | Public |
+| `GET` | `/products/:id` | Public |
+| `POST` | `/products` | Admin |
+| `PUT` | `/products/:id` | Admin |
+| `DELETE` | `/products/:id` | Admin |
 
-### Orders (`/api/orders`)
+### Orders — `/api/orders`
 | Method | Endpoint | Access |
 |---|---|---|
-| POST | `/orders` | Logged-in user |
-| GET | `/orders/my` | Logged-in user (own orders) |
-| GET | `/orders/:id` | Owner or Admin |
-| GET | `/orders` | Admin (all orders) |
-| PATCH | `/orders/:id/status` | Admin |
+| `POST` | `/orders` | Authenticated user |
+| `GET` | `/orders/my` | Authenticated user (own orders) |
+| `GET` | `/orders/:id` | Order owner or Admin |
+| `GET` | `/orders` | Admin (all orders) |
+| `PATCH` | `/orders/:id/status` | Admin |
 
-## Security Notes
+## 🔒 Security
 
-- Passwords are hashed with bcrypt before storage — never stored or returned in plain text.
-- JWT payloads are kept minimal (`{ id }` only) — role and other user data are always freshly looked up from the database on each request, never trusted from a stale token.
-- Order `total` and item `price`/`name` are always calculated server-side from the live database, never trusted from client input — preventing price manipulation.
-- Product create/update/delete routes are protected by both authentication (`ValidateUser`) and role verification (`adminOnly`).
+- Passwords are hashed with bcrypt and never stored or transmitted in plain text.
+- JWT payloads are kept minimal — user role and details are always freshly verified against the database on every request, never trusted from the token alone.
+- Order totals and item prices are always computed server-side from live database records, preventing any client-side price manipulation.
+- All write operations on products and orders require both authentication and role verification.
 
-## Setup
+## 🚀 Getting Started
 
 ```bash
-# Backend
+# Clone the repository
+git clone <your-repo-url>
+cd ecommerce-app
+
+# Backend setup
 cd server
 npm install
-# create a .env file with: PORT, MONGO_URI, JWT_SECRET
+# Create a .env file:
+#   PORT=5000
+#   MONGO_URI=<your MongoDB Atlas connection string>
+#   JWT_SECRET=<your secret>
 npm run dev
 
-# Frontend
+# Frontend setup (new terminal)
 cd client
 npm install
 npm run dev
 ```
 
-## Status
+The app will be running at `http://localhost:5173` (frontend) and `http://localhost:5000` (backend API).
 
-Backend: Auth, Product CRUD, and Order CRUD complete.
-Frontend: Auth pages, product catalog (on the Home page), cart context complete. Checkout page, order history page, and admin dashboard UI in progress.
+## 📄 License
+
+This project is available for educational and portfolio purposes.
+
+---
+
+Built as a hands-on learning project covering the full MERN stack — from database design and secure authentication to a complete customer shopping flow and an admin management system.
