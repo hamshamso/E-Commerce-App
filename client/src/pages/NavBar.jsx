@@ -12,7 +12,7 @@ function NavBar() {
           <Link to="/">Home</Link>
           <Link to="/">Shop</Link>
           <Link to="/">About Us</Link>
-          {isuser ()&& (<Link to="/">Your cart</Link>) }
+          {isuser ()&& (<Link to="/cart">Your cart</Link>) }
         </div>
 
         {!isuser () ? (

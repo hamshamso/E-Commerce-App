@@ -11,7 +11,7 @@ const orderschema = new mongoose.Schema({
     }],
     total:{type:Number,required:true},
     adress:{type:String,required:true},
-    status:{type:String,enum:['pending','confirmed','shipped','delivred','cancelled'],required:true,default:'pending',}
+    status:{type:String,enum:['pending','confirmed','shipped','delivered','cancelled'],required:true,default:'pending',}
 },{timestamps:true});
 
 const order = mongoose.model('Order',orderschema)
