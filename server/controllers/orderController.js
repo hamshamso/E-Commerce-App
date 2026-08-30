@@ -8,7 +8,7 @@ const createOrder = async (req, res) => {
     //const {id} = req.params;     {} here = "pull out the field called id"
     //const orderId = req.params;    NO {} = orderId now IS the whole object, not just the id!
     const userId = req.user._id;
-    const { items, wilaya, phone } = req.body;
+    const { items, adress, phone } = req.body;
     
     let orderItems = [];
     let total = 0;
@@ -38,7 +38,7 @@ const createOrder = async (req, res) => {
       user: userId,
       items: orderItems,
       total,
-      wilaya,
+      adress,
       phone,
     });
 
@@ -62,16 +62,17 @@ const getMyOrders = async (req,res) => {
 }
 const getOredersWithId = async (req,res) => {
   try {
-    const {orderId} = req.params  
+    const orderId = req.params.id
+    
     if(!orderId){
-      return res.status(404).json({success:false ,msg:"Please enter the Order ID"})
+      return res.status(404).json({success:false ,msg:"Please enter a valid the Order ID"})
     }
     const userOrders = await Order.findById(orderId)
 
     if(userOrders){
       //only admin or matched users with thier orders id can view the requested order
-      if(req.user._id.toString() !== userOrders.user.toString() && req.user.role !== "admin"){
-        return res.status(401).json({success:false,msg:"You are not authorized to view this order"})
+      if(req.user._id.toString() !== userOrders.user.toString() || req.user.role !== "admin"){
+        return res.status(401).json({success:false,msg:"You are unauthorized to view this order"})
       }
       return res.status(200).json({success:true, data:userOrders, msg:"This is the current user order"})
     }
