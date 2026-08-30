@@ -10,7 +10,7 @@ function ProductCard({ product }) {
   const decrease = () => setQty((q) => Math.max(1, q - 1));
   //aavoid passing the quantity limit 
   const increase = () => setQty((q) => Math.min(product.quantity, q + 1));
-
+                                    //#064E3B #F8E7C9
   return (
     <div className="product-card-split">
       <div className="product-image-panel">

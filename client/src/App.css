@@ -6,7 +6,10 @@
     font-optical-sizing: auto;
     font-weight: 200;
     font-style: normal;
-    background: radial-gradient(circle at top left, #3a2415 0%, #1c1713 45%, #0d0a08 100%);
+    background: radial-gradient(circle at top left, #64ab98 0%, #064E3B 35% ,#033b2c 100%);
     background-attachment: fixed;
 }
-    
+::selection {
+  background-color: #65a36b;
+  color: white;
+}

@@ -23,14 +23,14 @@
 
 .links a {
     text-decoration: none; 
-    color: rgb(255, 251, 251);
+    color: #F8E7C9;
     white-space: nowrap;
     transition: 0.5s ease;
 }
 
 .links a:hover {
     text-decoration: underline; 
-    color:rgb(238, 183, 112);
+    color:#F8E7C9;
 }
 
 .login{
@@ -53,8 +53,8 @@
     color:rgb(192, 192, 192);
 }
 .state button {
-    color: rgb(192, 192, 192);
-    border: 1px solid #542f12;
+    color: #F8E7C9;
+    border: 1px solid #F8E7C9;
     border-radius: 20px;
     background: transparent;
     font-weight: bold;
@@ -65,28 +65,31 @@
 .hi{
     margin-right: 10%;
     white-space: nowrap;
+    color:#F8E7C9;
 }
 .loginbtn{
-    color: rgb(192, 192, 192);
-    border: 1px solid #542f12;
+    color: #F8E7C9;
+    border: 1px solid #F8E7C9  ;
     background: transparent;
     font-weight: bold;
     transition: 0.2s;
 }
 
 .signupbtn{
-    color: #542f12;
-    border: none;
-    background: rgb(192, 192, 192);
+    color: #F8E7C9;
+    border: 1px solid #F8E7C9;
+    background-color: #064E3B;
+    background: transparent;
     font-weight: bold;
     transition: 0.2s;
 }
 
 button:hover{
     transform: translateY(-2px);
+    background-color: #043729;
 }
-.state button:hover{
-    background-color: #542f12;
-    color:white;
+ button:hover{
+    background-color: #F8E7C9;
+    color:#064E3B;
     opacity: 0.9;
 }

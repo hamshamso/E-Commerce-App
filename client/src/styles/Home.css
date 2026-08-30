@@ -13,41 +13,13 @@ h1, h2 {
 
 .welcome {
     margin: 2rem; 
-    color: rgb(244, 213, 173);    
+    color: #F8E7C9;    
     padding: 3rem 1rem 0rem 1rem; 
     
 }
 .welcome p {
     margin: 2rem 1rem;
 }
-
-.getstarted {
-    background-color: #542f12;
-    color: white;
-    border: 1px solid transparent;
-    box-sizing: border-box;
-}
-
-.getstarted:hover {
-    background-color: transparent;
-    border-color: #542f12;
-    color: white;
-    opacity: 0.9;
-    transform: translateY(-2px);
-}
-.learnmore {
-    background: transparent;
-    color: white;
-    border: 2px solid #542f12; 
-    margin-left: 1rem;
-}
-.learnmore:hover{
-    background-color: #542f12;
-    color: #ffffff;
-    opacity: 0.9;
-    transform: translateY(-2px);
-}
-
 footer {
     color: antiquewhite;
     display: flex;
@@ -95,14 +67,14 @@ footer a:hover {
 }
 
 .shop-title {
-  color: rgb(244, 213, 173);
+  color: #F8E7C9;
   margin-bottom: 3rem;
   text-align: center;
 }
 
 .shop-status {
   text-align: center;
-  color: antiquewhite;
+  color: #F8E7C9;
 }
 
 .shop-error {

@@ -33,7 +33,7 @@
 
 .auth-form label {
   font-size: 0.85rem;
-  color: rgba(244, 213, 173, 0.85);
+  color: #F8E7C9;
   margin-bottom: -0.5rem;
 }
 
@@ -59,12 +59,13 @@
   height: 3rem;
   border-radius: 2rem;
   border: none;
-  background-color: #542f12;
+  background-color: #3f8572;
   color: white;
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
   transition: 0.3s ease;
+  border: 1px solid #F8E7C9  ;
 }
 
 .auth-form button[type="submit"]:hover {
@@ -91,11 +92,11 @@
 .auth-switch {
   text-align: center;
   font-size: 0.9rem;
-  color: rgba(244, 213, 173, 0.8);
+  color: #F8E7C9;
 }
 
 .auth-switch a {
-  color: #d4a373;
+  color: #F8E7C9;
   text-decoration: none;
   font-weight: 600;
 }
