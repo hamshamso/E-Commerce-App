@@ -9,10 +9,10 @@ function NavBar() {
     <>
       <div className="navbar">
         <div className="links">
-          <Link href="/">Home</Link>
-          <Link href="/">Shop</Link>
-          <Link href="/">About Us</Link>
-          {isuser ()&& (<Link href="/">Your cart</Link>) }
+          <Link to="/">Home</Link>
+          <Link to="/">Shop</Link>
+          <Link to="/">About Us</Link>
+          {isuser ()&& (<Link to="/">Your cart</Link>) }
         </div>
 
         {!isuser () ? (
