@@ -11,6 +11,7 @@ const orderschema = new mongoose.Schema({
     }],
     total:{type:Number,required:true},
     adress:{type:String,required:true},
+    phone:{type:Number,required:true},
     status:{type:String,enum:['pending','confirmed','shipped','delivered','cancelled'],required:true,default:'pending',}
 },{timestamps:true});
 
