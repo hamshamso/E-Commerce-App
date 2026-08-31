@@ -1,9 +1,0 @@
-HTTP request compose of 
-1. method   :   (POST/GET/UPDATE/DELETE)
-2. URL      :   (DOMAIN/PATH/QUERY PARAMS)
-3. Headers  :   (Content-Type : application/json)
-                (Authorization : Bearer efonveo ... || Null)
-4. Body     :   (email,password ...)
-
-and we can add new properties like 'user' in validatUser 
-composition of decoded : _id,iat,exp
