@@ -95,8 +95,8 @@ const getAllOrders = async (req,res) => {
 const updateOrderStatus = async(req,res) => {
   //Only admin can access this function
   try {
-    const {orderId} = req.params
-    const {sts} = req.body
+    const orderId = req.params.id
+    const {status} = req.body
     const validStatuses = ['pending','confirmed','shipped','delivred','cancelled']
     if(!orderId){
       return res.status(404).json({success:false ,msg:"Please enter the Order ID"})
@@ -105,12 +105,12 @@ const updateOrderStatus = async(req,res) => {
     if(!order){
       return res.status(404).json({success:false ,msg:"No order matches this ID!"})
     }
-    if(!validStatuses.includes(sts)){
+    if(!validStatuses.includes(status)){
       return res.status(403).json({success:false, msg:`Please enter a valid status like :${validStatuses}`})
     }
-    order.status = sts
+    order.status = status
     await order.save()
-    //elso we can use Order.findById(id, {status:sts}, { new:true, runValidators:true }) 
+    //elso we can use Order.findById(id, {status:status}, { new:true, runValidators:true }) 
     //runValidators:true so no need to validStatuses array 
     //I didn't use it cause of learning a new stuffs
     return res.status(200).json({success:true, data:order, msg:"Order status is updated successfully"})

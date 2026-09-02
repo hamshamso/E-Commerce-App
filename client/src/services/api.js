@@ -44,7 +44,8 @@ export const createOrder = async (orderData,token) => {
         return data 
 }
 
-//100% human 
+//All of the rest is 100% human 
+//only admin
 export const getOrders = async () => {
     const res = await fetch(`${API_BASE}/orders`)
     const data = await res.json()
@@ -66,6 +67,7 @@ export const getOredersWithId = async (id) => {
     return data
 }
 
+//only admin
 export  const updateOrderStatus = async (id,status) => {
     const res = await fetch(`${API_BASE}/${id}/status`,{
         method : "PUT",

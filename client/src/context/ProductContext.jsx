@@ -47,14 +47,8 @@ export function CartProvider ({children}) {
         setCart((cart) => cart.filter((item) => item._id !== productId))
     })
 
-    const sentOrder = (total,phone,adress) => {
-        setCart((cart) => {
-             return { ...cart,total:total,phone:phone, adress:adress}
-        })
-    }
-
     return (
-        <CartContext.Provider value={{addToCart,removeFromCart,cart,sentOrder,clearCart}}>
+        <CartContext.Provider value={{addToCart,removeFromCart,cart,clearCart}}>
             {children}
         </CartContext.Provider>    
     )   
