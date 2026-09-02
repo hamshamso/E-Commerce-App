@@ -2,16 +2,27 @@ import { useState } from "react";
 import { useCart } from "../context/ProductContext";
 import { Link } from "react-router-dom";
 export function Checkout (){
-    const {cart} = useCart()
+    const {cart,sentOrder} = useCart()
     const [formData,setFormData] = useState({phone:"",adress:""})
-    
+    // Calculate cart total
+    const cartTotal = cart.reduce((sum, item) => sum + item.price * item.quantity,0)
+
     const hundlesubmit = (e) =>{
-        e.prevent.default()
-        //Will make it later when starts admin dashbord
+        e.preventDefault()
+
+        const orderPayload = {
+            phone: formData.phone,
+            adress: formData.adress,
+            items: cart,
+            total: cartTotal,
+        }
+        sentOrder(orderPayload)
     }
+    
      const hundlechange = (e) =>{
         setFormData(() => ({...formData, [e.target.name]: e.target.value}) )
     }
+
     return(
         <div>
             <form className="auth-form" onSubmit={hundlesubmit}>
