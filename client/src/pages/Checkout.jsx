@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useCart } from "../context/ProductContext";
 import { Link } from "react-router-dom";
+import { createOrder } from "../services/api";
+
 export function Checkout (){
-    const {cart,sentOrder} = useCart()
+    const {cart} = useCart()
     const [formData,setFormData] = useState({phone:"",adress:""})
     // Calculate cart total
     const cartTotal = cart.reduce((sum, item) => sum + item.price * item.quantity,0)
@@ -16,9 +18,9 @@ export function Checkout (){
             items: cart,
             total: cartTotal,
         }
-        sentOrder(orderPayload)
+        createOrder(orderPayload)
     }
-    
+
      const hundlechange = (e) =>{
         setFormData(() => ({...formData, [e.target.name]: e.target.value}) )
     }
