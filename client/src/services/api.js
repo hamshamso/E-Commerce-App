@@ -60,8 +60,18 @@ export const getMyOrders = async () => {
 }
 
 export const getOredersWithId = async (id) => {
-    const res = await fetch(`${API_BASE}/orders/:${id}`)
+    const res = await fetch(`${API_BASE}/orders/${id}`)
     const data = res.json()
     if(!res.ok) throw new Error(data.msg || "Failed to fetch your order")
+    return data
+}
+
+export  const updateOrderStatus = async (id,status) => {
+    const res = await fetch(`${API_BASE}/${id}/status`,{
+        method : "PUT",
+        body:JSON.stringify({status})
+    })
+    const data = await res.json()
+    if(!res.ok){throw new Error(data.msg || "Failed to update status")}
     return data
 }
