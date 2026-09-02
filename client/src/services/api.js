@@ -31,13 +31,37 @@ export const getProducts  = async() => {
     if(!res.ok) throw new Error(data.msg || "Failed to fetch products")
     return data
 }
-export const createOrder = async (items, adress, phone) => {
+export const createOrder = async (orderData,token) => {
     const res = await fetch(`${API_BASE}/orders`,{
         method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body: JSON.stringify(items, adress, phone)
+        headers:{"Content-Type":"application/json",
+                "Authorization":`Bearer ${token}`
+        },
+        body: JSON.stringify(orderData)
     })
     const data = await res.json()
-    if(!res.ok) throw new Error(data.msg || "Login failed")
+    if(!res.ok) throw new Error(data.msg || "Failed to create order")
         return data 
+}
+
+//100% human 
+export const getOrders = async () => {
+    const res = await fetch(`${API_BASE}/orders`)
+    const data = await res.json()
+    if(!res.ok) throw new Error(data.msg || "Failed to fetch orders")
+    return data
+}
+
+export const getMyOrders = async () => {
+    const res = await fetch(`${API_BASE}/orders/my`)
+    const data = await res.json()
+    if(!res.ok) throw new Error(data.msg || "Failed to fetch your order")
+    return data
+}
+
+export const getOredersWithId = async (id) => {
+    const res = await fetch(`${API_BASE}/orders/:${id}`)
+    const data = res.json()
+    if(!res.ok) throw new Error(data.msg || "Failed to fetch your order")
+    return data
 }

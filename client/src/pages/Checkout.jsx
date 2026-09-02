@@ -6,12 +6,14 @@ import { createOrder } from "../services/api";
 export function Checkout (){
     const {cart} = useCart()
     const [formData,setFormData] = useState({phone:"",adress:""})
+    const [error,setError] = useState(false)
+    const [loading,setLoading] = useState(false)
     // Calculate cart total
     const cartTotal = cart.reduce((sum, item) => sum + item.price * item.quantity,0)
 
     const hundlesubmit = (e) =>{
-        e.preventDefault()
-
+        try{e.preventDefault()
+        setLoading(true)
         const orderPayload = {
             phone: formData.phone,
             adress: formData.adress,
@@ -19,22 +21,26 @@ export function Checkout (){
             total: cartTotal,
         }
         createOrder(orderPayload)
-    }
+    }catch(e){
+        console.error(e)
+        setError(true)
+    }finally{
+        setLoading(false)
+    }}
 
-     const hundlechange = (e) =>{
-        setFormData(() => ({...formData, [e.target.name]: e.target.value}) )
-    }
+    {error && <h1>Error</h1>}
+    {loading && <h1>Loading...</h1>}
 
-    return(
-        <div>
+return (
+    <div>
             <form className="auth-form" onSubmit={hundlesubmit}>
                 <h1>Enter your Phone number and adress to purchas the products</h1>
 
                 <label htmlFor="phone">Phone number</label>
-                <input id="phone" name="phone" type="number" value={cart.phone} onChange={hundlechange} required minLength={10}/>
+                <input id="phone" name="phone" type="number" value={formData.phone} required minLength={10}/>
 
                 <label htmlFor="adress">Adress</label>
-                <input id="adress" name="adress" type="text" value={cart.adress} onChange={hundlechange} required />
+                <input id="adress" name="adress" type="text" value={formData.adress} required />
 
                 <button type="submit" >
                     Buy
@@ -45,5 +51,4 @@ export function Checkout (){
              <p>{cart.phone}</p>
              
         </div>
-    )
-}
+)}
