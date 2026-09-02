@@ -33,3 +33,6 @@ export const getProducts  = async() => {
     if(!res.ok) throw new Error(data.msg || "Failed to fetch products")
     return data
 }
+export const purchas = async () => {
+    
+}
