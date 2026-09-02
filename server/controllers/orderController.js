@@ -31,7 +31,8 @@ const createOrder = async (req, res) => {
         quantity: item.quantity,
       });
       total = total + product.price * item.quantity;
-
+      product.quantity = product.quantity - item.quantity
+      product.save()
     }
 
     const order = await Order.create({

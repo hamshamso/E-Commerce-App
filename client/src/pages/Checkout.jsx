@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useCart } from "../context/ProductContext";
 import { Link } from "react-router-dom";
 import { createOrder } from "../services/api";
+import "../styles/checkkout.css"
 
 export function Checkout (){
     const {cart,clearCart} = useCart()
@@ -17,7 +18,6 @@ export function Checkout (){
     setFormData((prev) => ({ ...prev, [name]: value }));
     };
     const hundlesubmit = async (e) =>{
-        
         e.preventDefault()
         setError(false)
         setLoading(true)
@@ -65,7 +65,7 @@ export function Checkout (){
                         <p className="auth-switch">Buy new products? <Link to="/"> Buy</Link></p> {/*add cart icon*/}
 
                     </form>
-                    {cartTotal > 0 && <p>TOTAL :{cartTotal}</p>}
+                    {cartTotal > 0 && <div className="cart-total"><h1 >TOTAL : {cartTotal}</h1></div>}
                 </div>
                 :
                 <div>

@@ -1,0 +1,21 @@
+.cart-total{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: larger;
+    color:#F8E7C9;
+    margin-left: 5rem;   
+}
+
+.cart-total h1 {
+    border: 1px solid #F8E7C9;
+    padding: 1rem;
+    border-radius: 3rem;
+    display: absulote;
+    transition: transform 0.2s ease-in-out;
+}
+
+.cart-total h1:hover {
+   transform: scale(1.15);
+   box-shadow: 0px 0px 23px #064E3B;;
+}
