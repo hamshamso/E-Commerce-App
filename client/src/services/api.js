@@ -1,6 +1,4 @@
 const API_BASE = "http://localhost:5000/api"
-
-
 //Create "POST" a new user "text" parse it to JSON with stringify and send it to Backend 
 //and check if evreythink is good 
 export const registerUser = async (userData) =>{
@@ -33,6 +31,13 @@ export const getProducts  = async() => {
     if(!res.ok) throw new Error(data.msg || "Failed to fetch products")
     return data
 }
-export const purchas = async () => {
-    
+export const createOrder = async (items, adress, phone) => {
+    const res = await fetch(`${API_BASE}/orders`,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body: JSON.stringify(items, adress, phone)
+    })
+    const data = await res.json()
+    if(!res.ok) throw new Error(data.msg || "Login failed")
+        return data 
 }
