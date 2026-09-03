@@ -1,0 +1,67 @@
+.header h1{
+    margin-top: 5rem;
+    color: #064E3B;;
+    margin-bottom: 3rem;
+    border: 1px solid #064E3B;
+    border-radius: 2rem;
+    background-color: #F8E7C9;
+    padding: 1rem;
+}
+.header{
+    display: flex;
+    justify-content: center;
+}
+.items{
+    display: flex;
+    flex-wrap:wrap;
+    gap: 3rem;
+    margin-left: 13rem;
+    margin-bottom: 7rem;
+}
+.item-card{
+    min-width: 23rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    color:#064E3B;
+}
+.status{
+    background-color: #064E3B;
+    color: #F8E7C9;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+
+}
+.bottom-card{
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    font-weight: 800;
+    color:#064E3B;
+}
+.card{
+    border: 1px solid #F8E7C9;
+    border-radius: 2rem;
+    padding: 10px;
+    background-color: #F8E7C9;
+    transition: all 0.15s ease-in;
+}
+.card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0px 0px 20px #F8E7C9;
+}
+.view-more{
+    border: 3px solid #064E3B;
+    background-color: #F8E7C9;
+    border-radius: 2rem;
+    width: 9rem;
+    font-weight: 800;
+    padding: 1rem ;
+    transition: all 0.1s ease-in;
+}
+.view-more:hover{
+    background-color: #064E3B;
+    color:#F8E7C9
+}

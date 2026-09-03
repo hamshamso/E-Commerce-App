@@ -52,7 +52,7 @@ export const getOrders = async () => {
     if(!res.ok) throw new Error(data.msg || "Failed to fetch orders")
     return data
 }
-
+//Users and thier orders
 export const getMyOrders = async (token) => {
     const res = await fetch(`${API_BASE}/orders/my`,{
         headers:{"Content-Type":"application/json",
@@ -62,7 +62,7 @@ export const getMyOrders = async (token) => {
     if(!res.ok) throw new Error(data.msg || "Failed to fetch your order")
     return data
 }
-
+//Users and thier order
 export const getOredersWithId = async (id) => {
     const res = await fetch(`${API_BASE}/orders/${id}`)
     const data = await res.json()

@@ -1,6 +1,7 @@
 import { getMyOrders} from "../services/api"
 import { useEffect,useState } from "react"
-
+import { Link } from "react-router-dom"
+import "../styles/orderr.css"
 export function Orders () {
     const [order,setOrder] = useState([])
     const [loading,setLoading] = useState(true)
@@ -23,19 +24,32 @@ export function Orders () {
     },[])
     return(
         <div >
-            {error && <h1>{error}</h1>}
-            {loading && <h1>loading</h1>}
+            {error && <h1 className="header" >{error}</h1>}
+            {loading && <h1 className="header" >loading...</h1>}
             {!error && !loading && (
                 <div>
-                    <h1>Your prevuios orders </h1>
+                    <div className="header">
+                        <h1 >Your prevuios orders </h1>
+                    </div>
+                    
+                    <div className="items">
                     {order.map((o) => (
-                        <div className="item-card" key={o._id}>
-                            <p className="total">{o.total}</p>
-                            <p className="phone">{o.phone}</p>
-                            <p className="adress">{o.adress}</p>
-                            <p className="status"><strong>{o.status}</strong></p>
+                        <div key={o._id} className="card">
+                            <div className="item-card" >
+                                <p className="phone"> 📞 Phone  : {o.phone}</p>
+                                <p className="adress">🏠 Ardess  : {o.adress}</p>
+                                <p className="total">💰 Total  : {o.total}</p>
+                            </div>
+                            <div className="bottom-card">
+                                    <button className="view-more">
+                                        <Link to={`/orders/${o._id}`}> view more 🛒</Link>
+                                    </button>
+                                    <p className="status"><strong>{o.status}</strong></p>
+                            </div>
                         </div>
+                        
                     ))}
+                    </div>
                 </div>
             )}
         </div>
