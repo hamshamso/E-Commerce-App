@@ -6,6 +6,7 @@ import Register from './pages/Register'
 import {Route, Routes} from 'react-router-dom'
 import { Cart } from './pages/Cart';
 import { Checkout } from './pages/checkout';
+import { Orders } from './pages/orders';
 
 function App() {
 //Cart
@@ -19,6 +20,7 @@ function App() {
         <Route path='/register' element={<Register/>}/>
         <Route path='/cart' element={<Cart/>}/>
         <Route path='/checkout' element={<Checkout/>}/>
+        <Route path='/orders' element={<Orders/>}/>
       </Routes>
     </div>
     </>

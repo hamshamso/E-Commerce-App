@@ -53,8 +53,12 @@ export const getOrders = async () => {
     return data
 }
 
-export const getMyOrders = async () => {
-    const res = await fetch(`${API_BASE}/orders/my`)
+export const getMyOrders = async (token) => {
+    const res = await fetch(`${API_BASE}/orders/my`,{
+        headers:{"Content-Type":"application/json",
+                "Authorization":`Bearer ${token}`
+        },})
+    console.log("Token sent to API:", token);
     const data = await res.json()
     if(!res.ok) throw new Error(data.msg || "Failed to fetch your order")
     return data

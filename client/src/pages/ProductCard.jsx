@@ -7,6 +7,10 @@ function ProductCard({ product }) {
   const [qty, setQty] = useState(1);
   const [added,setAdded] = useState(false)
   const reset = useRef(null)
+  if (!product || product.quantity <= 0) {
+    return null;
+  }
+  
   const decrease = () => setQty((q) => Math.max(1, q - 1));
   const increase = () => setQty((q) => Math.min(product.quantity, q + 1));
 
@@ -19,6 +23,7 @@ function ProductCard({ product }) {
       setAdded(false)
     },1500)
   }
+  
   return (
     <div className="product-card-split">
       <div className="product-image-panel">
