@@ -58,7 +58,6 @@ export const getMyOrders = async (token) => {
         headers:{"Content-Type":"application/json",
                 "Authorization":`Bearer ${token}`
         },})
-    console.log("Token sent to API:", token);
     const data = await res.json()
     if(!res.ok) throw new Error(data.msg || "Failed to fetch your order")
     return data
