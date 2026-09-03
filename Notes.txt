@@ -9,7 +9,7 @@ and we can add new properties like 'user' in validatUser
 composition of decoded : _id,iat,exp
 <input
         type="email"
-        name="email" // Matches key in formData state
+        name="email" // Matches key in formData and req.body
         value={formData.email}
         onChange={handleChange}
 />

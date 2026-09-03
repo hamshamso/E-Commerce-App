@@ -44,7 +44,7 @@ export const createOrder = async (orderData,token) => {
         return data 
 }
 
-//All of the rest is 100% human 
+//All of the rest is 100% human after i learned well
 //only admin
 export const getOrders = async () => {
     const res = await fetch(`${API_BASE}/orders`)
@@ -62,7 +62,7 @@ export const getMyOrders = async () => {
 
 export const getOredersWithId = async (id) => {
     const res = await fetch(`${API_BASE}/orders/${id}`)
-    const data = res.json()
+    const data = await res.json()
     if(!res.ok) throw new Error(data.msg || "Failed to fetch your order")
     return data
 }

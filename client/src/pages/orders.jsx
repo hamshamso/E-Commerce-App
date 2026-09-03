@@ -1,5 +1,20 @@
+import { useEffect } from "react"
+import { getMyOrders } from "../services/api"
 export function orders () {
     const cart = localStorage.getItem("cart")
+    const [order,setOrder] = useState("")
+    useEffect(()=>{
+        const fetchOrdersWithId = (id) => {
+        try{
+            
+            const data = getMyOrders(id)
+            setOrder(data)
+        }catch(error){
+            return console.error(error || "Failed to fetch your order")
+        }}
+        fetchOrdersWithId(id)
+    },[])
+    //how can i put order onfos with each cart item ?
     //Order.findById(orderId).populate("items.product", "image");
     return(
         <div>
