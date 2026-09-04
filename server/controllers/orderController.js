@@ -8,7 +8,8 @@ const createOrder = async (req, res) => {
     //const {id} = req.params;     {} here = "pull out the field called id"
     //const orderId = req.params;    NO {} = orderId now IS the whole object, not just the id!
     const userId = req.user._id;
-    const { items, adress, phone } = req.body;
+    const { phone } = req.user;
+    const { items, adress } = req.body;
     
     let orderItems = [];
     let total = 0;

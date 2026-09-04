@@ -28,13 +28,12 @@ export function Checkout (){
         quantity: item.quantity,
       }));
         const orderPayload = {
-        phone: formData.phone,
         adress: formData.adress,
         items,
       };
        await createOrder(orderPayload,token)
        setSubmit(true)
-       setFormData({ phone: "", adress: "" })
+       setFormData({ adress: "" })
        clearCart()
        return false
     }catch(e){
@@ -52,9 +51,6 @@ export function Checkout (){
                 <div>
                     <form className="auth-form" onSubmit={hundlesubmit}>
                         <h1>Enter your Phone number and adress to purchas the products</h1>
-
-                        <label htmlFor="phone">Phone number</label>
-                        <input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} required minLength={10}/>
 
                         <label htmlFor="adress">Adress</label>
                         <input id="adress" name="adress" type="text" value={formData.adress} onChange={handleChange} required />
