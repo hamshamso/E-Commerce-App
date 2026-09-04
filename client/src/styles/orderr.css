@@ -7,6 +7,22 @@
     background-color: #F8E7C9;
     padding: 1rem;
 }
+.loading{
+    margin-top: 5rem;
+    color: #F8E7C9;
+    margin-bottom: 3rem;
+    padding: 1rem;
+    display: flex;
+    justify-self: center;
+}
+.error{
+    margin-top: 5rem;
+    color: #930303;
+    margin-bottom: 3rem;
+    padding: 1rem;
+    display: flex;
+    justify-self: center;
+}
 .header{
     display: flex;
     justify-content: center;
@@ -54,12 +70,18 @@
 }
 .view-more{
     border: 3px solid #064E3B;
-    background-color: #F8E7C9;
+    background-color: hsl(38, 77%, 88%);
     border-radius: 2rem;
     width: 9rem;
     font-weight: 800;
+    color: #064E3B;
     padding: 1rem ;
     transition: all 0.1s ease-in;
+    align-items: center;
+    text-decoration: none;
+    display: inline-flex;
+    justify-content: center;
+    
 }
 .view-more:hover{
     background-color: #064E3B;

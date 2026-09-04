@@ -6,6 +6,7 @@ export function Orders () {
     const [order,setOrder] = useState([])
     const [loading,setLoading] = useState(true)
     const [error,setError] = useState(false)
+    
     useEffect(()=>{
         const fetchMyOrders = async() => {
             try{
@@ -24,8 +25,8 @@ export function Orders () {
     },[])
     return(
         <div >
-            {error && <h1 className="header" >{error}</h1>}
-            {loading && <h1 className="header" >loading...</h1>}
+            {error && <h1 className="error" >Error!</h1>}
+            {loading && <h1 className="loading" >loading...</h1>}
             {!error && !loading && (
                 <div>
                     <div className="header">
@@ -40,11 +41,9 @@ export function Orders () {
                                 <p className="adress">🏠 Ardess  : {o.adress}</p>
                                 <p className="total">💰 Total  : {o.total}</p>
                             </div>
-                            <div className="bottom-card">
-                                    <button className="view-more">
-                                        <Link to={`/orders/${o._id}`}> view more 🛒</Link>
-                                    </button>
-                                    <p className="status"><strong>{o.status}</strong></p>
+                            <div className="bottom-card"> 
+                                <Link className="view-more" to={`/orders/${o._id}`}> view more 🛒</Link>
+                                <p className="status"><strong>{o.status}</strong></p>
                             </div>
                         </div>
                         

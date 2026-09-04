@@ -63,12 +63,19 @@ export const getMyOrders = async (token) => {
     return data
 }
 //Users and thier order
-export const getOredersWithId = async (id) => {
-    const res = await fetch(`${API_BASE}/orders/${id}`)
-    const data = await res.json()
-    if(!res.ok) throw new Error(data.msg || "Failed to fetch your order")
-    return data
-}
+export const getOredersWithId = async (token, id) => {
+  const res = await fetch(`${API_BASE}/orders/${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  });
+
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.msg || "Failed to fetch your order");
+  return data;
+};
 
 //only admin
 export  const updateOrderStatus = async (id,status) => {

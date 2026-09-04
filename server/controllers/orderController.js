@@ -101,17 +101,23 @@ const updateOrderStatus = async(req,res) => {
 }
 const getProductsInfo = async(req,res) => {
   try{
-    const userId = req.user?._id || req.user?.id || req.user;
+    const userId = req.user?._id || req.user?.id || null;
+    if(!userId){
+      return res.status(404).json({success:false,msg:"Invalid user"})
+    }
     const orderId = req.params.id
     const order = await Order.findById(orderId).populate("items.product", "image category");
-
     if(order){
-      if(order.user.toString() === userId.toString()){
+      if(order.user.equals(req.user._id)){
         return res.status(200).json({success:true, data:order, msg:"Successfully get the product img and category"})
       }
+      console.log("id of userId")
+      console.log(userId)
+      console.log("id of orderId")
+      console.log(orderId)
       return res.status(401).json({success:false,msg:"You're unauthorized to view this order"})
     }
-    return res.status(404).json({seccess:false, msg:"Order not found"})
+    return res.status(404).json({seccess:false,data:{userId,orderId} ,msg:"Order not found"})
   }catch(ademozi){
     res.status(400).json({ademozi})
   }
