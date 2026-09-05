@@ -1,89 +1,142 @@
-.header h1{
-    margin-top: 5rem;
-    color: #064E3B;;
-    margin-bottom: 3rem;
-    border: 1px solid #064E3B;
-    border-radius: 2rem;
-    background-color: #F8E7C9;
-    padding: 1rem;
-}
-.loading{
-    margin-top: 5rem;
-    color: #F8E7C9;
-    margin-bottom: 3rem;
-    padding: 1rem;
-    display: flex;
-    justify-self: center;
-}
-.error{
-    margin-top: 5rem;
-    color: #930303;
-    margin-bottom: 3rem;
-    padding: 1rem;
-    display: flex;
-    justify-self: center;
-}
-.header{
-    display: flex;
-    justify-content: center;
-}
-.items{
-    display: flex;
-    flex-wrap:wrap;
-    gap: 3rem;
-    margin-left: 13rem;
-    margin-bottom: 7rem;
-}
-.item-card{
-    min-width: 23rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    color:#064E3B;
-}
-.status{
-    background-color: #064E3B;
-    color: #F8E7C9;
-    padding: 1rem 1.5rem;
-    border-radius: 0.5rem;
+/* Color Palette:
+   Primary Dark: #064E3B
+   Primary Light Background: #F8E7C9
+*/
 
-}
-.bottom-card{
-    display: flex;
-    align-items: center;
-    justify-content:space-around;
-    font-weight: 800;
-    color:#064E3B;
-}
-.card{
-    border: 1px solid #F8E7C9;
-    border-radius: 2rem;
-    padding: 10px;
+body {
     background-color: #F8E7C9;
-    transition: all 0.15s ease-in;
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
-.card:hover{
-    transform: translateY(-5px);
-    box-shadow: 0px 0px 20px #F8E7C9;
+
+.page-wrapper {
+    background-color: #F8E7C9;
+    min-height: 100vh;
+    padding: 30px 16px;
 }
-.view-more{
-    border: 3px solid #064E3B;
-    background-color: hsl(38, 77%, 88%);
-    border-radius: 2rem;
-    width: 9rem;
-    font-weight: 800;
+
+.orders-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(6, 78, 59, 0.08);
+}
+
+.header h1 {
+    font-size: 1.8rem;
     color: #064E3B;
-    padding: 1rem ;
-    transition: all 0.1s ease-in;
-    align-items: center;
-    text-decoration: none;
-    display: inline-flex;
-    justify-content: center;
-    
+    margin-bottom: 24px;
+    font-weight: 700;
 }
-.view-more:hover{
+
+.items {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+th {
+    padding: 14px 18px;
+    text-align: left;
+    color: #064E3B;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-bottom: 2px solid #F8E7C9;
+}
+
+tbody tr.card {
+    background-color: #fffdf9;
+    border: 1px solid #f2e3c6;
+    transition: all 0.2s ease-in-out;
+}
+
+tbody tr.card:hover {
+    transform: translateY(-2px);
+    background-color: #ffffff;
+    box-shadow: 0 6px 16px rgba(6, 78, 59, 0.12);
+}
+
+td {
+    padding: 16px 18px;
+    color: #1f2937;
+    font-size: 0.95rem;
+    vertical-align: middle;
+}
+
+td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/* Conditional Status Styles */
+.status {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    display: inline-block;
+}
+
+.status-pending {
+    background-color: #e5e7eb;
+    color: #374151;
+}
+
+.status-confirmed {
+    background-color: #dcfce7;
+    color: #15803d;
+}
+
+.status-shipped {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+}
+
+.status-delivered {
     background-color: #064E3B;
-    color:#F8E7C9
+    color: #F8E7C9;
+}
+
+.status-cancelled {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+/* Actions Button */
+.view {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #F8E7C9;
+    background-color: #064E3B;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: opacity 0.2s ease;
+}
+
+.view:hover {
+    opacity: 0.9;
+}
+
+.loading, .error, .no-orders {
+    text-align: center;
+    padding: 60px 0;
+    color: #064E3B;
 }

@@ -1,21 +1,235 @@
-.cart-total{
+.checkout-page-wrapper {
+    background-color: #F8E7C9;
+    min-height: calc(100vh - 70px);
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
+.checkout-card {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 950px;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.checkout-header {
+    margin-bottom: 30px;
+}
+
+.checkout-header h1 {
+    color: #064E3B;
+    font-size: 2rem;
+    margin: 0 0 6px 0;
+    font-weight: 700;
+}
+
+.checkout-header p {
+    color: #64748b;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 40px;
+    align-items: start;
+}
+
+.checkout-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-field label {
+    color: #064E3B;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-field input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+    background-color: #fafafa;
+}
+
+.form-field input:focus {
+    border-color: #064E3B;
+    background-color: #ffffff;
+}
+
+.buy-btn {
+    background-color: #064E3B;
+    color: #F8E7C9;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: opacity 0.2s;
+}
+
+.buy-btn:hover {
+    opacity: 0.92;
+}
+
+.switch-text {
+    font-size: 0.88rem;
+    color: #64748b;
+    margin-top: 10px;
+}
+
+.switch-text a {
+    color: #064E3B;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.order-summary-box {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    background-color: #fffdf9;
+}
+
+.order-summary-box h2 {
+    color: #064E3B;
+    font-size: 1.25rem;
+    margin: 0 0 20px 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #F8E7C9;
+}
+
+.summary-items {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-details {
     display: flex;
     align-items: center;
+    gap: 10px;
+}
+
+.item-title {
+    color: #334155;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.item-quantity {
+    background-color: #F8E7C9;
+    color: #064E3B;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.item-cost {
+    color: #064E3B;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.summary-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid #F8E7C9;
+    padding-top: 16px;
+    color: #334155;
+    font-size: 1rem;
+}
+
+.summary-total-row strong {
+    color: #064E3B;
+    font-size: 1.25rem;
+}
+
+.success-box {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.success-badge {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 16px;
+}
+
+.success-box h1 {
+    color: #064E3B;
+    margin-bottom: 10px;
+}
+
+.success-box p {
+    color: #64748b;
+    margin-bottom: 24px;
+}
+
+.btn-group {
+    display: flex;
     justify-content: center;
-    font-size: larger;
-    color:#F8E7C9;
-    margin-left: 5rem;   
+    gap: 16px;
 }
 
-.cart-total h1 {
-    border: 1px solid #F8E7C9;
-    padding: 1rem;
-    border-radius: 3rem;
-    display: absulote;
-    transition: transform 0.2s ease-in-out;
+.btn-primary {
+    background-color: #064E3B;
+    color: #F8E7C9;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
 }
 
-.cart-total h1:hover {
-   transform: scale(1.15);
-   box-shadow: 0px 0px 23px #064E3B;;
+.btn-secondary {
+    background-color: #F8E7C9;
+    color: #064E3B;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.loading-text, .error-text {
+    color: #064E3B;
+}
+
+@media (max-width: 768px) {
+    .checkout-grid {
+        grid-template-columns: 1fr;
+    }
 }

@@ -27,11 +27,11 @@ function Home() {
     <>
       <div className="landing">
         <div className="welcome">
-          <h1>Welcome to Our E-Commerce App</h1>
-          <h2>Every Purshase Will Be Made With Pleasure</h2>
-          <p>Buying and selling a good serices using the technologie</p>
+          <h1>Welcome to Our E-Commerce Store</h1>
+          <h2>Every Purchase Will Be Made With Pleasure</h2>
+          <p>Buying and selling quality products with modern technology</p>
         </div>
-      </div>
+    </div>
 
       <section className="shop-section" >
         <h2 className="shop-title">Our Products</h2>

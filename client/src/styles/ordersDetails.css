@@ -1,67 +1,139 @@
-.product-card{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}
-.product{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border:3px solid #506b55;
-    padding: 0.5rem 2rem 1.2rem 2rem ;
-    margin-top: 7rem;
-    border-radius: 2rem;
+.page-wrapper {
     background-color: #F8E7C9;
-}
-.img-section{
-    margin-right: 2rem;
-    margin-top: 2rem;
-    border-radius: 3rem;
-    margin-left: 0px;
-}
-.img-section img {
-    height: 12rem;
-    border-radius: 2rem;
-}
-.category{
-    display: flex;
-    justify-self: center;  
-    align-self: center;
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    background-color:#064E3B;
-    color: #F8E7C9;
-    margin-top: 0.7rem;
-    padding: 9px  8rem;
-    border-radius: 9px;
-}
-.product-details{
-    color: #064E3B ;
-}
-.product-details h1{
-    margin: 1rem 0rem 1rem 0rem;
-}
-.cansel-section button {
-  width: 8rem;
-  height: 1.6rem;
-  border-radius: 1rem;
-  border: none;
-  background: #064E3B;
-  color: #F8E7C9;
-  cursor: pointer;
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  margin-top: 2rem;
-  margin-left: 11rem;
+    min-height: 100vh;
+    padding: 30px 16px;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-.cansel-section button:hover {
-  background: #064E3B;
-  color: #F8E7C9;
+.orders-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 28px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(6, 78, 59, 0.08);
 }
+
+.header-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.back-btn {
+    color: #064E3B;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.order-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-meta h1 {
+    font-size: 1.6rem;
+    color: #064E3B;
+    margin: 0;
+    font-weight: 700;
+}
+
+.items {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+th {
+    padding: 14px 18px;
+    text-align: left;
+    color: #064E3B;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-bottom: 2px solid #F8E7C9;
+}
+
+tbody tr.card {
+    background-color: #fffdf9;
+    transition: all 0.2s ease-in-out;
+}
+
+tbody tr.card:hover {
+    transform: translateY(-2px);
+    background-color: #ffffff;
+    box-shadow: 0 6px 16px rgba(6, 78, 59, 0.12);
+}
+
+td {
+    padding: 16px 18px;
+    color: #1f2937;
+    font-size: 0.95rem;
+    vertical-align: middle;
+}
+
+td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.table-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.name-text {
+    font-weight: 600;
+    color: #064E3B;
+}
+
+.category-text {
+    color: #64748b;
+    font-size: 0.85rem;
+}
+
+.cancel-btn {
+    background-color: #fee2e2;
+    color: #dc2626;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.cancel-btn:hover {
+    background-color: #fca5a5;
+}
+
+/* Conditional Status Styles */
+.status {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    display: inline-block;
+}
+
+.status-pending { background-color: #e5e7eb; color: #374151; }
+.status-confirmed { background-color: #dcfce7; color: #15803d; }
+.status-shipped { background-color: #dbeafe; color: #1d4ed8; }
+.status-delivered { background-color: #064E3B; color: #F8E7C9; }
+.status-cancelled { background-color: #fee2e2; color: #b91c1c; }

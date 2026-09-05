@@ -1,6 +1,8 @@
 import { useState,useRef } from "react";
 import { useCart } from "../context/ProductContext";
 import "../styles/ProductCard.css";
+import plus from "../assets/plus.png"
+import mines from "../assets/mines.png"
 
 function ProductCard({ product }) {
   const { addToCart } = useCart();
@@ -40,9 +42,9 @@ function ProductCard({ product }) {
         </p>
 
         <div className="qty-selector">
-          <button type="button" onClick={decrease}>−</button>
+          <button type="button" onClick={decrease}><img src={plus} alt="plus" /></button>
           <span>{qty}</span>
-          <button type="button" onClick={increase}>+</button>
+          <button type="button" onClick={increase}><img src={mines} alt="plus" /></button>
         </div>
 
         <button
