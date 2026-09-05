@@ -1,10 +1,12 @@
 import { useState,useRef } from "react";
 import { useCart } from "../context/ProductContext";
+import { useAuth } from "../context/AuthContext";
 import "../styles/ProductCard.css";
 import plus from "../assets/plus.png"
 import mines from "../assets/mines.png"
 
 function ProductCard({ product }) {
+  const {isuser} = useAuth()
   const { addToCart } = useCart();
   const [qty, setQty] = useState(1);
   const [added,setAdded] = useState(false)
@@ -49,10 +51,10 @@ function ProductCard({ product }) {
 
         <button
           className="add-to-cart-btn"
-          disabled={product.quantity === 0}
-          onClick={hundelAddToCart}
-        >
-          {added ? "✓ Added" : "Add to cart"}
+          disabled={product.quantity === 0 || !isuser()}
+          onClick={hundelAddToCart}  
+        > 
+         {!isuser() ? "Log in first" : added ? "✓ Added" : "Add to cart" }
         </button>
       </div>
     </div>

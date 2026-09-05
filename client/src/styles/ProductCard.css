@@ -141,6 +141,11 @@
 }
 
 .add-to-cart-btn:disabled {
-  background-color: #94A3B8;
-  cursor: not-allowed;
+  background-color: rgba(11, 60, 45, 0.6); /* خلفية خضراء داكنة بشفافية خفيفة */
+  color: #F7E7CE;                           /* لون النص بيج/ذهبي واضح */
+  border: 1px solid rgba(247, 231, 206, 0.3); /* إطار ناعم باللون البيج */
+  cursor: not-allowed;                      /* تغيير المؤشر ليدل على منع الضغط */
+  opacity: 0.85;                            /* الحفاظ على وضوح النص */
+  font-size: 0.85rem;                       /* تصغير الخط قليلاً ليتناسب مع الرسالة */
+  padding: 10px 12px;
 }
