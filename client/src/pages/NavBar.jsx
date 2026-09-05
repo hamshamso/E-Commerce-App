@@ -2,13 +2,13 @@ import { useNavigate, Link } from "react-router-dom";
 import "../styles/NavBar.css";
 import { useAuth } from "../context/AuthContext";
 
-import homeIcon from "../assets/icons/home.png";
-import shopIcon from "../assets/icons/shop.png";
-import aboutIcon from "../assets/icons/about.png";
-import cartIcon from "../assets/icons/cart.png";
-import ordersIcon from "../assets/icons/orders.png";
-import userIcon from "../assets/icons/user.png";
-import logoutIcon from "../assets/icons/logout.png";
+import homeIcon from "../assets/home.png"
+import shopIcon from "../assets/shop.png"
+import aboutIcon from "../assets/about.png"
+import cartIcon from "../assets/cart.png"
+import ordersIcon from "../assets/orders.png"
+import userIcon from "../assets/user.png"
+import logoutIcon from "../assets/logout.png"
 
 function NavBar() {
   const navigate = useNavigate();

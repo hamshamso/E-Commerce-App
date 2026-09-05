@@ -1,97 +1,144 @@
-.navbar{
-    display: flex;
-    justify-content: center;
-    gap:45%;
-    align-items: center;
-    padding: 0rem 1.5rem;
-    background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(8px);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;           
-    box-sizing: border-box; 
-    z-index: 1000;
-}
-.links{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    font-size: large;
-    font-weight: 500;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Stack+Sans+Notch:wght@200..700&display=swap');
+
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #F8E7C9; /* خلفية بيج فاتحة لإبراز الأيقونات الخضراء */
+  padding: 12px 36px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  font-family: 'Montserrat', sans-serif;
 }
 
-.links a {
-    text-decoration: none; 
-    color: #F8E7C9;
-    white-space: nowrap;
-    transition: 0.5s ease;
+.links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
 }
 
-.links a:hover {
-
-    transform: scale(12px);
-    color:#F8E7C9;
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #064E3B; /* لون أخضر زمردي داكن وقابل للقراءة */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 8px 14px;
+  border-radius: 12px;
+  transition: all 0.2s ease-in-out;
 }
 
-.login{
-    display: flex;
-    gap: 1rem;
-    align-items: center;
+.nav-link:hover {
+  background-color: rgba(6, 78, 59, 0.08);
+  transform: translateY(-1px);
 }
 
-.login button {
-    height: 2.3rem;
-    border-radius: 20px;
-    width: 5.5rem;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-.state{
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    color:rgb(192, 192, 192);
-}
-.state button {
-    color: #F8E7C9;
-    border: 1px solid #F8E7C9;
-    border-radius: 20px;
-    background: transparent;
-    font-weight: bold;
-    transition: 0.2s;
-    width: 8rem;
-    height: 2rem;    
-}
-.hi{
-    margin-right: 10%;
-    white-space: nowrap;
-    color:#F8E7C9;
-}
-.loginbtn{
-    color: #F8E7C9;
-    border: 1px solid #F8E7C9  ;
-    background: transparent;
-    font-weight: bold;
-    transition: 0.2s;
+.nav-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  /* إضافة ظل خفيف جداً للأيقونة ثلاثية الأبعاد */
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
-.signupbtn{
-    color: #F8E7C9;
-    border: 1px solid #F8E7C9;
-    background-color: #064E3B;
-    background: transparent;
-    font-weight: bold;
-    transition: 0.2s;
+/* حالة عدم تسجيل الدخول */
+.login {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-button:hover{
-    transform: translateY(-2px);
-    background-color: #043729;
+.loginbtn {
+  background: transparent;
+  color: #064E3B;
+  border: 1.5px solid #064E3B;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
 }
- button:hover{
-    background-color: #F8E7C9;
-    color:#064E3B;
-    opacity: 0.9;
+
+.loginbtn:hover {
+  background-color: rgba(6, 78, 59, 0.08);
+}
+
+.signupbtn {
+  background-color: #064E3B;
+  color: #F8E7C9;
+  border: none;
+  padding: 9px 20px;
+  border-radius: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.signupbtn:hover {
+  background-color: #04392B;
+  transform: translateY(-1px);
+}
+
+/* حالة تسجيل الدخول */
+.state {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-avatar-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.hi {
+  color: #064E3B;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #064E3B;
+  color: #F8E7C9;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: #991B1B; /* تغيير للون الأحمر عند التمرير */
+  color: #FFFFFF;
+}
+
+.logout-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
 }
