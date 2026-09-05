@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getOredersWithId } from "../services/api";
 import { useParams, Link } from "react-router-dom";
 import "../styles/ordersDetails.css";
+import {RemoveProductFromOrder} from '../services/api'
 
 export function OrderDetails() {
     const [order, setOrder] = useState(null);
@@ -27,14 +28,35 @@ export function OrderDetails() {
 
         if (id) fetchMyOrder();
     }, [id]);
-
     const handleCancelProduct = async (productId) => {
-        alert(`Cancel request sent for item: ${productId}`);
+        const token = localStorage.getItem("token");
+        if (!token || !order?._id || !productId) return;
+
+        try {
+            const res = await RemoveProductFromOrder(order._id, productId, token);
+            console.log("Response from server:", res);
+            if (res.success) {
+                if (res.data) {
+                    setOrder(res.data);
+                } else {
+                    setOrder((prevOrder) => ({
+                        ...prevOrder,
+                        items: prevOrder.items.filter(
+                            (item) => (item.product?._id || item.product) !== productId
+                        )
+                    }));
+                }
+            } else {
+                alert(res.msg || "Failed to remove product");
+            }
+        } catch (err) {
+            console.error("Error removing product:", err);
+            alert("An error occurred while removing the product.");
+        }
     };
 
     if (loading) return <h1 className="loading">Loading details...</h1>;
     if (error || !order) return <h1 className="error">Error loading order details!</h1>;
-
     return (
         <div className="page-wrapper">
             <div className="orders-container">
@@ -64,6 +86,7 @@ export function OrderDetails() {
                             {order.items && order.items.length > 0 ? (
                                 order.items.map((item) => {
                                     const itemId = item._id || item.id || item.product?._id;
+                                    const productId = item.product?._id || item.product;
                                     return (
                                         <tr key={itemId} className="card">
                                             <td>
@@ -89,7 +112,7 @@ export function OrderDetails() {
                                                 <td>
                                                     <button 
                                                         className="cancel-btn"
-                                                        onClick={() => handleCancelProduct(itemId)}
+                                                        onClick={() => handleCancelProduct(productId)}
                                                     >
                                                         Cancel Product
                                                     </button>
