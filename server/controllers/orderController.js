@@ -124,4 +124,20 @@ const getProductsInfo = async(req,res) => {
     res.status(400).json({ademozi})
   }
 }
-export {createOrder,getMyOrders,updateOrderStatus,getAllOrders,getProductsInfo};
+const canselProductFromOrder = async(req,res) => {
+ //Front API must be fetch(`http://localhost:5000/api/orders/${orderId}/${productsId}`
+  const { orderId, productId } = req.params;
+  if(!orderId || !productId){
+    return res.status(400).json({success:false, msg:"Please enter All ID's"})
+  }
+  const order = await Order.findById(orderId)
+  const product = await Product.findById(productId)
+  if(!order || !product){
+    return res.status(404).json({success:false, msg:"Order or Product not found"})
+  }
+  order.items = order.items.filter((item)=> item.product.toString() !== productId.toString())//If true keep it if false remove it
+  await order.save()
+  return res.status(200).json({success:true, data:{order,product}, msg:`Successfully removed product ${product.name}`})
+}
+
+export {createOrder,getMyOrders,updateOrderStatus,getAllOrders,getProductsInfo,canselProductFromOrder};
