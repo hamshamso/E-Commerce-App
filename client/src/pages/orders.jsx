@@ -34,20 +34,24 @@ export function Orders () {
                     </div>
                     
                     <div className="items">
-                    {order.map((o) => (
-                        <div key={o._id} className="card">
-                            <div className="item-card" >
-                                <p className="phone"> 📞 Phone  : {o.phone}</p>
-                                <p className="adress">🏠 Ardess  : {o.adress}</p>
-                                <p className="total">💰 Total  : {o.total}</p>
-                            </div>
-                            <div className="bottom-card"> 
-                                <Link className="view-more" to={`/orders/${o._id}`}> view more 🛒</Link>
-                                <p className="status"><strong>{o.status}</strong></p>
-                            </div>
-                        </div>
-                        
-                    ))}
+                         <table>
+                             <tr className="head">
+                                <th>Status</th>
+                                <th>Phone</th>
+                                <th>Adress</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                            </tr>
+                                {order.map((o) => (
+                                    <tr key={o._id} className="card">
+                                        <td><p className={`status ${o.status}><strong>{o.status}</strong></p></td>
+                                        <td><p className="phone"> 📞 Phone  : {o.phone}</p></td>
+                                        <td><p className="adress">🏠 Ardess  : {o.adress}</p></td>
+                                        <td><p className="total">💰 Total  : {o.total}</p></td>
+                                        <td><Link className="view" to={`/orders/${o._id}`}> view more 🛒</Link></td>{/*Conditional rendering so if cansled = red , confirmed green ...*/}
+                                    </tr> 
+                                ))}
+                        </table>
                     </div>
                 </div>
             )}
