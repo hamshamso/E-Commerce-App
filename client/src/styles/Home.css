@@ -121,3 +121,92 @@ footer .fot a {
 footer .fot a:hover {
   color: var(--bg-cream);
 }
+/* Container Section */
+.shop-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 16px;
+  box-sizing: border-box;
+}
+
+/* Page Title Matching Design */
+.shop-title {
+  text-align: center;
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: #fbeee0; /* Cream color matching navbar text */
+  margin-bottom: 24px;
+}
+
+/* Search Card Section */
+.search-section {
+  background-color: rgba(255, 255, 255, 0.08); /* Glassmorphism background on dark green */
+  border: 1px solid rgba(251, 238, 224, 0.2);
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 768px) {
+  .search-section {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+
+/* Individual Filter Group */
+.filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fbeee0; 
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+
+.filter-input,
+.filter-select {
+  width: 100%;
+  height: 42px;
+  padding: 0 14px;
+  font-size: 0.925rem;
+  color: #0a4332; 
+  background-color: #ffffff;
+  border: 1px solid #F8E7C9;
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.filter-input::placeholder {
+  color: #9ca3af;
+}
+
+.filter-input:hover,
+.filter-select:hover {
+  border-color: #F8E7C9;
+}
+
+.filter-input:focus,
+.filter-select:focus {
+  border-color: #F8E7C9;
+  box-shadow: 0 0 0 3px rgba(251, 238, 224, 0.3);
+}
+
+/* Options Dropdown Styling */
+.filter-select option {
+  background-color: #fff;
+  color: #0a4332;
+  padding: 8px;
+}
