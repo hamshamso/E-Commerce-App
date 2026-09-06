@@ -94,8 +94,12 @@ function Home() {
         {!loading && !error && (
           <div className="product-grid">
             {filteredProducts.length > 0 ? (
-              filteredProducts.map((p) => (
-                <ProductCard key={p._id} product={p} />
+              filteredProducts.map((p,index) => (
+                <div key={p._id}
+                className="product-card-animated"
+                style={{ animationDelay: `${index * 0.08}s` }}>
+                   <ProductCard  product={p} />
+                </div>
               ))
             ) : (
               <p className="shop-status">No products found in this category.</p>

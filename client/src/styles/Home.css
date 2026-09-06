@@ -210,3 +210,18 @@ footer .fot a:hover {
   color: #0a4332;
   padding: 8px;
 }
+@keyframes zoomInFade {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.product-card-animated {
+  opacity: 0;
+  animation: zoomInFade 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
