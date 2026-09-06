@@ -59,8 +59,11 @@ function Home() {
               <option value="all">All Prices</option>
               <option value="low-high">Price: Low to High</option>
               <option value="high-low">Price: High to Low</option>
-              <option value="under-2000">Under 2000 DZD</option>
-              <option value="under-5000">Under 5000 DZD</option>
+              <option value="under-5000">5000 or under -</option>
+              <option value="btw-5000-10000">Between 5000 - 10000</option>
+              <option value="btw-10000-20000">Between 10000 - 20000</option>
+              <option value="btw-20000-50000">Between 20000 - 50000</option>
+              <option value="more-50000">50000 or more +</option>
             </select>
           </div>
         </div>
