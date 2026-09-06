@@ -5,6 +5,7 @@ import "../styles/home.css";
 
 function Home() {
   const [products, setProducts] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("All-categories");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -23,6 +24,11 @@ function Home() {
     fetchProducts();
   }, []);
 
+  const filteredProducts = products.filter((product) => {
+    if (selectedCategory === "All-categories") return true;
+    return product.category?.toLowerCase() === selectedCategory.toLowerCase();
+  });
+
   return (
     <>
       <div className="landing">
@@ -31,14 +37,12 @@ function Home() {
           <h2>Every Purchase Will Be Made With Pleasure</h2>
           <p>Buying and selling quality products with modern technology</p>
         </div>
-    </div>
+      </div>
 
-      <section className="shop-section" >
-        <section className="shop-section">
+      <section className="shop-section">
         <h2 className="shop-title">Our Products</h2>
 
         <div className="search-section">
-          {/* Search Input Group */}
           <div className="filter-group">
             <label className="filter-label">Search</label>
             <input 
@@ -48,10 +52,15 @@ function Home() {
             />
           </div>
 
-          {/* Category Select Group */}
           <div className="filter-group">
             <label className="filter-label">Category</label>
-            <select name="category" id="category-select" className="filter-select">
+            <select 
+              name="category" 
+              id="category-select" 
+              className="filter-select" 
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+            >
               <option value="All-categories">All Categories</option>
               <option value="Bags">Bags</option>
               <option value="Watches">Watches</option>
@@ -64,7 +73,6 @@ function Home() {
             </select>
           </div>
 
-          {/* Price Select Group */}
           <div className="filter-group">
             <label className="filter-label">Price</label>
             <select name="price" id="price-select" className="filter-select">
@@ -79,23 +87,26 @@ function Home() {
             </select>
           </div>
         </div>
-      </section>
-  
+
         {loading && <p className="shop-status">Loading products...</p>}
         {error && <p className="shop-status shop-error">{error}</p>}
 
         {!loading && !error && (
           <div className="product-grid">
-            {products.map((p) => (
-              <ProductCard key={p._id} product={p} />
-            ))}
+            {filteredProducts.length > 0 ? (
+              filteredProducts.map((p) => (
+                <ProductCard key={p._id} product={p} />
+              ))
+            ) : (
+              <p className="shop-status">No products found in this category.</p>
+            )}
           </div>
         )}
       </section>
 
       <footer>
         <div>
-          <p className="rights">© 2026 E-Commerce.    All rights reserved.</p>
+          <p className="rights">© 2026 E-Commerce. All rights reserved.</p>
         </div>
         <div className="fot">
           <a>Legal Notice</a>
