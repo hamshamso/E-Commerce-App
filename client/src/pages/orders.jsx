@@ -17,7 +17,12 @@ export function Orders() {
                 const data = await getMyOrders(token);
 
                 const ordersList = Array.isArray(data) ? data : data?.data || [];
-                setOrders(ordersList);
+
+                const validOrders = ordersList.filter(
+                    (o) => o.items && o.items.length > 0
+                );
+
+                setOrders(validOrders);
             } catch (err) {
                 setError(true);
                 console.error("Failed to fetch orders:", err);
@@ -62,13 +67,17 @@ export function Orders() {
                                             </span>
                                         </td>
                                         <td>
-                                            <p className="phone">📞 {o.phone || o.address?.phone || o.adress?.phone || "N/A"}</p>
+                                            <p className="phone">
+                                                📞 {o.phone || o.address?.phone || o.adress?.phone || "N/A"}
+                                            </p>
                                         </td>
                                         <td>
-                                            <p className="address">🏠 {o.address || o.adress || "N/A"}</p>
+                                            <p className="address">
+                                                🏠 {o.address || o.adress || "N/A"}
+                                            </p>
                                         </td>
                                         <td>
-                                            <p className="total">💰 {o.total} DZD</p>
+                                            <p className="total">💰 {o.total ?? 0} DZD</p>
                                         </td>
                                         <td>
                                             <Link className="view" to={`/orders/${o._id || o.id}`}>

@@ -35,7 +35,37 @@ function Home() {
 
       <section className="shop-section" >
         <h2 className="shop-title">Our Products</h2>
+        <div className="search-section">
+          <div className="labels">
+            <label className="search-label">Search</label>
+            <label className="Category-label">Category</label>
+            <label className="Price-label">Price</label>
+          </div>
+          <div className="fields">
+            <input type="text" placeholder="Search products" />
+            <select name="category" id="category-select">
+              <option value="All-categories">All</option>
+              <option value="Bags">Bags</option>
+              <option value="Watches">Watches</option>
+              <option value="Clothes">Clothes</option>
+              <option value="Accessories">Accessories</option>
+              <option value="Parfum">Parfum</option>
+              <option value="Phones">Phones</option>
+              <option value="Tech">Tech</option>
+              <option value="Other">Other</option>
+            </select>
+            <label className="filter-label">Price</label>
+            <select name="price" id="price-select" className="filter-select">
+              <option value="all">All Prices</option>
+              <option value="low-high">Price: Low to High</option>
+              <option value="high-low">Price: High to Low</option>
+              <option value="under-2000">Under 2000 DZD</option>
+              <option value="under-5000">Under 5000 DZD</option>
+            </select>
+          </div>
+        </div>
 
+  
         {loading && <p className="shop-status">Loading products...</p>}
         {error && <p className="shop-status shop-error">{error}</p>}
 

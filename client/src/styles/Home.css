@@ -73,7 +73,7 @@ body {
 .shop-status {
   text-align: center;
   font-size: 1.2rem;
-  color: var(--text-muted);
+  color: #F8E7C9;
 }
 
 .shop-error {
