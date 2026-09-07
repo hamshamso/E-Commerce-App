@@ -28,17 +28,17 @@ function Home() {
 
   const filteredProducts = products
     .filter((product) => {
-      // أ) فلترة الفئة
+
       const matchesCategory =
         selectedCategory === "All-categories" ||
         product.category?.toLowerCase() === selectedCategory.toLowerCase();
 
-      // ب) فلترة الاسم (تطابق جزئي)
+
       const matchesName =
         selectedName.trim() === "" ||
         product.name?.toLowerCase().includes(selectedName.toLowerCase().trim());
 
-      // ج) فلترة نطاقات الأسعار
+ 
       let matchesPrice = true;
       const price = Number(product.price);
 
@@ -50,7 +50,7 @@ function Home() {
 
       return matchesCategory && matchesName && matchesPrice;
     })
-    // د) ترتيب الأسعار (من الأقل للأعلى / من الأعلى للأقل)
+
     .sort((a, b) => {
       if (selectedPrice === "low-high") return a.price - b.price;
       if (selectedPrice === "high-low") return b.price - a.price;
