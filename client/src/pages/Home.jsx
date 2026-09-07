@@ -6,6 +6,8 @@ import "../styles/home.css";
 function Home() {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All-categories");
+  const [selectedName,setSelectedName] = useState("")
+  const [selectedPrice,setSelectedPrice] = useState("All prices")
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -24,11 +26,36 @@ function Home() {
     fetchProducts();
   }, []);
 
-  const filteredProducts = products.filter((product) => {
-    if (selectedCategory === "All-categories") return true;
-    return product.category?.toLowerCase() === selectedCategory.toLowerCase();
-  });
+  const filteredProducts = products
+    .filter((product) => {
+      // أ) فلترة الفئة
+      const matchesCategory =
+        selectedCategory === "All-categories" ||
+        product.category?.toLowerCase() === selectedCategory.toLowerCase();
 
+      // ب) فلترة الاسم (تطابق جزئي)
+      const matchesName =
+        selectedName.trim() === "" ||
+        product.name?.toLowerCase().includes(selectedName.toLowerCase().trim());
+
+      // ج) فلترة نطاقات الأسعار
+      let matchesPrice = true;
+      const price = Number(product.price);
+
+      if (selectedPrice === "under-5000") matchesPrice = price <= 5000;
+      else if (selectedPrice === "btw-5000-10000") matchesPrice = price >= 5000 && price <= 10000;
+      else if (selectedPrice === "btw-10000-20000") matchesPrice = price >= 10000 && price <= 20000;
+      else if (selectedPrice === "btw-20000-50000") matchesPrice = price >= 20000 && price <= 50000;
+      else if (selectedPrice === "more-50000") matchesPrice = price >= 50000;
+
+      return matchesCategory && matchesName && matchesPrice;
+    })
+    // د) ترتيب الأسعار (من الأقل للأعلى / من الأعلى للأقل)
+    .sort((a, b) => {
+      if (selectedPrice === "low-high") return a.price - b.price;
+      if (selectedPrice === "high-low") return b.price - a.price;
+      return 0;
+    });
   return (
     <>
       <div className="landing">
@@ -49,6 +76,8 @@ function Home() {
               type="text" 
               className="filter-input" 
               placeholder="Search products..." 
+              value={selectedName}
+              onChange={(e) => setSelectedName(e.target.value)}
             />
           </div>
 
@@ -75,7 +104,11 @@ function Home() {
 
           <div className="filter-group">
             <label className="filter-label">Price</label>
-            <select name="price" id="price-select" className="filter-select">
+            <select name="price" 
+              id="price-select" 
+              className="filter-select"
+              value={selectedPrice}
+              onChange={(e) => setSelectedPrice(e.target.value)}>
               <option value="all">All Prices</option>
               <option value="low-high">Price: Low to High</option>
               <option value="high-low">Price: High to Low</option>
