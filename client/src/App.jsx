@@ -8,6 +8,7 @@ import { Cart } from './pages/Cart';
 import { Checkout } from './pages/checkout';
 import { Orders } from './pages/orders';
 import {OrderDetails} from './pages/orderDetails'
+import DashboardLayout from './pages/Dashboard'
 function App() {
 //Cart
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path='/checkout' element={<Checkout/>}/>
         <Route path='/orders' element={<Orders/>}/>
         <Route path='/orders/:id' element={<OrderDetails/>}/>
+        <Route path='/dashboard' element={<DashboardLayout/>}/> 
       </Routes>
     </div>
     </>

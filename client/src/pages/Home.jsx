@@ -26,19 +26,12 @@ function Home() {
     fetchProducts();
   }, []);
 
-  const filteredProducts = products
-    .filter((product) => {
+  const filteredProducts = products.filter((product) => {
 
-      const matchesCategory =
-        selectedCategory === "All-categories" ||
-        product.category?.toLowerCase() === selectedCategory.toLowerCase();
+      const matchesCategory = selectedCategory === "All-categories" || product.category?.toLowerCase() === selectedCategory.toLowerCase();
 
+      const matchesName = selectedName.trim() === "" || product.name?.toLowerCase().includes(selectedName.toLowerCase().trim());
 
-      const matchesName =
-        selectedName.trim() === "" ||
-        product.name?.toLowerCase().includes(selectedName.toLowerCase().trim());
-
- 
       let matchesPrice = true;
       const price = Number(product.price);
 
@@ -48,7 +41,7 @@ function Home() {
       else if (selectedPrice === "btw-20000-50000") matchesPrice = price >= 20000 && price <= 50000;
       else if (selectedPrice === "more-50000") matchesPrice = price >= 50000;
 
-      return matchesCategory && matchesName && matchesPrice;
+      return matchesCategory && matchesName && matchesPrice
     })
 
     .sort((a, b) => {
