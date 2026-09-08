@@ -1,7 +1,7 @@
 import { useNavigate, Link } from "react-router-dom";
 import "../styles/NavBar.css";
+import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
-
 import homeIcon from "../assets/home.png"
 import shopIcon from "../assets/shop.png"
 import aboutIcon from "../assets/about.png"
@@ -9,69 +9,100 @@ import cartIcon from "../assets/cart.png"
 import ordersIcon from "../assets/orders.png"
 import userIcon from "../assets/user.png"
 import logoutIcon from "../assets/logout.png"
-
+import dashboard from "../assets/Dashboard.png"
 function NavBar() {
   const navigate = useNavigate();
   const { isuser, logout, user } = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
-    <nav className="navbar">
-      <div className="links">
-        <Link to="/" className="nav-link">
-          <img src={homeIcon} alt="Home" className="nav-icon" />
-          <span>Home</span>
-        </Link>
-
-        <Link to="/" className="nav-link">
-          <img src={shopIcon} alt="Shop" className="nav-icon" />
-          <span>Shop</span>
-        </Link>
-
-        <Link to="/" className="nav-link">
-          <img src={aboutIcon} alt="About" className="nav-icon" />
-          <span>About Us</span>
-        </Link>
-
-        {isuser() && (
-          <Link to="/cart" className="nav-link">
-            <img src={cartIcon} alt="Cart" className="nav-icon" />
-            <span>My Cart</span>
+    <div>
+      <nav className="navbar">
+        <div className="links">
+          {isuser() && (
+            <Link to="/" className="nav-link" onClick={toggleSidebar} >
+              <img src={dashboard} alt="Dashboard" className="nav-icon" />
+              <span>Dashboard</span>
+            </Link>
+          )}
+          <Link to="/" className="nav-link">
+            <img src={homeIcon} alt="Home" className="nav-icon" />
+            <span>Home</span>
           </Link>
-        )}
 
-        {isuser() && (
-          <Link to="/orders" className="nav-link">
-            <img src={ordersIcon} alt="Orders" className="nav-icon" />
-            <span>My Orders</span>
+          <Link to="/" className="nav-link">
+            <img src={shopIcon} alt="Shop" className="nav-icon" />
+            <span>Shop</span>
           </Link>
-        )}
-      </div>
 
-      {!isuser() ? (
-        <div className="login">
-          <button className="loginbtn" onClick={() => navigate("/login")}>
-            Log In
-          </button>
-          <button className="signupbtn" onClick={() => navigate("/register")}>
-            Register
-          </button>
+          <Link to="/" className="nav-link">
+            <img src={aboutIcon} alt="About" className="nav-icon" />
+            <span>About Us</span>
+          </Link>
+
+          {isuser() && (
+            <Link to="/cart" className="nav-link">
+              <img src={cartIcon} alt="Cart" className="nav-icon" />
+              <span>My Cart</span>
+            </Link>
+          )}
+          {isuser() && (
+            <Link to="/orders" className="nav-link">
+              <img src={ordersIcon} alt="Orders" className="nav-icon" />
+              <span>My Orders</span>
+            </Link>
+          )}
+          
         </div>
-      ) : (
-        <div className="state">
-          <div className="user-profile">
-            <img src={userIcon} alt="User" className="user-avatar-icon" />
-            <h2 className="hi">Hi {user?.name}</h2>
+
+        {!isuser() ? (
+          <div className="login">
+            <button className="loginbtn" onClick={() => navigate("/login")}>
+              Log In
+            </button>
+            <button className="signupbtn" onClick={() => navigate("/register")}>
+              Register
+            </button>
           </div>
-          <button 
-            className="logout-btn" 
-            onClick={() => { logout(); navigate("/"); }}
-          >
-            <img src={logoutIcon} alt="Logout" className="logout-icon" />
-            <span>Logout</span>
-          </button>
+        ) : (
+          <div className="state">
+            <div className="user-profile">
+              <img src={userIcon} alt="User" className="user-avatar-icon" />
+              <h2 className="hi">Hi {user?.name}</h2>
+            </div>
+            <button 
+              className="logout-btn" 
+              onClick={() => { logout(); navigate("/"); }}
+            >
+              <img src={logoutIcon} alt="Logout" className="logout-icon" />
+              <span>Logout</span>
+            </button>
+          </div>
+        )}
+      </nav>
+      
+      {isOpen && <div className="overlay" onClick={toggleSidebar}></div>}
+
+      
+      <aside className={`sidebar ${isOpen ? "open" : ""}`}>
+        <div className="sidebar-header">
+          <h3>E-Commerce Admin</h3>
+          <button className="close-btn" onClick={toggleSidebar}>✕</button>
         </div>
-      )}
-    </nav>
+
+        <ul className="sidebar-menu">
+          <li><a href="#dashboard">Products</a></li>
+          <li><a href="#products">Orders</a></li>
+          <li><a href="#orders">Users</a></li>
+          <li><a href="#categories">Statistics</a></li>
+        </ul>
+      </aside>
+
+    </div>     
   );
 }
 
