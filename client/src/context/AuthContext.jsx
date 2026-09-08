@@ -34,8 +34,9 @@ export function AuthProvider({children}){
         }
         return true
     }
+    const isAdmin = () => user?.role?.toLowerCase() === "admin";
     return (
-        <AuthContext.Provider value={{user,isuser,login,logout}}>
+        <AuthContext.Provider value={{user,isuser,login,logout,isAdmin}}>
             {children}
         </AuthContext.Provider>
     )

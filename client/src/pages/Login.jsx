@@ -23,7 +23,7 @@ function Login(){
             const data = await loginUser(formData)
 //services/api does fetch and put  this after the post and headers  
             //const data = res.json() 
-//back end returns         -- res.json( success,msg,data:{ name: user.name, email: user.email},token})
+//back end returns         -- res.json( success,msg,data:{ name: user.name, email: user.email, role:user.role},token})
                                     //we request user here -- const user = await User.findOne({email})  
  
             //return data

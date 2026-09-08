@@ -41,7 +41,7 @@ const registeruser = async(req,res) => {
         return res.status(200).json({
             success: true,
             msg: "Logged in successfully",
-            data: { name: user.name, email: user.email },
+            data: { name: user.name, email: user.email ,role: user.role},
             token})
         }
         res.status(401).json({success:false, msg:"Password or Email inccorect"})

@@ -12,7 +12,7 @@ import logoutIcon from "../assets/logout.png"
 import dashboard from "../assets/Dashboard.png"
 function NavBar() {
   const navigate = useNavigate();
-  const { isuser, logout, user } = useAuth();
+  const { isuser, logout, user, isAdmin } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -23,7 +23,7 @@ function NavBar() {
     <div>
       <nav className="navbar">
         <div className="links">
-          {isuser() && (
+          {isAdmin() && (
             <Link to="/" className="nav-link" onClick={toggleSidebar} >
               <img src={dashboard} alt="Dashboard" className="nav-icon" />
               <span>Dashboard</span>
@@ -95,10 +95,10 @@ function NavBar() {
         </div>
 
         <ul className="sidebar-menu">
-          <li><a href="#dashboard">Products</a></li>
-          <li><a href="#products">Orders</a></li>
-          <li><a href="#orders">Users</a></li>
-          <li><a href="#categories">Statistics</a></li>
+          <li><Link>Products</Link></li>
+          <li><Link>Orders</Link></li>
+          <li><Link>Users</Link></li>
+          <li><Link>Statistics</Link></li>
         </ul>
       </aside>
 
