@@ -31,6 +31,14 @@ export const getProducts  = async() => {
     if(!res.ok) throw new Error(data.msg || "Failed to fetch products")
     return data
 }
+export const getProductById = async (id) => {
+    const res = await fetch(`${API_BASE}/products/${id}`)
+    const data = await res.json()
+    if(!res.ok){
+        throw new Error(data.msg || `Failed to fetch product ${id}`)
+    }
+    return data
+}
 export const createOrder = async (orderData,token) => {
     const res = await fetch(`${API_BASE}/orders`,{
         method:"POST",
@@ -97,5 +105,20 @@ export const RemoveProductFromOrder = async (orderId,productsId,token) => {
         }
     })
     const data = await res.json()
+    return data
+}
+export const UpdateProduct = async (product,productId,token)=>{
+    const res = await fetch(`${API_BASE}/editproduct/${productId}`,{
+        method:'PUT',
+        headers:{
+            "Content-type":"application/json",
+            "Authorization":`Bearer ${token}`
+        },
+        body:JSON.stringify(product)
+    })
+    const data = await res.json()
+    if(!data.ok){
+       throw new Error(data.msg || "Failed to update products")
+    }
     return data
 }

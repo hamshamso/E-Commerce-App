@@ -1,12 +1,13 @@
 import { useState,useRef } from "react";
 import { useCart } from "../context/ProductContext";
 import { useAuth } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 import "../styles/ProductCard.css";
 import plus from "../assets/plus.png"
 import mines from "../assets/mines.png"
 
 function ProductCard({ product }) {
-  const {isuser} = useAuth()
+  const {isuser,isAdmin} = useAuth()
   const { addToCart } = useCart();
   const [qty, setQty] = useState(1);
   const [added,setAdded] = useState(false)
@@ -48,14 +49,21 @@ function ProductCard({ product }) {
           <span>{qty}</span>
           <button type="button" onClick={increase}><img src={mines} alt="plus" /></button>
         </div>
-
-        <button
-          className="add-to-cart-btn"
-          disabled={product.quantity === 0 || !isuser()}
-          onClick={hundelAddToCart}  
-        > 
-         {!isuser() ? "Log in first" : added ? "✓ Added" : "Add to cart" }
-        </button>
+        <div className="btns">
+            <button
+              className="btn"
+              disabled={product.quantity === 0 || !isuser()}
+              onClick={hundelAddToCart}  
+              > 
+                {!isuser() ? "Log in first" : added ? "✓ Added" : "Add to cart" }
+            </button>
+            {isAdmin() && 
+            <Link className="btn" to={`/products/${product._id || product.id}`}>
+            <button>
+              Edit 
+            </button>
+            </Link>}
+        </div>
       </div>
     </div>
   );

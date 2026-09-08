@@ -10,6 +10,7 @@ function Home() {
   const [selectedPrice,setSelectedPrice] = useState("All prices")
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  
 
   useEffect(() => {
     const fetchProducts = async () => {

@@ -82,4 +82,6 @@ const getAllProductsWithCategory = async (req,res) => {
         return res.status(400).json({success:false,msg: e.message})
     }
 }
+
+
 export { getProductById, createProduct, updateProduct, deleteProduct, getAllProductsWithCategory};

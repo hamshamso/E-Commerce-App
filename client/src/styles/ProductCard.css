@@ -122,7 +122,7 @@
   text-align: center;
 }
 
-.add-to-cart-btn {
+.btn {
   width: 100%;
   background-color: var(--primary-color);
   color: var(--bg-cream);
@@ -134,18 +134,23 @@
   cursor: pointer;
   transition: background-color 0.2s, opacity 0.2s;
   margin-top: auto;
+  transition: transform 0.2s ease-in-out;
 }
-
-.add-to-cart-btn:hover {
+.btns{
+  display: flex;
+  gap: 1rem;
+}
+.btn:hover {
   background-color: var(--primary-hover);
+  transform: translateY(-2px);
 }
 
-.add-to-cart-btn:disabled {
-  background-color: rgba(11, 60, 45, 0.6); /* خلفية خضراء داكنة بشفافية خفيفة */
-  color: #F7E7CE;                           /* لون النص بيج/ذهبي واضح */
-  border: 1px solid rgba(247, 231, 206, 0.3); /* إطار ناعم باللون البيج */
-  cursor: not-allowed;                      /* تغيير المؤشر ليدل على منع الضغط */
-  opacity: 0.85;                            /* الحفاظ على وضوح النص */
-  font-size: 0.85rem;                       /* تصغير الخط قليلاً ليتناسب مع الرسالة */
+.btn:disabled {
+  background-color: rgba(11, 60, 45, 0.6); 
+  color: #F7E7CE;                           
+  border: 1px solid rgba(247, 231, 206, 0.3); 
+  cursor: not-allowed;                      
+  opacity: 0.85;                            
+  font-size: 0.85rem;                       
   padding: 10px 12px;
 }

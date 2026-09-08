@@ -24,7 +24,7 @@ function NavBar() {
       <nav className="navbar">
         <div className="links">
           {isAdmin() && (
-            <Link to="/" className="nav-link" onClick={toggleSidebar} >
+            <Link className="nav-link" onClick={toggleSidebar} >
               <img src={dashboard} alt="Dashboard" className="nav-icon" />
               <span>Dashboard</span>
             </Link>
@@ -95,7 +95,7 @@ function NavBar() {
         </div>
 
         <ul className="sidebar-menu">
-          <li><Link>Products</Link></li>
+          <li><Link to="/">Products</Link></li>
           <li><Link>Orders</Link></li>
           <li><Link>Users</Link></li>
           <li><Link>Statistics</Link></li>
