@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Stack+Sans+Notch:wght@200..700&display=swap');
 
+body {
+  padding-top: 75px; 
+}
 
 .navbar {
   display: flex;
@@ -8,9 +11,14 @@
   background-color: #F8E7C9; 
   padding: 12px 36px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  position: sticky;
+
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
   z-index: 1000;
+
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -186,7 +194,7 @@
   color: #fbeee0;
   box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
   transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 1000;
+  z-index: 1100;
   display: flex;
   flex-direction: column;
 }
@@ -238,5 +246,5 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
-  z-index: 999;
+  z-index: 1050;
 }
