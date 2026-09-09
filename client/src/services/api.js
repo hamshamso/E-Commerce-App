@@ -122,3 +122,17 @@ export const UpdateProduct = async (product,productId,token)=>{
     }
     return data
 }
+export const deleteProduct = async(id) => {
+     const res = await fetch(`${API_BASE}/product/${productId}`,{
+        method:'DELETE',
+        headers:{
+            "Content-type":"application/json"
+        },
+        body:JSON.stringify(id)
+    })
+    const data = await res.json()
+    if(!data.ok){
+       throw new Error(data.msg || "Failed to delete the product")
+    }
+    return data
+}
