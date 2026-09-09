@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getProductById, UpdateProduct } from "../services/api"; 
+import { getProductById, UpdateProduct, deleteProduct } from "../services/api"; 
 
 function EditProduct() {
   const { id } = useParams();
@@ -21,7 +21,6 @@ function EditProduct() {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-
         const data = await getProductById(id); 
         if (data) {
           setProduct(data); 
@@ -53,7 +52,6 @@ function EditProduct() {
       setLoading(true);
       await UpdateProduct(product,id,token); 
       setSave(true)
-      navigate("/dashboard"); 
     } catch (err) {
       console.error("Error updating product:", err);
       setError("Failed to update product");
@@ -64,12 +62,21 @@ function EditProduct() {
   const handleCancel = async () => {
     navigate("/");
   }
-  const handleDelete = async () => {
-
+  const handleDelete = async (id) => {
+    try{
+      setLoading(true)
+      await deleteProduct(id)
+      setSave(true)
+    }catch(ademozi){
+      console.error("Error deleting product:", err);
+      setError("Failed to deleting product");
+    }finally {
+      setLoading(false);
+    }
   }
 
   if (loading) return <p>Loading product data...</p>;
-
+  if (save) return <h1>your changes has been successfully saved</h1><Link>Back to home</Link>
   return (
     <div>
         <form onSubmit={handleSubmit} className="edit-product-form">
@@ -82,7 +89,6 @@ function EditProduct() {
             name="name"
             value={product.name}
             onChange={handleChange}
-            
         />
 
         <label>Price</label>
@@ -91,7 +97,6 @@ function EditProduct() {
             name="price"
             value={product.price}
             onChange={handleChange}
-            
         />
         <label>Quantity</label>
         <input
@@ -99,7 +104,6 @@ function EditProduct() {
             name="Quantity"
             value={product.Quantity}
             onChange={handleChange}
-            
         />
         <label>Category</label>
         <input
@@ -107,18 +111,16 @@ function EditProduct() {
             name="Category"
             value={product.Category}
             onChange={handleChange}
-            
         />
         <button type="submit" disabled={loading} className="btn-save">
             {loading ? "Saving..." : "Save"}
         </button>
         {!save && <button type="button" className="btn-cancel" onClick={handleCancel}>
           Cancel
-        </button>}
-
-        <button type="button" className="btn-delete" onClick={handleDelete} disabled={loading}>
-          Delete
         </button>
+        <button type="button" className="btn-delete" onClick={handleDelete} disabled={loading}>
+          Delete 
+        </button>}
         </form>
     </div>
   );
