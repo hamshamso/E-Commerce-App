@@ -75,7 +75,18 @@ body {
 .loginbtn:hover {
   background-color: rgba(6, 78, 59, 0.08);
 }
-
+.nbr-items{
+  display: flex;
+  font-size: 9px;
+  font-weight: bold;
+  position: absolute;
+  margin-left: 1rem;
+  margin-bottom: 0.8rem;
+  border: 1px solid #064E3B;
+  padding: 0px 3px;
+  border-radius: 50%;
+  background-color: #fed793;
+}
 .signupbtn {
   background-color: #064E3B;
   color: #F8E7C9;
@@ -94,7 +105,6 @@ body {
   transform: translateY(-1px);
 }
 
-/* حالة تسجيل الدخول */
 .state {
   display: flex;
   align-items: center;
