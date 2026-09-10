@@ -108,30 +108,32 @@ export const RemoveProductFromOrder = async (orderId,productsId,token) => {
     return data
 }
 export const UpdateProduct = async (product,productId,token)=>{
-    const res = await fetch(`${API_BASE}/editproduct/${productId}`,{
-        method:'PUT',
+    const res = await fetch(`${API_BASE}/products/${productId}`,{
+        method:'PATCH',
         headers:{
-            "Content-type":"application/json",
+            "Content-Type":"application/json",
             "Authorization":`Bearer ${token}`
         },
         body:JSON.stringify(product)
     })
     const data = await res.json()
-    if(!data.ok){
+    
+    if(!res.ok){
        throw new Error(data.msg || "Failed to update products")
     }
     return data
 }
-export const deleteProduct = async(id) => {
-     const res = await fetch(`${API_BASE}/product/${id}`,{
+export const deleteProduct = async(id,token) => {
+     const res = await fetch(`${API_BASE}/products/${id}`,{
         method:'DELETE',
         headers:{
-            "Content-type":"application/json"
+            "Content-Type":"application/json",
+            "Authorization":`Bearer ${token}`
         }
     })
-    const data = await res.json()
-    if(!data.ok){
+    if(!res.ok){
        throw new Error(data.msg || "Failed to delete the product")
     }
+    const data = await res.json()
     return data
 }

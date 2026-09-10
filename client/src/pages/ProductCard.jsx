@@ -55,14 +55,11 @@ function ProductCard({ product }) {
               disabled={product.quantity === 0 || !isuser()}
               onClick={hundelAddToCart}  
               > 
-                {!isuser() ? "Log in first" : added ? "✓ Added" : "Add to cart" }
+            {!isuser() ? "Log in first" : added ? "✓ Added" : "Add to cart" }
             </button>
             {isAdmin() && 
-            <Link className="btn" to={`/products/${product._id || product.id}`}>
-            <button>
-              Edit 
-            </button>
-            </Link>}
+              <Link className="btn-link" to={`/products/${product._id || product.id}`}>Edit</Link>
+            }
         </div>
       </div>
     </div>

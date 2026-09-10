@@ -44,11 +44,9 @@ const createOrder = async (req, res) => {
       adress,
       phone,
     });
-
     return res.status(201).json({ success: true, data: order });
   } catch (ademozi) {
     return res.status(400).json({ success: false, msg: ademozi.message });
-
   }
 };
 
