@@ -111,6 +111,7 @@ const getProductsInfo = async(req,res) => {
       if(order.user.equals(req.user._id)){
         return res.status(200).json({success:true, data:order, msg:"Successfully get the product img and category"})
       }
+      //for debuggin
       console.log("id of userId")
       console.log(userId)
       console.log("id of orderId")
@@ -122,7 +123,7 @@ const getProductsInfo = async(req,res) => {
     res.status(400).json({ademozi})
   }
 }
-const canselProductFromOrder = async(req,res) => {
+const cancelProductFromOrder = async(req,res) => {
  //Front API must be fetch(`http://localhost:5000/api/orders/${orderId}/${productsId}`
   const { orderId, productId } = req.params;
   if(!orderId || !productId){
@@ -137,5 +138,17 @@ const canselProductFromOrder = async(req,res) => {
   await order.save()
   return res.status(200).json({success:true, data:{order,product}, msg:`Successfully removed product ${product.name}`})
 }
-
-export {createOrder,getMyOrders,updateOrderStatus,getAllOrders,getProductsInfo,canselProductFromOrder};
+const deleteOrder = async(req,res) => {
+  try{
+  const id = req.params.id || req.params._id
+  const order = await Order.findById(id)
+  if(order){
+    await Order.findByIdAndDelete(id)
+    return res.status(200).json({success:true,msg:"order has been successfully deleted"})
+  }
+  return res.status(404).json({success:false,msg:"Order doesn't excist"})
+  }catch(ademozi){
+    return res.status(400).json({success:false, msg:"Failed to delete order",message:ademozi.message})
+  }
+}
+export {createOrder,getMyOrders,updateOrderStatus,getAllOrders,getProductsInfo,cancelProductFromOrder,deleteOrder};
