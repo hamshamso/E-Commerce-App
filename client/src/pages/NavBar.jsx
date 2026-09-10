@@ -1,7 +1,8 @@
 import { useNavigate, Link } from "react-router-dom";
 import "../styles/NavBar.css";
-import { useState } from "react";
+import { useState} from "react";
 import { useAuth } from "../context/AuthContext";
+import { useCart } from "../context/ProductContext";
 import homeIcon from "../assets/home.png"
 import shopIcon from "../assets/shop.png"
 import aboutIcon from "../assets/about.png"
@@ -14,11 +15,15 @@ function NavBar() {
   const navigate = useNavigate();
   const { isuser, logout, user, isAdmin } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+  const {cart} = useCart();
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
 
+const getTotalItemsCount = () => {
+  return cart.reduce((total, item) => total + (item.quantity || 0), 0);    
+};
   return (
     <div>
       <nav className="navbar">
@@ -35,7 +40,7 @@ function NavBar() {
           </Link>
 
           <Link to="/" className="nav-link">
-            <img src={shopIcon} alt="Shop" className="nav-icon" />
+            <img src={cartIcon} alt="Shop" className="nav-icon" />
             <span>Shop</span>
           </Link>
 
@@ -46,8 +51,9 @@ function NavBar() {
 
           {isuser() && (
             <Link to="/cart" className="nav-link">
-              <img src={cartIcon} alt="Cart" className="nav-icon" />
+              <img src={shopIcon} alt="Cart" className="nav-icon" />
               <span>My Cart</span>
+              {getTotalItemsCount() > 0 && <span className="nbr-items">{getTotalItemsCount()}</span>}
             </Link>
           )}
           {isuser() && (
