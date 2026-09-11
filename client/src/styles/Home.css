@@ -129,18 +129,16 @@ footer .fot a:hover {
   box-sizing: border-box;
 }
 
-/* Page Title Matching Design */
 .shop-title {
   text-align: center;
   font-size: 2.25rem;
   font-weight: 800;
-  color: #fbeee0; /* Cream color matching navbar text */
+  color: #fbeee0; 
   margin-bottom: 24px;
 }
 
-/* Search Card Section */
 .search-section {
-  background-color: rgba(255, 255, 255, 0.08); /* Glassmorphism background on dark green */
+  background-color: rgba(255, 255, 255, 0.08); 
   border: 1px solid rgba(251, 238, 224, 0.2);
   backdrop-filter: blur(8px);
   border-radius: 12px;
@@ -158,7 +156,6 @@ footer .fot a:hover {
   }
 }
 
-/* Individual Filter Group */
 .filter-group {
   display: flex;
   flex-direction: column;
@@ -203,7 +200,6 @@ footer .fot a:hover {
   box-shadow: 0 0 0 3px rgba(251, 238, 224, 0.3);
 }
 
-/* Options Dropdown Styling */
 .filter-select option {
   background-color: #fff;
   color: #0a4332;

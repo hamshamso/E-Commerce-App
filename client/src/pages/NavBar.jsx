@@ -32,7 +32,6 @@ function NavBar() {
         <div className="admin-top-bar">
           <Link className="admin-menu-btn" onClick={toggleSidebar}>
             <img src={dashboard} alt="Dashboard" className="nav-icon" />
-            <span>Dashboard</span>
           </Link>
 
           <div className="admin-login">
@@ -54,7 +53,7 @@ function NavBar() {
 
         <aside className={`sidebar ${isOpen ? "open" : ""}`}>
           <div className="sidebar-header">
-            <h3>E-Commerce Admin</h3>
+            <h3>Admin Dashboard</h3>
             <button className="close-btn" onClick={toggleSidebar}>✕</button>
           </div>
 

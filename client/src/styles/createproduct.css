@@ -7,7 +7,7 @@
     background-color: #F8E7C9;
     position: absolute;
     left: 0;
-    top: 70px; /* نزوله تحت الـ Navbar مباشرة */
+    top: 70px;
     padding: 20px;
     box-sizing: border-box;
 }
@@ -23,7 +23,7 @@
     flex-direction: column;
     gap: 14px;
     border: 1px solid rgba(6, 78, 59, 0.1);
-    margin: auto; /* يجبر الفورم على التوسط في منتصف الـ container تماماً */
+    margin: auto; 
 }
 
 .create-product-form h1 {

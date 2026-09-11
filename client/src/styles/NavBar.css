@@ -283,27 +283,15 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    background-color: #064E3B;
-    color: #ffffff;
     text-decoration: none;
-    padding: 8px 16px;
+    margin: 0.6rem;
     border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s;
 }
 
-.admin-menu-btn:hover {
-    background-color: #043829;
-}
 
-.admin-menu-btn .nav-icon {
-    width: 20px;
-    height: 20px;
-    filter: brightness(0) invert(1);
-}
 
-/* قسم بروفايل الأدمن وزر الخروج */
 .admin-login {
     display: flex;
     align-items: center;
@@ -328,7 +316,6 @@ body {
     margin: 0;
 }
 
-/* زر تسجيل الخروج الخاص بالأدمن */
 .logout-admin-btn {
     display: flex;
     align-items: center;

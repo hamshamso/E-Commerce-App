@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { getProductById, UpdateProduct, deleteProduct } from "../services/api";
-import "../styles/editProduct.css"
+import "../styles/editProduct.css";
+
 function EditProduct() {
   const { id } = useParams();
   const token = localStorage.getItem("token");
@@ -22,7 +23,9 @@ function EditProduct() {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        const data = await getProductById(id);
+        const response = await getProductById(id);
+        const data = response?.data || response; 
+        //Fill all inputs with previus data
         if (data) {
           setProduct({
             name: data.name || "",
@@ -38,22 +41,17 @@ function EditProduct() {
         setLoading(false);
       }
     };
-
     fetchProduct();
   }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setProduct((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setProduct((prev) => ({...prev,[name]: value,}));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      console.log(product)
       setLoading(true);
       await UpdateProduct(product, id, token);
       setSave(true);
@@ -77,15 +75,15 @@ function EditProduct() {
       setLoading(true);
       await deleteProduct(id, token);
       navigate("/");
-    } catch (ademozi) {
-      console.error("Error deleting product:", ademozi);
+    } catch (err) {
+      console.error("Error deleting product:", err);
       setError("Failed to delete product");
     } finally {
       setLoading(false);
     }
   };
 
-  if (loading) return <h1 className="loading">Loading product data...</h1>;
+  if (loading && !product.name) return <h1 className="loading">Loading product data...</h1>;
 
   if (save) {
     return (
@@ -116,6 +114,8 @@ function EditProduct() {
           name="price"
           value={product.price}
           onChange={handleChange}
+          min="0"
+          onKeyDown={(e) => ["e", "E", "+", "-"].includes(e.key) && e.preventDefault()}
         />
 
         <label>Quantity</label>
@@ -124,6 +124,8 @@ function EditProduct() {
           name="quantity"
           value={product.quantity}
           onChange={handleChange}
+          min="0"
+          onKeyDown={(e) => ["e", "E", "+", "-"].includes(e.key) && e.preventDefault()}
         />
 
         <label>Category</label>
@@ -155,5 +157,7 @@ function EditProduct() {
     </div>
   );
 }
+
+EditProduct.displayName = "EditProduct";
 
 export default EditProduct;
