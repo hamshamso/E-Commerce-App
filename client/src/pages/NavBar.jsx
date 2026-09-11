@@ -102,6 +102,7 @@ const getTotalItemsCount = () => {
 
         <ul className="sidebar-menu">
           <li><Link to="/">Products</Link></li>
+          <li><Link to='/products/create'>Add new product</Link></li>
           <li><Link>Orders</Link></li>
           <li><Link>Users</Link></li>
           <li><Link>Statistics</Link></li>

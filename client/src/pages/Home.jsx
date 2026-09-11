@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { getProducts } from "../services/api";
 import ProductCard from "../pages/ProductCard";
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import "../styles/home.css";
 
 function Home() {
@@ -10,6 +12,7 @@ function Home() {
   const [selectedPrice,setSelectedPrice] = useState("All prices")
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const {isAdmin} = useAuth();
   
 
   useEffect(() => {
@@ -129,7 +132,7 @@ function Home() {
                 </div>
               ))
             ) : (
-              <p className="shop-status">No products found in this category.</p>
+              <p className="shop-status">No products found.</p>
             )}
           </div>
         )}

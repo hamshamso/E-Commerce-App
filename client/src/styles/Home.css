@@ -223,5 +223,5 @@ footer .fot a:hover {
 
 .product-card-animated {
   opacity: 0;
-  animation: zoomInFade 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation: zoomInFade 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; 
 }

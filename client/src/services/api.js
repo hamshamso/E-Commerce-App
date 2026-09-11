@@ -117,7 +117,7 @@ export const UpdateProduct = async (product,productId,token)=>{
         body:JSON.stringify(product)
     })
     const data = await res.json()
-    
+
     if(!res.ok){
        throw new Error(data.msg || "Failed to update products")
     }
@@ -136,4 +136,16 @@ export const deleteProduct = async(id,token) => {
     }
     const data = await res.json()
     return data
+}
+export const createNewproduct = async(product,token) =>{
+    const res = await fetch(`${API_BASE}/products/create`,{
+        method:"POST",
+        headers:{"Content-Type":"application/json",
+                "Authorization":`Bearer ${token}`},
+        body: JSON.stringify(product)
+    })
+
+    const data = await res.json() 
+    if(!res.ok) throw new Error(data.msg || "Product creation failed")
+        return data ;
 }
