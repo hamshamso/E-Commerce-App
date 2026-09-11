@@ -60,10 +60,10 @@ export function Cart() {
                                         <p className="name-text">{item.name}</p>
                                     </td>
                                     <td>
-                                        <p className="price-text">{item.price} DA</p>
+                                        <p className="price-text">{item.price.toLocaleString()} DA</p>
                                     </td>
                                     <td>
-                                        <span className="quantity-badge">x{item.quantity}</span>
+                                        <span className="quantity-badge">x{item.quantity.toLocaleString()}</span>
                                     </td>
                                     <td>
                                         <p className="item-total-text">{item.price * item.quantity} DA</p>
@@ -86,7 +86,7 @@ export function Cart() {
                 <div className="cart-footer">
                     <div className="total-summary">
                         <span>Total Amount:</span>
-                        <strong>{totalPrice} DA</strong>
+                        <strong>{totalPrice.toLocaleString()} DA</strong>
                     </div>
                     <button className="checkout-btn" onClick={() => navigate('/checkout')}>
                         <span>Proceed to Checkout</span>

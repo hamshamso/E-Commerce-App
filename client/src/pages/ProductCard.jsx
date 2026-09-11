@@ -38,16 +38,16 @@ function ProductCard({ product }) {
       <div className="product-details-panel">
         <span className="product-category-badge">{product.category}</span>
         <h3 className="product-title">{product.name}</h3>
-        <p className="product-price">{product.price} DA</p>
+        <p className="product-price">{product.price.toLocaleString()} DA</p>
 
         <p className="product-stock">
           {product.quantity > 0 ? `${product.quantity} in stock` : "Out of stock"}
         </p>
 
         <div className="qty-selector">
-          <button type="button" onClick={decrease}><img src={plus} alt="plus" /></button>
+          <button type="button" onClick={decrease}><img src={mines} alt="plus" /></button>
           <span>{qty}</span>
-          <button type="button" onClick={increase}><img src={mines} alt="plus" /></button>
+          <button type="button" onClick={increase}><img src={plus} alt="plus" /></button>
         </div>
         <div className="btns">
             {!isAdmin() ?(

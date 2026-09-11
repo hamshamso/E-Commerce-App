@@ -77,7 +77,7 @@ export function Orders() {
                                             </p>
                                         </td>
                                         <td>
-                                            <p className="total">💰 {o.total ?? 0} DZD</p>
+                                            <p className="total">💰 {o.total.toLocaleString() ?? 0} DZD</p>
                                         </td>
                                         <td>
                                             <Link className="view" to={`/orders/${o._id || o.id}`}>

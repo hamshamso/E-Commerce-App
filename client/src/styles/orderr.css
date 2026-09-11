@@ -116,7 +116,6 @@ td:last-child {
     color: #b91c1c;
 }
 
-/* Actions Button */
 .view {
     display: inline-flex;
     align-items: center;
@@ -138,5 +137,7 @@ td:last-child {
 .loading, .error, .no-orders {
     text-align: center;
     padding: 60px 0;
-    color: #F8E7C9;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #064E3B;
 }

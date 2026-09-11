@@ -103,7 +103,7 @@ export function OrderDetails() {
                                                 <p className="category-text">{item.product?.category || "N/A"}</p>
                                             </td>
                                             <td>
-                                                <p className="price-text">💰 {item.price} DZD</p>
+                                                <p className="price-text">💰 {item.price.toLocaleString()} DZD</p>
                                             </td>
                                             <td>
                                                 <p className="quantity-text">x{item.quantity}</p>
