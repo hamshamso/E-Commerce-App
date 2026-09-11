@@ -9,8 +9,8 @@ import { Checkout } from './pages/checkout';
 import { Orders } from './pages/orders';
 import {OrderDetails} from './pages/orderDetails'
 import EditProduct from './pages/EditProduct';
+import CreateProduct from './pages/CreateProduct';
 function App() {
-//Cart
   return (
     <>
     <NavBar />
@@ -24,6 +24,7 @@ function App() {
         <Route path='/orders' element={<Orders/>}/>
         <Route path='/orders/:id' element={<OrderDetails/>}/>
         <Route path='products/:id' element={<EditProduct/>}/>
+        <Route path='products/create' element={<CreateProduct/>}/>
       </Routes>
     </div>
     </>

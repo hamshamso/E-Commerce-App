@@ -1,0 +1,92 @@
+.create-product-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    min-height: calc(100vh - 70px);
+    background-color: #F8E7C9;
+    position: absolute;
+    left: 0;
+    top: 70px; /* نزوله تحت الـ Navbar مباشرة */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.create-product-form {
+    background: #ffffff;
+    padding: 35px 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(6, 78, 59, 0.08);
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    border: 1px solid rgba(6, 78, 59, 0.1);
+    margin: auto; /* يجبر الفورم على التوسط في منتصف الـ container تماماً */
+}
+
+.create-product-form h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #064E3B;
+    margin-bottom: 2px;
+    text-align: left;
+}
+
+.create-product-form label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #064E3B;
+    margin-bottom: -4px;
+}
+
+.create-product-form input,
+.create-product-form select {
+    padding: 11px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #1e293b;
+    background-color: #ffffff;
+    transition: all 0.2s ease-in-out;
+}
+
+.create-product-form input:focus,
+.create-product-form select:focus {
+    outline: none;
+    border-color: #064E3B;
+    box-shadow: 0 0 0 3px rgba(6, 78, 59, 0.15);
+}
+
+.create-product-form button {
+    margin-top: 10px;
+    background-color: #064E3B;
+    color: #ffffff;
+    padding: 13px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.create-product-form button:hover:not(:disabled) {
+    background-color: #043829;
+}
+
+.create-product-form button:disabled {
+    background-color: #94a3b8;
+    cursor: not-allowed;
+}
+
+.error {
+    background-color: #fef2f2;
+    color: #991b1b;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    text-align: center;
+    border: 1px solid #fecaca;
+}
