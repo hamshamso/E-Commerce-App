@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Stack+Sans+Notch:wght@200..700&display=swap');
 
-body {
-  padding-top: 75px; 
-}
-
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -257,4 +253,106 @@ body {
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 1050;
+}
+body {
+  margin: 0;
+  padding-top: 60px; 
+  background-color: var(--bg-light);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--text-dark);
+}
+
+.admin-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #F8E7C9;
+  padding: 8px 36px; 
+  border-bottom: 2px solid rgba(6, 78, 59, 0.15);
+  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1000;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.admin-menu-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #064E3B;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.admin-menu-btn:hover {
+    background-color: #043829;
+}
+
+.admin-menu-btn .nav-icon {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+}
+
+/* قسم بروفايل الأدمن وزر الخروج */
+.admin-login {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.admin-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-avatar-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.admin-top-bar .hi {
+    font-size: 15px;
+    font-weight: 600;
+    color: #064E3B;
+    margin: 0;
+}
+
+/* زر تسجيل الخروج الخاص بالأدمن */
+.logout-admin-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    border: 1px solid #064E3B;
+    color: #064E3B;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.logout-admin-btn:hover {
+    background-color: #064E3B;
+    color: #ffffff;
+}
+
+.logout-admin-btn:hover .logout-admin-icon {
+    filter: brightness(0) invert(1);
+}
+
+.logout-admin-icon {
+    width: 18px;
+    height: 18px;
 }

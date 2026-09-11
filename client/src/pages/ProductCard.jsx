@@ -50,16 +50,17 @@ function ProductCard({ product }) {
           <button type="button" onClick={increase}><img src={mines} alt="plus" /></button>
         </div>
         <div className="btns">
+            {!isAdmin() ?(
             <button
               className="btn"
               disabled={product.quantity === 0 || !isuser()}
               onClick={hundelAddToCart}  
               > 
             {!isuser() ? "Log in first" : added ? "✓ Added" : "Add to cart" }
-            </button>
-            {isAdmin() && 
-              <Link className="btn-link" to={`/products/${product._id || product.id}`}>Edit</Link>
-            }
+            </button>)
+             :
+              (<Link className="btn-link" to={`/products/${product._id || product.id}`}>Edit</Link>
+             )}
         </div>
       </div>
     </div>

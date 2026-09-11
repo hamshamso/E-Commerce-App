@@ -11,6 +11,7 @@ import ordersIcon from "../assets/orders.png"
 import userIcon from "../assets/user.png"
 import logoutIcon from "../assets/logout.png"
 import dashboard from "../assets/Dashboard.png"
+
 function NavBar() {
   const navigate = useNavigate();
   const { isuser, logout, user, isAdmin } = useAuth();
@@ -21,19 +22,58 @@ function NavBar() {
     setIsOpen(!isOpen);
   };
 
-const getTotalItemsCount = () => {
-  return cart.reduce((total, item) => total + (item.quantity || 0), 0);    
-};
+  const getTotalItemsCount = () => {
+    return cart.reduce((total, item) => total + (item.quantity || 0), 0);    
+  };
+
+  if(isAdmin()) {
+    return (
+      <div>
+        <div className="admin-top-bar">
+          <Link className="admin-menu-btn" onClick={toggleSidebar}>
+            <img src={dashboard} alt="Dashboard" className="nav-icon" />
+            <span>Dashboard</span>
+          </Link>
+
+          <div className="admin-login">
+            <div className="admin-profile">
+              <img src={userIcon} alt="User" className="admin-avatar-icon" />
+              <h2 className="hi">Hi {user?.name}</h2>
+            </div>
+            <button 
+              className="logout-admin-btn" 
+              onClick={() => { logout(); navigate("/"); }}
+            >
+              <img src={logoutIcon} alt="Logout" className="logout-admin-icon" />
+              <span>Logout</span>
+            </button>
+          </div>
+        </div>
+        
+        {isOpen && <div className="overlay" onClick={toggleSidebar}></div>}
+
+        <aside className={`sidebar ${isOpen ? "open" : ""}`}>
+          <div className="sidebar-header">
+            <h3>E-Commerce Admin</h3>
+            <button className="close-btn" onClick={toggleSidebar}>✕</button>
+          </div>
+
+          <ul className="sidebar-menu">
+            <li><Link to="/" onClick={toggleSidebar}>Products</Link></li>
+            <li><Link to='/products/create' onClick={toggleSidebar}>Add new product</Link></li>
+            <li><Link onClick={toggleSidebar}>Orders</Link></li>
+            <li><Link onClick={toggleSidebar}>Users</Link></li>
+            <li><Link onClick={toggleSidebar}>Statistics</Link></li>
+          </ul>
+        </aside>
+      </div>
+    );
+  }
+      
   return (
     <div>
       <nav className="navbar">
-        <div className="links">
-          {isAdmin() && (
-            <Link className="nav-link" onClick={toggleSidebar} >
-              <img src={dashboard} alt="Dashboard" className="nav-icon" />
-              <span>Dashboard</span>
-            </Link>
-          )}
+        <div className="links">        
           <Link to="/" className="nav-link">
             <img src={homeIcon} alt="Home" className="nav-icon" />
             <span>Home</span>
@@ -62,7 +102,6 @@ const getTotalItemsCount = () => {
               <span>My Orders</span>
             </Link>
           )}
-          
         </div>
 
         {!isuser() ? (
@@ -93,7 +132,6 @@ const getTotalItemsCount = () => {
       
       {isOpen && <div className="overlay" onClick={toggleSidebar}></div>}
 
-      
       <aside className={`sidebar ${isOpen ? "open" : ""}`}>
         <div className="sidebar-header">
           <h3>E-Commerce Admin</h3>
@@ -108,8 +146,7 @@ const getTotalItemsCount = () => {
           <li><Link>Statistics</Link></li>
         </ul>
       </aside>
-
-    </div>     
+    </div>    
   );
 }
 
