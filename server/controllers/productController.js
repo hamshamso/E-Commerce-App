@@ -46,7 +46,7 @@ const updateProduct = async (req, res) => {
             const newproduct = await Product.findByIdAndUpdate(
                 productid, 
                 { $set: updateData }, 
-                { new: true, runValidators: true }
+                { returnDocument: 'after' , runValidators: true }
             );
             
             return res.status(200).json({                
