@@ -23,8 +23,8 @@ function ProductCard({ product }) {
     addToCart(product, qty)
     setAdded(true)
 
-    if (reset.current) clearTimeout(reset.current);//cancel any background timer
-    reset.current = setTimeout(() => {
+    if (reset.current) clearTimeout(reset.current);//cancel the timer
+    reset.current = setTimeout(() => { // set a timer to run and make setAdded(false) every click on Add to cart 
       setAdded(false)
     },1500)
   }
