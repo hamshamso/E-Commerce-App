@@ -54,6 +54,7 @@ export function Orders() {
                                     <th>Status</th>
                                     <th>Phone</th>
                                     <th>Address</th>
+                                    <th>Date</th>
                                     <th>Total</th>
                                     <th>Details</th>
                                 </tr>
@@ -76,6 +77,11 @@ export function Orders() {
                                                 🏠 {o.address || o.adress || "N/A"}
                                             </p>
                                         </td>
+                                            <td>
+                                                <p>
+                                                    {new Date(o.createdAt).toLocaleDateString()}
+                                                </p>
+                                            </td>
                                         <td>
                                             <p className="total">💰 {o.total.toLocaleString() ?? 0} DZD</p>
                                         </td>
