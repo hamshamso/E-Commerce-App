@@ -32,7 +32,6 @@ import Product from "../models/Product.js" //add .js because of ES Module
     }
 }
 const updateProduct = async (req, res) => {
-    try {
         const productid = req.params.id;
         
         const updateData = {};
@@ -56,9 +55,6 @@ const updateProduct = async (req, res) => {
             });                        
         }
         return res.status(404).json({ success: false, msg: `Id ${productid} doesn't exist` });
-    } catch (error) {
-        return res.status(400).json({ success: false, msg: error.message });
-    }
 }
 const deleteProduct = async (req,res) => {
     try {

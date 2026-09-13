@@ -94,7 +94,7 @@ export  const updateOrderStatus = async (id,status) => {
     const data = await res.json()
     if(!res.ok){throw new Error(data.msg || "Failed to update status")}
     return data
-}//fetch(`http://localhost:5000/api/orders/${orderId}/${productsId}`
+}
 //100%
 export const RemoveProductFromOrder = async (orderId,productsId,token) => {
     const res = await fetch(`${API_BASE}/orders/${orderId}/${productsId}`,{

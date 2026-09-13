@@ -19,6 +19,13 @@ app.use(express.json());
 app.use('/api/auth', authRoute);
 app.use('/api',productRouter);  //then in productRouter use ('/products') and ('/products/:id')
 app.use('/api',orderRouter);
+app.use((err, req, res, next) => {
+    const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+    res.status(statusCode).json({
+        success: false,
+        msg: err.message || 'Server error'
+    });
+});
 const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);
