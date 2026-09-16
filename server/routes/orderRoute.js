@@ -11,5 +11,5 @@ Router.get('/orders', ValidateUser, adminOnly, getAllOrders)
 Router.put('/orders/:id/status', ValidateUser, adminOnly, updateOrderStatus)
 Router.delete('/orders/:id',ValidateUser,adminOnly,deleteOrder)
 Router.delete('/orders/:orderId/:productId', ValidateUser, cancelProductFromOrder)
-Router.get('/orders', ValidateUser, getProductsInfo)
+
 export default Router

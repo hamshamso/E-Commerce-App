@@ -126,17 +126,23 @@ const getProductsInfo = async(req,res) => {
 const cancelProductFromOrder = async(req,res) => {
  //Front API must be fetch(`http://localhost:5000/api/orders/${orderId}/${productsId}`
   const { orderId, productId } = req.params;
+  const id = req.user.id
   if(!orderId || !productId){
     return res.status(400).json({success:false, msg:"Please enter All ID's"})
   }
   const order = await Order.findById(orderId)
+
   const product = await Product.findById(productId)
   if(!order || !product){
     return res.status(404).json({success:false, msg:"Order or Product not found"})
   }
-  order.items = order.items.filter((item)=> item.product.toString() !== productId.toString())//If true keep it if false remove it
-  await order.save()
-  return res.status(200).json({success:true, data:{order,product}, msg:`Successfully removed product ${product.name}`})
+  //Make sure that the order belonge to the requeser user 
+  if(order.user.toString() == id.toString()){
+    order.items = order.items.filter((item)=> item.product.toString() !== productId.toString())
+    await order.save()
+    return res.status(200).json({success:true, data:{order,product}, msg:`Successfully removed product ${product.name}`})
+  }
+  return res.status(401).json({success:false,msg:"This order isn't yours"})
 }
 const deleteOrder = async(req,res) => {
   try{
