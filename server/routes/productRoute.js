@@ -7,7 +7,7 @@ const Router = express.Router();
 
 Router.post('/products/create',ValidateUser,admin,createProduct)
 Router.get('/products/:id',getProductById)
-Router.patch('/products/:id',ValidateUser,admin,updateProduct)//patch = partcial update 
+Router.patch('/products/:id',ValidateUser,admin,updateProduct)
 Router.delete('/products/:id',ValidateUser,admin,deleteProduct)
 Router.get('/products',getAllProductsWithCategory)
 

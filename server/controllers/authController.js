@@ -19,7 +19,7 @@ const registeruser = async(req,res) => {
         //put the smallest you can in payload no user needed so in validateuser midelware we will check like this decoded.id instead of decoded.user.id
             id:newuser._id,     //save the newuser id in payload
         },process.env.JWT_SECRET,
-        {expiresIn:"7d"}
+        {expiresIn:"30d"}
         )
         res.status(201).json({success:true,msg:"User created successfully", data:{name,email},token})
     } catch (error) {
@@ -36,7 +36,7 @@ const registeruser = async(req,res) => {
         const token = jwt.sign(
             {id:user._id},
             process.env.JWT_SECRET,
-            {expiresIn: "7d"}
+            {expiresIn: "30d"}
         )
         return res.status(200).json({
             success: true,
