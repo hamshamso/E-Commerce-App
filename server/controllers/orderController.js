@@ -140,6 +140,10 @@ const cancelProductFromOrder = async(req,res) => {
   //Make sure that the order belonge to the requeser user 
   if(order.user.toString() == id.toString()){
     order.items = order.items.filter((item)=> item.product.toString() !== productId.toString())
+    //Check if order became empty to delete
+    if( order.items.length === 0 ){
+      await Order.findByIdAndDelete(orderId)
+    }
     await order.save()
     return res.status(200).json({success:true, data:{order,product}, msg:`Successfully removed product ${product.name}`})
   }
