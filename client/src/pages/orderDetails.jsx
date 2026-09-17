@@ -39,10 +39,7 @@ export function OrderDetails() {
                 if (res.data) {
                     setOrder(res.data);
                 } else {
-                    setOrder((prevOrder) => ({
-                        ...prevOrder,
-                        items: prevOrder.items.filter(
-                            (item) => (item.product?._id || item.product) !== productId
+                    setOrder((prevOrder) => ({...prevOrder,items: prevOrder.items.filter((item) => (item.product?._id || item.product) !== productId
                         )
                     }));
                 }
@@ -63,7 +60,7 @@ export function OrderDetails() {
                 <div className="header-section">
                     <Link to="/orders" className="back-btn">← Back to Orders</Link>
                     <div className="order-meta">
-                        <h1>Order #{order._id || id}</h1>
+                        <h1>Your order</h1>
                         <span className={`status status-${order.status}`}>
                             {order.status}
                         </span>

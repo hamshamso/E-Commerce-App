@@ -143,6 +143,8 @@ const cancelProductFromOrder = async(req,res) => {
     //Check if order became empty to delete
     if( order.items.length === 0 ){
       await Order.findByIdAndDelete(orderId)
+      return res.status(200).json({success: true, orderDeleted: true, msg: "Order deleted because it's empty."
+    });
     }
     await order.save()
     return res.status(200).json({success:true, data:{order,product}, msg:`Successfully removed product ${product.name}`})
