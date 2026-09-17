@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { getProducts } from "../services/api";
 import ProductCard from "../pages/ProductCard";
-import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "../styles/home.css";
 
@@ -12,7 +11,7 @@ function Home() {
   const [selectedPrice,setSelectedPrice] = useState("All prices")
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const {isAdmin} = useAuth();
+  const {isAdmin,isuser} = useAuth();
   
 
   useEffect(() => {
@@ -57,7 +56,7 @@ function Home() {
     <>
       <div className="landing">
         <div className="welcome">
-          <h1>{isAdmin ? "Welcome Back, Admin" :"Welcome to Our Store"}</h1>
+          <h1>{isuser() ? (isAdmin() ? "Welcome back Admin" : "Welcome to our store") : "Wellcome to our store"}</h1>
           <h2>{isAdmin ?"Manage your store products and orders with ease":"Every Purchase Will Be Made With Pleasure"}</h2>
           <p>{isAdmin ? "Control panel for inventory, sales, and modern technology items": "Discover premium quality products with modern technology"}</p>
         </div>

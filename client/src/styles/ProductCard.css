@@ -43,7 +43,6 @@
   background-color: #ECFDF5;
   color: var(--primary-color);
   font-size: 0.75rem;
-  font-weight: 700;
   padding: 4px 10px;
   border-radius: 20px;
   text-transform: uppercase;
@@ -52,7 +51,6 @@
 
 .product-title {
   font-size: 1.1rem;
-  font-weight: 700;
   color: var(--text-dark);
   margin: 0 0 8px 0;
   white-space: nowrap;
@@ -62,7 +60,6 @@
 
 .product-price {
   font-size: 1.25rem;
-  font-weight: 800;
   color: var(--primary-color);
   margin: 0 0 4px 0;
 }
@@ -114,7 +111,6 @@
 }
 
 .qty-selector span {
-  font-weight: 700;
   font-size: 1rem;
   color: #1E293B;
   min-width: 24px;
@@ -134,7 +130,6 @@
   border: none;
   padding: 12px;
   border-radius: 8px;
-  font-weight: 700;
   font-size: 0.95rem;
   cursor: pointer;
   transition: background-color 0.2s, opacity 0.2s, transform 0.2s ease-in-out;
@@ -164,7 +159,6 @@
   border: none;
   border-radius: 8px;
   color: #F8E7C9;
-  font-weight: 700;
   font-size: 0.95rem;
   padding: 12px;
   justify-content: center;

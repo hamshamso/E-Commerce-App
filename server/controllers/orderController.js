@@ -51,6 +51,7 @@ const createOrder = async (req, res) => {
 };
 
 const getMyOrders = async (req,res) => {
+  //no need to verify if requester is the owner cause we search orders by his id
   try {
     const userId = req.user._id;
     const order = await Order.find({user: userId}).populate("items.product");
@@ -124,7 +125,7 @@ const getProductsInfo = async(req,res) => {
   }
 }
 const cancelProductFromOrder = async(req,res) => {
- //Front API must be fetch(`http://localhost:5000/api/orders/${orderId}/${productsId}`
+//Front API must be fetch(`http://localhost:5000/api/orders/${orderId}/${productsId}`
   const { orderId, productId } = req.params;
   const id = req.user.id
   if(!orderId || !productId){
@@ -146,8 +147,8 @@ const cancelProductFromOrder = async(req,res) => {
 }
 const deleteOrder = async(req,res) => {
   try{
-  const id = req.params.id || req.params._id
-  const order = await Order.findById(id)
+    const id = req.params.id || req.params._id
+    const order = await Order.findById(id)
   if(order){
     await Order.findByIdAndDelete(id)
     return res.status(200).json({success:true,msg:"order has been successfully deleted"})

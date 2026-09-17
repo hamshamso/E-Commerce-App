@@ -4,9 +4,7 @@
     min-height: 100vh;
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 200;
-    font-style: normal;
-    background: radial-gradient(circle at top left, #64ab98 0%, #064E3B 35% ,#033b2c 100%);
+    background: radial-gradient(circle at top left, #64ab98 0%, #064E3B 65% ,#033b2c 100%);
     background-attachment: fixed;
 }
 ::selection {

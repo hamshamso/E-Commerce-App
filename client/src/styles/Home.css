@@ -24,7 +24,6 @@ body {
 }
 .welcome h1 {
   font-size: 2.8rem;
-  font-weight: 800;
   margin-bottom: 12px;
   letter-spacing: -0.5px;
 }
@@ -32,7 +31,6 @@ body {
 .welcome h2 {
   font-size: 1.5rem;
   color: var(--bg-cream);
-  font-weight: 500;
   margin-bottom: 16px;
 }
 
@@ -55,7 +53,6 @@ body {
   color: #F8E7C9;
   text-align: center;
   margin-bottom: 5rem;
-  font-weight: 700;
   position: relative;
 }
 
@@ -132,7 +129,6 @@ footer .fot a:hover {
 .shop-title {
   text-align: center;
   font-size: 2.25rem;
-  font-weight: 800;
   color: #fbeee0; 
   margin-bottom: 24px;
 }
@@ -163,7 +159,6 @@ footer .fot a:hover {
 
 .filter-label {
   font-size: 0.875rem;
-  font-weight: 600;
   color: #fbeee0; 
   margin-bottom: 8px;
   letter-spacing: 0.02em;
