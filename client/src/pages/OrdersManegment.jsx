@@ -59,17 +59,31 @@ useEffect(()=>{
                             </td>
                             <td>
                                 <span className='mgnt-order-creation'>
-                                    {o.createdAt}
+                                    {new Date(o.createdAt).toLocaleDateString('en-GB', {
+                                    day: '2-digit',
+                                    month: 'short',
+                                    year: 'numeric',
+                                    hour: '2-digit',
+                                    minute: '2-digit',
+                                    hour12: true //24h system
+                                })}
                                 </span>
                             </td>
                             <td>
                                 <span className='mgnt-order-modification'>
-                                    {o.updatedAt}
+                                    {new Date(o.updatedAt).toLocaleDateString('en-GB', {
+                                    day: '2-digit',
+                                    month: 'short',
+                                    year: 'numeric',
+                                    hour: '2-digit',
+                                    minute: '2-digit',
+                                    hour12: true
+                                })}
                                 </span>
                             </td>
                             <td>
                                 <span className='mgnt-order-total'>
-                                    {o.total}
+                                    {o.total.toLocaleString()}
                                 </span>
                             </td>
                             <td>
