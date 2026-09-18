@@ -166,11 +166,13 @@ const deleteOrder = async(req,res) => {
 }
 //only admin
 const getDetailedOrders = async(req,res) =>{
-  try{
-    const detailedorders = await Order.find({}).populate('user','name')
-    if (!detailedorders) {
+  try{                                      //Filter empty orders
+    const detailedorders = await Order.find({"items.0": { $exists: true }}).populate('user','name')
+    if (!detailedorders || detailedorders.length === 0) {
       return res.status(404).json({ success: false, msg: "Order doesn't exist" });
     }
+  //we can use this but it use too much RAM
+  //const filtredOrders = detailedorders.filter(order => order.items && order.items.length > 0)
   return res.status(200).json( {success:true, data:detailedorders, msg:"Successfully get detailed orders" })
   }catch(err){
     return res.status(400).json({ success:false, msg:"Failed to get detailed order", message:err.message })
@@ -182,8 +184,11 @@ const getOrderById = async(req,res) => {
     const id = req.params.id || req.params._id
     const order = await Order.findById(id)
     //Admin doesn't need an authorization
+    if(order.items.length === 0){
+      return res.status(200).json( {success:true,empty:"true", msg:"This order is empty" })
+    }
     if(order){
-      return res.status(200).json( {success:true, data:order, msg:"Successfully get the order" })
+       return res.status(200).json( {success:true, data:order, msg:"Successfully get the order" })
     }
   return res.status(404).json({ success: false, msg: "Order doesn't exist" });
   }catch(err){
