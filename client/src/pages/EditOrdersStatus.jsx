@@ -27,16 +27,16 @@ export function EditOrdersStatus() {
 
         if (id) fetchMyOrder();
     }, [id]);
-
     if (loading) return <h1 className="loading">Loading order items...</h1>;
     if (error || !order) return <h1 className="error">Error loading order items!</h1>;
+    //if (order.empty) return <h1>This order is empty</h1>
     return (
         <div className="page-wrapper">
             <div className="orders-container">
                 <div className="header-section">
                     <Link to="/orders" className="back-btn">← Back to Orders</Link>
                     <div className="order-meta">
-                        <h1>Your order</h1>
+                        <h1>Order items</h1>
                         <span className={`status status-${order.status}`}>
                             {order.status}
                         </span>
@@ -52,20 +52,17 @@ export function EditOrdersStatus() {
                                 <th>Category</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
-                                {order.status === 'pending' && <th>Action</th>}
                             </tr>
                         </thead>
                         <tbody>
                             {order.items && order.items.length > 0 ? (
                                 order.items.map((item) => {
                                     const itemId = item._id || item.id || item.product?._id;
-                                    const productId = item.product?._id || item.product;
                                     return (
                                         <tr key={itemId} className="card">
                                             <td>
                                                 <img 
                                                     src={item.product?.image || item.image} 
-                                                    alt={item.name} 
                                                     className="table-img"
                                                 />
                                             </td>
@@ -81,16 +78,6 @@ export function EditOrdersStatus() {
                                             <td>
                                                 <p className="quantity-text">x{item.quantity}</p>
                                             </td>
-                                            {order.status === 'pending' && (
-                                                <td>
-                                                    <button 
-                                                        className="cancel-btn"
-                                                        onClick={() => handleCancelProduct(productId)}
-                                                    >
-                                                        Cancel Product
-                                                    </button>
-                                                </td>
-                                            )}
                                         </tr>
                                     );
                                 })
