@@ -85,7 +85,7 @@ export const getOredersWithId = async (token, id) => {
   return data;
 };
 
-//only admin
+//admin only API
 export  const updateOrderStatus = async (id,status) => {
     const res = await fetch(`${API_BASE}/${id}/status`,{
         method : "PUT",
@@ -107,6 +107,7 @@ export const RemoveProductFromOrder = async (orderId,productsId,token) => {
     const data = await res.json()
     return data
 }
+//admin only API
 export const UpdateProduct = async (product,productId,token)=>{
     const res = await fetch(`${API_BASE}/products/${productId}`,{
         method:'PATCH',
@@ -117,7 +118,6 @@ export const UpdateProduct = async (product,productId,token)=>{
         body:JSON.stringify(product)
     })
     const data = await res.json()
-
     if(!res.ok){
        throw new Error(data.msg || "Failed to update products")
     }
@@ -131,12 +131,13 @@ export const deleteProduct = async(id,token) => {
             "Authorization":`Bearer ${token}`
         }
     })
+    const data = await res.json()
     if(!res.ok){
        throw new Error(data.msg || "Failed to delete the product")
     }
-    const data = await res.json()
     return data
 }
+//admin only API
 export const createNewproduct = async(product,token) =>{
     const res = await fetch(`${API_BASE}/products/create`,{
         method:"POST",
@@ -148,4 +149,18 @@ export const createNewproduct = async(product,token) =>{
     const data = await res.json() 
     if(!res.ok) throw new Error(data.msg || "Product creation failed")
         return data ;
+}
+//aadmin only API
+export const getDetailedOrders = async(token) => {
+    const res = await fetch(`${API_BASE}/dashboard/orders`,{
+        method:"GET",
+        headers:{"Content-type":"application/json",
+                "Authorization":`Bearer ${token}`}
+    })
+
+    const data = await res.json()
+    if(!res.ok){
+        throw new Error(data.msg || "Failed to fetch Detailed orders")
+    }
+    return data
 }

@@ -157,23 +157,23 @@ const deleteOrder = async(req,res) => {
     const order = await Order.findById(id)
   if(order){
     await Order.findByIdAndDelete(id)
-    return res.status(200).json({success:true,msg:"order has been successfully deleted"})
+    return res.status(200).json({ success:true, msg:"order has been successfully deleted"})
   }
-  return res.status(404).json({success:false,msg:"Order doesn't excist"})
+  return res.status(400).json({ success:false, msg:"Order doesn't excist"})
   }catch(ademozi){
-    return res.status(400).json({success:false, msg:"Failed to delete order",message:ademozi.message})
+    return res.status(400).json({ success:false, msg:"Failed to delete order",message:ademozi.message })
   }
 }
 //only admin
-const getDetailedOrder = async(req,res) =>{
+const getDetailedOrders = async(req,res) =>{
   try{
     const detailedorders = await Order.find({}).populate('user','name')
-    if(detailedorders.items.length == 0){
-      return res.status(404).json({success:false,msg:"Orders doesn't excist"})
+    if (!detailedorders) {
+      return res.status(404).json({ success: false, msg: "Order doesn't exist" });
     }
-  return res.status(200).json({success:true,data:detailedorders,msg:"Successfully get detailed orders"})
+  return res.status(200).json( {success:true, data:detailedorders, msg:"Successfully get detailed orders" })
   }catch(err){
-    return res.status(400).json({success:false, msg:"Failed to get detailed order",message:err.message})
+    return res.status(400).json({ success:false, msg:"Failed to get detailed order", message:err.message })
   }
 }
-export {createOrder,getMyOrders,updateOrderStatus,getAllOrders,getProductsInfo,cancelProductFromOrder,deleteOrder,getDetailedOrder};
+export {createOrder,getMyOrders,updateOrderStatus,getAllOrders,getProductsInfo,cancelProductFromOrder,deleteOrder,getDetailedOrders};
