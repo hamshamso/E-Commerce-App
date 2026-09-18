@@ -182,7 +182,7 @@ const getDetailedOrders = async(req,res) =>{
 const getOrderById = async(req,res) => {
   try{
     const id = req.params.id || req.params._id
-    const order = await Order.findById(id).populate({path: 'items.product',select: ' image'});
+    const order = await Order.findById(id).populate('user','name').populate({path: 'items.product',select: 'category image'});
     //Admin doesn't need an authorization
     if(order.items.length === 0){
       return res.status(200).json( {success:true, empty:"true", msg:"This order is empty" })

@@ -47,7 +47,7 @@ export function EditOrdersStatus() {
                     <table>
                         <thead>
                             <tr className="head">
-                                <th>Product</th>
+                                <th>Product image</th>
                                 <th>Name</th>
                                 <th>Category</th>
                                 <th>Price</th>
@@ -89,6 +89,10 @@ export function EditOrdersStatus() {
                                 </tr>
                             )}
                         </tbody>
+                        <h3>Client name: {order.user.name}</h3>
+                        <h3>Total : {order.total}</h3>
+                        <button>✓</button>
+                        <button>✕</button>
                     </table>
                 </div>
             </div>
