@@ -58,9 +58,9 @@ function NavBar() {
           </div>
 
           <ul className="sidebar-menu">
-            <li><Link to="/" onClick={toggleSidebar}>Products</Link></li>
+            <li><Link to='/' onClick={toggleSidebar}>Products</Link></li>
             <li><Link to='/products/create' onClick={toggleSidebar}>Add new product</Link></li>
-            <li><Link onClick={toggleSidebar}>Orders</Link></li>
+            <li><Link to='/dashboard/orders' onClick={toggleSidebar}>Orders</Link></li>
             <li><Link onClick={toggleSidebar}>Users</Link></li>
             <li><Link onClick={toggleSidebar}>Statistics</Link></li>
           </ul>

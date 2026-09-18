@@ -1,7 +1,7 @@
 import { getMyOrders } from "../services/api";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "../styles/orderr.css";
+import "../styles/orders.css";
 
 export function Orders() {
     const [orders, setOrders] = useState([]);

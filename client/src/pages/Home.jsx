@@ -63,7 +63,7 @@ function Home() {
       </div>
 
       <section className="shop-section">
-        <h2 className="shop-title">{isAdmin ? "My" :"Our"} Products</h2>
+        <h2 className="shop-title">{isAdmin ? "My" :"Our"} Collection</h2>
 
         <div className="search-section">
           <div className="filter-group">
