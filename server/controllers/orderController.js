@@ -176,4 +176,18 @@ const getDetailedOrders = async(req,res) =>{
     return res.status(400).json({ success:false, msg:"Failed to get detailed order", message:err.message })
   }
 }
-export {createOrder,getMyOrders,updateOrderStatus,getAllOrders,getProductsInfo,cancelProductFromOrder,deleteOrder,getDetailedOrders};
+//only admin
+const getOrderById = async(req,res) => {
+  try{
+    const id = req.params.id || req.params._id
+    const order = await Order.findById(id)
+    //Admin doesn't need an authorization
+    if(order){
+      return res.status(200).json( {success:true, data:order, msg:"Successfully get the order" })
+    }
+  return res.status(404).json({ success: false, msg: "Order doesn't exist" });
+  }catch(err){
+    return res.status(400).json({ success:false, msg:"Failed to get the order", message:err.message })
+  }
+}
+export {createOrder,getMyOrders,updateOrderStatus,getAllOrders,getProductsInfo,cancelProductFromOrder,deleteOrder,getDetailedOrders,getOrderById};

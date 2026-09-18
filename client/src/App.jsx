@@ -11,6 +11,8 @@ import {OrderDetails} from './pages/orderDetails'
 import EditProduct from './pages/EditProduct';
 import CreateProduct from './pages/CreateProduct';
 import {OrderManegment} from './pages/OrdersManegment';
+import { EditOrdersStatus } from './pages/EditOrdersStatus';
+
 function App() {
   return (
     <>
@@ -27,6 +29,7 @@ function App() {
         <Route path='/products/:id' element={<EditProduct/>}/>
         <Route path='/products/create' element={<CreateProduct/>}/>
         <Route path='/dashboard/orders' element={<OrderManegment/>}/>
+        <Route path='/dashboard/orders/:id' element={<EditOrdersStatus/>}/>
       </Routes>
     </div>
     </>

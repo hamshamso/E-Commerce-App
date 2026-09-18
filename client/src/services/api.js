@@ -164,3 +164,15 @@ export const getDetailedOrders = async(token) => {
     }
     return data
 }
+export const getOrderById = async(token,id) =>{
+    const res = await fetch(`${API_BASE}/dashboard/orders/${id}`,{
+        method:"GET",
+        headers:{"Content-type":"application/json",
+                 "Authorization":`Bearer ${token}`} 
+    })
+    const data = res.json()
+    if(!res.ok){
+        throw new Error(res.msg || "Failed to fetch order by ID")
+    }
+    return data
+}

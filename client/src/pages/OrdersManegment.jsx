@@ -1,6 +1,7 @@
 import '../styles/OrderManegment.module.css';
 import { getDetailedOrders } from '../services/api.js';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 export function OrderManegment (){
     const [orders,setOrders] = useState([])
 useEffect(()=>{
@@ -88,7 +89,7 @@ useEffect(()=>{
                             </td>
                             <td>
                                 <span className='mgnt-order-view'>
-                                    view
+                                    <Link to={`${o._id}`}>view</Link>
                                 </span>
                             </td>
                         </tr>
