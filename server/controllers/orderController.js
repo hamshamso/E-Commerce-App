@@ -195,4 +195,79 @@ const getOrderById = async(req,res) => {
     return res.status(400).json({ success:false, msg:"Failed to get the order", message:err.message })
   }
 }
-export {createOrder,getMyOrders,updateOrderStatus,getAllOrders,getProductsInfo,cancelProductFromOrder,deleteOrder,getDetailedOrders,getOrderById};
+//admin only
+const confirmOrder = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const order = await Order.findById(id).populate();
+    if (!order) {
+      return res.status(404).json({ success: false, msg: "Order doesn't exist" });
+    }
+
+    if (order.status.toString() === "pending") {
+      //check if there is a Insufficient quantity for all items
+      for (const item of order.items) {
+        const productId = item.product;
+        const product = await Product.findById(productId);
+
+        if (!product) {
+          return res.status(404).json({ success: false, msg: `Product not found` });
+        }
+
+        if (product.quantity < item.quantity) {
+          return res.status(400).json({ success: false, msg: `Insufficient stock for product ${product.name}` });
+        }
+      }
+
+      for (const item of order.items) {
+        const product = await Product.findById(item.product);
+        if (product) {
+          product.quantity -= item.quantity
+          await product.save();
+        }
+      }
+
+      order.status = "confirmed";
+      await order.save();
+      return res.status(200).json({ success: true, data: order, msg: `Successfully confirmation order is now ${order.status}` });
+    }
+
+    if (order.status.toString() === "confirmed") {
+      order.status = "shipped";
+      await order.save();
+      return res.status(200).json({ success: true, data: order, msg: `Successfully update order is now ${order.status}` });
+    }
+
+    return res.status(400).json({ success: false, msg: "Invalid status" });
+  } catch (err) {
+    return res.status(400).json({ success: false, msg: "Failed to confirm the order", message: err.message });
+  }
+};
+//admin only
+const canselOrder = async(req,res) => {
+  const id = req.params.id
+  const order = await Order.findById(id)
+  try{
+    if(!order){
+    return res.status(404).json({success:false,msg:"Order doesn't exist"})
+    }
+    if(order.status.toString() === "pending" ){
+      order.status = "cancelled"
+      order.save()
+      return res.status(200).json( {success:true, data:order, msg:  `Successfully cancellation order is now ${order.status}` })
+    }
+    if(order.status.toString() === "confirmed" ){
+      order.status = "cancelled"
+           
+      order.save()
+      return res.status(200).json( {success:true, data:order, msg:  `Successfully cancellation order is now ${order.status}` })
+    }
+    return res.status(404).json({success:false,msg:"Invalid status"})
+  }catch(err){
+      return res.status(400).json({ success:false, msg:"Failed to cancele the order", message:err.message })
+  }
+}
+
+export {createOrder,getMyOrders,updateOrderStatus,getAllOrders,getProductsInfo,cancelProductFromOrder,
+  deleteOrder,getDetailedOrders,getOrderById,confirmOrder,canselOrder
+};
