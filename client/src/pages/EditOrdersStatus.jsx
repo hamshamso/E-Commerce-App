@@ -27,6 +27,24 @@ export function EditOrdersStatus() {
 
         if (id) fetchMyOrder();
     }, [id]);
+    const handelConfirmation = async(e) => {
+        e.preventDefault()
+        try {
+            //setOrder()
+        } catch (error) {
+            console.error(error)
+            setError(true)
+        }
+    }
+    const handelCanselation = async(e) => {
+        e.preventDefault()
+        try {
+            //setOrder()
+        } catch (error) {
+            console.error(error)
+            setError(true)
+        }
+    }
     if (loading) return <h1 className="loading">Loading order items...</h1>;
     if (error || !order) return <h1 className="error">Error loading order items!</h1>;
     //if (order.empty) return <h1>This order is empty</h1>
@@ -89,10 +107,17 @@ export function EditOrdersStatus() {
                                 </tr>
                             )}
                         </tbody>
-                        <h3>Client name: {order.user.name}</h3>
-                        <h3>Total : {order.total}</h3>
-                        <button>✓</button>
-                        <button>✕</button>
+                        <div className="name-total">
+                            <span>Client name: {order.user.name}</span >
+                            <br />
+                            <span>Total : {order.total}</span>
+                        </div>
+                        {(order.status === "pending" || order.status === "confirmed") && (
+                            <div className="hundel-order-pending" >
+                                <button className={(e)=>handelConfirmation(e)}>Confirm ✓</button>
+                                <button className={(e)=>handelCanselation(e)}>Cansel ✕</button>
+                            </div>) 
+                        }
                     </table>
                 </div>
             </div>
