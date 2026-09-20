@@ -32,9 +32,8 @@ export function EditOrdersStatus() {
         e.preventDefault()
         const token = localStorage.getItem("token")
         try {
-            await confirmOrder(token,id)
-            const data = await getOrderById(token, id);
-            setOrder(data.data || data);    
+            const data = await confirmOrder(token,id)
+            setOrder(data.data)    
         } catch (error) {
             console.error(error)
             setError(true)
@@ -44,9 +43,8 @@ export function EditOrdersStatus() {
         e.preventDefault()
         const token = localStorage.getItem("token")
         try {
-            await canselOrder(token,id)
-            const data = await getOrderById(token, id);
-            setOrder(data.data || data);
+            const data = await canselOrder(token,id)
+            setOrder(data.data)
         } catch (error) {
             console.error(error)
             setError(true)
