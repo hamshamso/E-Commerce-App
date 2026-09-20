@@ -176,3 +176,27 @@ export const getOrderById = async(token,id) =>{
     }
     return data
 }
+export const confirmOrder = async(token,id) =>{
+    const res = await fetch(`${API_BASE}/dashboard/orders/:${id}/confirm`,{
+        method:"GET",
+        headers:{"Content-type":"application/json",
+                "Authorization":`Bearer ${token}`}
+    })
+    const data = await res.json();
+    if(!res.ok){
+        throw new Error(data.msg || "Failed to confirm order")
+    }
+    return data
+}
+export const canselOrder = async(token,id) =>{
+    const res = await fetch(`${API_BASE}/dashboard/orders/:${id}/cansel`,{
+        method:"GET",
+        headers:{"Content-type":"application/json",
+                "Authorization":`Bearer ${token}`}
+    })
+    const data = await res.json();
+    if(!res.ok){
+        throw new Error(data.msg || "Failed to cansel order")
+    }
+    return data
+}
