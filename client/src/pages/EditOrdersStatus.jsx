@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"; 
 import { getOrderById } from "../services/api";
 import { useParams, Link } from "react-router-dom";
+import {confirmOrder,canselOrder} from '../services/api.js'
 import "../styles/ordersDetails.css";
 
 export function EditOrdersStatus() {
@@ -27,19 +28,25 @@ export function EditOrdersStatus() {
 
         if (id) fetchMyOrder();
     }, [id]);
-    const handelConfirmation = async(e) => {
+    const handelConfirmation = async(e,id) => {
         e.preventDefault()
+        const token = localStorage.getItem("token")
         try {
-            //setOrder()
+            await confirmOrder(token,id)
+            const data = await getOrderById(token, id);
+            setOrder(data.data || data);    
         } catch (error) {
             console.error(error)
             setError(true)
         }
     }
-    const handelCanselation = async(e) => {
+    const handelCanselation = async(e,id) => {
         e.preventDefault()
+        const token = localStorage.getItem("token")
         try {
-            //setOrder()
+            await canselOrder(token,id)
+            const data = await getOrderById(token, id);
+            setOrder(data.data || data);
         } catch (error) {
             console.error(error)
             setError(true)
@@ -107,18 +114,18 @@ export function EditOrdersStatus() {
                                 </tr>
                             )}
                         </tbody>
-                        <div className="name-total">
+                    </table>
+                    <div className="name-total">
                             <span>Client name: {order.user.name}</span >
                             <br />
                             <span>Total : {order.total}</span>
                         </div>
                         {(order.status === "pending" || order.status === "confirmed") && (
                             <div className="hundel-order-pending" >
-                                <button className={(e)=>handelConfirmation(e)}>Confirm ✓</button>
-                                <button className={(e)=>handelCanselation(e)}>Cansel ✕</button>
+                                <button onClick={(e)=>handelConfirmation(e,order._id)}>Confirm ✓</button>
+                                <button onClick={(e)=>handelCanselation(e,order._id)}>Cansel ✕</button>
                             </div>) 
                         }
-                    </table>
                 </div>
             </div>
         </div>

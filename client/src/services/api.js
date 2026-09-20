@@ -177,8 +177,8 @@ export const getOrderById = async(token,id) =>{
     return data
 }
 export const confirmOrder = async(token,id) =>{
-    const res = await fetch(`${API_BASE}/dashboard/orders/:${id}/confirm`,{
-        method:"GET",
+    const res = await fetch(`${API_BASE}/dashboard/orders/${id}/confirm`,{
+        method:"PUT",
         headers:{"Content-type":"application/json",
                 "Authorization":`Bearer ${token}`}
     })
@@ -189,8 +189,8 @@ export const confirmOrder = async(token,id) =>{
     return data
 }
 export const canselOrder = async(token,id) =>{
-    const res = await fetch(`${API_BASE}/dashboard/orders/:${id}/cansel`,{
-        method:"GET",
+    const res = await fetch(`${API_BASE}/dashboard/orders/${id}/cansel`,{
+        method:"PUT",
         headers:{"Content-type":"application/json",
                 "Authorization":`Bearer ${token}`}
     })
