@@ -16,8 +16,12 @@ export function EditOrdersStatus() {
                 setLoading(true);
                 setError(false);
                 const token = localStorage.getItem("token");
-                const data = await getOrderById(token, id);
-                setOrder(data.data || data);
+                await getOrderById(token, id);
+                setOrder(prev => ({
+                    ...prev,
+                    status: "confirmed"
+                }));
+                                    
             } catch (err) {
                 setError(true);
                 console.error("Failed to fetch order details:", err);
@@ -32,8 +36,10 @@ export function EditOrdersStatus() {
         e.preventDefault()
         const token = localStorage.getItem("token")
         try {
-            const data = await confirmOrder(token,id)
-            setOrder(data.data)    
+            await confirmOrder(token,id)
+            setOrder(prev => ({
+                ...prev,status: "confirmed"
+            }));
         } catch (error) {
             console.error(error)
             setError(true)

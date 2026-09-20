@@ -229,13 +229,13 @@ const confirmOrder = async (req, res) => {
 
       order.status = "confirmed";
       await order.save();
-      return res.status(200).json({ success: true, data: order, msg: `Successfully confirmation order is now ${order.status}` });
+      return res.status(200).json({ success: true, msg: `Successfully confirmation order is now ${order.status}` });
     }
 
     if (order.status.toString() === "confirmed") {
       order.status = "shipped";
       await order.save();
-      return res.status(200).json({ success: true, data: order, msg: `Successfully update order is now ${order.status}` });
+      return res.status(200).json({ success: true, msg: `Successfully update order is now ${order.status}` });
     }
 
     return res.status(400).json({ success: false, msg: "Invalid status" });
@@ -254,13 +254,13 @@ const canselOrder = async(req,res) => {
     if(order.status.toString() === "pending" ){
       order.status = "cancelled"
       order.save()
-      return res.status(200).json( {success:true, data:order, msg:  `Successfully cancellation order is now ${order.status}` })
+      return res.status(200).json( {success:true, msg:  `Successfully cancellation order is now ${order.status}` })
     }
     if(order.status.toString() === "confirmed" ){
       order.status = "cancelled"
            
       order.save()
-      return res.status(200).json( {success:true, data:order, msg:  `Successfully cancellation order is now ${order.status}` })
+      return res.status(200).json( {success:true, msg:  `Successfully cancellation order is now ${order.status}` })
     }
     return res.status(404).json({success:false,msg:"Invalid status"})
   }catch(err){
