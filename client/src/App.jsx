@@ -20,6 +20,7 @@ function App() {
     <NavBar />
     <div className='pages'>
       <Routes>
+        {/*Public routes*/}
         <Route path="/" element={<Home/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
@@ -28,6 +29,7 @@ function App() {
         <Route path='/orders' element={<Orders/>}/>
         <Route path='/orders/:id' element={<OrderDetails/>}/>
 
+        {/*Admin routes*/}
         <Route 
                 path='/products/:id' 
                 element={

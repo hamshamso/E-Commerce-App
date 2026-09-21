@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"; 
 import { getOrderById } from "../services/api";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate} from "react-router-dom";
 import {confirmOrder,canselOrder} from '../services/api.js'
 import "../styles/ordersDetails.css";
 
@@ -8,6 +8,9 @@ export function EditOrdersStatus() {
     const [order, setOrder] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
+    const navigate = useNavigate()
+    const [edit, setEdit] = useState(false)
+    const [status,setStatus] = useState("")
     const { id } = useParams();
 
     useEffect(() => {
@@ -16,12 +19,8 @@ export function EditOrdersStatus() {
                 setLoading(true);
                 setError(false);
                 const token = localStorage.getItem("token");
-                await getOrderById(token, id);
-                setOrder(prev => ({
-                    ...prev,
-                    status: "confirmed"
-                }));
-                                    
+                const data= await getOrderById(token, id)
+                setOrder(data.data)
             } catch (err) {
                 setError(true);
                 console.error("Failed to fetch order details:", err);
@@ -32,25 +31,25 @@ export function EditOrdersStatus() {
 
         if (id) fetchMyOrder();
     }, [id]);
-    const handelConfirmation = async(e,id) => {
+    const handelConfirmation = async(e,id,o) => {
         e.preventDefault()
         const token = localStorage.getItem("token")
         try {
             await confirmOrder(token,id)
-            setOrder(prev => ({
-                ...prev,status: "confirmed"
-            }));
+            setStatus(o.status)
+            setEdit(true)
+            //navigate('//dashboard/orders')
         } catch (error) {
             console.error(error)
             setError(true)
         }
     }
-    const handelCanselation = async(e,id) => {
-        e.preventDefault()
+    const handelCanselation = async(e,id,o) => {
         const token = localStorage.getItem("token")
         try {
-            const data = await canselOrder(token,id)
-            setOrder(data.data)
+            await canselOrder(token,id)
+            setStatus(o.status)
+            setEdit(true)
         } catch (error) {
             console.error(error)
             setError(true)
@@ -58,6 +57,7 @@ export function EditOrdersStatus() {
     }
     if (loading) return <h1 className="loading">Loading order items...</h1>;
     if (error || !order) return <h1 className="error">Error loading order items!</h1>;
+    if(edit) return <h1>Order status is now : {status}  {navigate("/dashboard/orders")} </h1>
     //if (order.empty) return <h1>This order is empty</h1>
     return (
         <div className="page-wrapper">
@@ -126,8 +126,8 @@ export function EditOrdersStatus() {
                         </div>
                         {(order.status === "pending" || order.status === "confirmed") && (
                             <div className="hundel-order-pending" >
-                                <button onClick={(e)=>handelConfirmation(e,order._id)}>Confirm ✓</button>
-                                <button onClick={(e)=>handelCanselation(e,order._id)}>Cansel ✕</button>
+                                <button onClick={(e)=>handelConfirmation(e,order._id,order)}>Confirm ✓</button>
+                                <button onClick={(e)=>handelCanselation(e,order._id,order)}>Cansel ✕</button>
                             </div>) 
                         }
                 </div>

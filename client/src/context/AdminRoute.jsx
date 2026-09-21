@@ -8,7 +8,7 @@ export function AdminRoute({ children }) {
     if (!token) {
         return <Navigate to="/login" replace />;
     }
-
+    //React will rerender this function loading when state is update (user is fetched)
     if (!user) {
         return <div className="loading">Loading...</div>; 
     }

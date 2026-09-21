@@ -22,7 +22,7 @@ useEffect(()=>{
     return(
         <>
             <h1 className="mgnt-title" >Orders</h1>
-            <table className="mgnt-table" style={{ all: 'revert', width: 'auto',color:'white' }}>
+            <table className="mgnt-table" >
                 <thead>
                     <tr className="mgnt-titles">
                         <td>Status</td>
