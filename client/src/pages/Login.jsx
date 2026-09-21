@@ -21,7 +21,7 @@ function Login(){
         setloading(true)
         try{
             const data = await loginUser(formData)
-            login(data.data, data.token)//All the localStorage codes is here          
+            login(data.data, data.token)         
             navigate("/")
         }catch(error){
             console.error(error)
