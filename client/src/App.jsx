@@ -12,6 +12,7 @@ import EditProduct from './pages/EditProduct';
 import CreateProduct from './pages/CreateProduct';
 import {OrderManegment} from './pages/OrdersManegment';
 import { EditOrdersStatus } from './pages/EditOrdersStatus';
+import {AdminRoute} from './context/AdminRoute'
 
 function App() {
   return (
@@ -26,10 +27,33 @@ function App() {
         <Route path='/checkout' element={<Checkout/>}/>
         <Route path='/orders' element={<Orders/>}/>
         <Route path='/orders/:id' element={<OrderDetails/>}/>
-        <Route path='/products/:id' element={<EditProduct/>}/>
-        <Route path='/products/create' element={<CreateProduct/>}/>
-        <Route path='/dashboard/orders' element={<OrderManegment/>}/>
-        <Route path='/dashboard/orders/:id' element={<EditOrdersStatus/>}/>
+
+        <Route 
+                path='/products/:id' 
+                element={
+                    <AdminRoute>
+                        <EditProduct />
+                    </AdminRoute>
+                } 
+            /> 
+        <Route 
+              path='/products/create' 
+              element={
+                <AdminRoute>
+                  <CreateProduct/>
+                </AdminRoute>}/>
+        <Route 
+              path='/dashboard/orders' 
+              element={
+                <AdminRoute>
+                  <OrderManegment/>
+                </AdminRoute>}/>
+        <Route 
+              path='/dashboard/orders/:id' 
+              element={
+                <AdminRoute>
+                  <EditOrdersStatus/>
+                </AdminRoute>}/>
       </Routes>
     </div>
     </>
