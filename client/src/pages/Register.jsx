@@ -19,14 +19,6 @@ function Register () {
         setError("")
         setLoading(true)
         try{
-            //backend returns 
-              //data
-              //  ├── success
-              //  ├── msg
-              //  ├── data
-              //  │   ├── name
-              //  │   └── email
-              //  └── token
             const data = await registerUser(formData)//api call
             login(data.data,data.token)         
             navigate("/")
