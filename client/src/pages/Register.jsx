@@ -8,12 +8,10 @@ function Register () {
     const [error,setError] = useState("")//we use throw error(msg:...) so we put inside them (error.msg)
     const [loading,setLoading] = useState(false)
     const {login} = useAuth()
-    const navigate = useNavigate()       //when we you res.json(msg:"") we use in the font const data = res.json() 
-                                                                                         //setError(data.msg)
+    const navigate = useNavigate()
+    
     const handleChange = (e) =>{
         setFormData({ ...formData,[e.target.name]: e.target.value})
-    //if user types email=hamchamco7@gmail.com thene.target.name=email and 
-    //e.target.value=hamchamco7@gmail.com
     }
 
     const handleSubmit = async (e) =>{
@@ -21,17 +19,7 @@ function Register () {
         setError("")
         setLoading(true)
         try{
-            //backend returns 
-              //data
-              //  ├── success
-              //  ├── msg
-              //  ├── data
-              //  │   ├── name
-              //  │   └── email
-              //  └── token
             const data = await registerUser(formData)//api call
-            //localStorage.setItem("token", data.token)   
-            //localStorage.setItem("user", JSON.stringify(data.data)) 
             login(data.data,data.token)         
             navigate("/")
         }catch(error){
