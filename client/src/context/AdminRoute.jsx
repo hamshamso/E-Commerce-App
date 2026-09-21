@@ -3,9 +3,18 @@ import { useAuth } from "../context/AuthContext";
 
 export function AdminRoute({ children }) {
     const { user, isAdmin } = useAuth(); 
-
-    if (!user || !isAdmin()) {
+    
+    const token = localStorage.getItem("token");
+    if (!token) {
         return <Navigate to="/login" replace />;
+    }
+
+    if (!user) {
+        return <div className="loading">Loading...</div>; 
+    }
+
+    if (!isAdmin()) {
+        return <Navigate to="/" replace />; 
     }
 
     return children;
