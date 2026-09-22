@@ -7,8 +7,9 @@
   background-color: #F8E7C9; 
   padding: 12px 36px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-
+  font-family: 'Libre Baskervilles', serif;
   position: fixed;
+  font-size: 1rem;
   top: 0;
   left: 0;
   width: 100%;
@@ -60,7 +61,7 @@
   border: 1.5px solid #064E3B;
   padding: 8px 20px;
   border-radius: 20px;
-  font-family: 'Instrument Serif', serif;
+  font-family: 'Libre Baskerville', serif;
   font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;
@@ -127,32 +128,6 @@
   font-family: 'Libre Baskerville', sans-serif;
 }
 
-.logout-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background-color: #064E3B;
-  color: #F8E7C9;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-family: 'Libre Baskerville', sans-serif;
-  font-weight: 600;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.logout-btn:hover {
-  background-color: #991B1B; 
-  color: #FFFFFF;
-}
-
-.logout-icon {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-}
 .dashboard-container {
   position: relative;
   min-height: 100vh;
@@ -227,7 +202,9 @@
 .sidebar-menu {
   list-style: none;
   padding: 1rem 0;
+  font-family: 'Libre Baskerville', serif;
   margin: 0;
+  font-size: 1rem;
 }
 
 .sidebar-menu li a {
@@ -323,6 +300,7 @@ body {
     color: #064E3B;
     padding: 8px 14px;
     border-radius: 8px;
+    font-family: "Libre Baskerville",serif;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
