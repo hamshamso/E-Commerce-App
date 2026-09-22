@@ -53,7 +53,7 @@ function NavBar() {
 
         <aside className={`sidebar ${isOpen ? "open" : ""}`}>
           <div className="sidebar-header">
-            <h3>Admin Dashboard</h3>
+            <h3 className="Dashboard-admin">Admin Dashboard</h3>
             <button className="close-btn" onClick={toggleSidebar}>✕</button>
           </div>
 
@@ -133,7 +133,7 @@ function NavBar() {
 
       <aside className={`sidebar ${isOpen ? "open" : ""}`}>
         <div className="sidebar-header">
-          <h3>E-Commerce Admin</h3>
+          <h3 className="admin-e-Commerce">E-Commerce Admin</h3>
           <button className="close-btn" onClick={toggleSidebar}>✕</button>
         </div>
 

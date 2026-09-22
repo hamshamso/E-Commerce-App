@@ -179,6 +179,9 @@
   flex-direction: column;
 }
 
+.admin-e-Commerce{
+font-family: "Libre Baskerville",serif;
+}
 .sidebar.open {
   left: 0;
 }
@@ -197,6 +200,7 @@
   color: #fbeee0;
   font-size: 1.2rem;
   cursor: pointer;
+  padding-right: 0px;
 }
 
 .sidebar-menu {
@@ -220,7 +224,12 @@
   background-color: rgba(251, 238, 224, 0.12);
   padding-left: 1.8rem;
 }
-
+.Dashboard-admin{
+  font-family: "Libre Baskerville",serif;
+  font-size: 1.2rem;
+  margin-top: 1.3rem;
+  margin-left: -5px;
+}
 .overlay {
   position: fixed;
   top: 0;

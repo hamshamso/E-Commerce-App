@@ -13,7 +13,8 @@
     font-weight: 700  ;
     color: var(--text-dark, #1E293B)  ;
     margin-bottom: 24px  ;
-    letter-spacing: -0.5px  ;
+    margin-left: 45%;
+    text-decoration: underline;
 }
 
 .mgnt-table-wrapper {
