@@ -14,13 +14,12 @@
   width: 100%;
   box-sizing: border-box;
   z-index: 1000;
-
-  font-family: 'Montserrat', sans-serif;
 }
 
 .links {
   display: flex;
   align-items: center;
+  font-family: "Libre Baskerville", sans-serif;
   gap: 28px;
 }
 
@@ -61,7 +60,7 @@
   border: 1.5px solid #064E3B;
   padding: 8px 20px;
   border-radius: 20px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Instrument Serif', serif;
   font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;
@@ -89,7 +88,7 @@
   border: none;
   padding: 9px 20px;
   border-radius: 20px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Libre Baskerville', serif;
   font-weight: 700;
   font-size: 0.9rem;
   cursor: pointer;
@@ -125,7 +124,7 @@
   font-size: 0.95rem;
   font-weight: 700;
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Libre Baskerville', sans-serif;
 }
 
 .logout-btn {
@@ -137,7 +136,7 @@
   border: none;
   padding: 8px 16px;
   border-radius: 20px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Libre Baskerville', sans-serif;
   font-weight: 600;
   font-size: 0.85rem;
   cursor: pointer;
@@ -258,7 +257,6 @@ body {
   margin: 0;
   padding-top: 60px; 
   background-color: var(--bg-light);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   color: var(--text-dark);
 }
 
@@ -276,7 +274,7 @@ body {
   width: 100%;
   box-sizing: border-box;
   z-index: 1000;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Libre Baskerville', sans-serif;
 }
 
 .admin-menu-btn {

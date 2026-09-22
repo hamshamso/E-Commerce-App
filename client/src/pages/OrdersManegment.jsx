@@ -1,4 +1,4 @@
-import '../styles/OrderManegment.module.css';
+import '../styles/OrderManegment.css';
 import { getDetailedOrders } from '../services/api.js';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
