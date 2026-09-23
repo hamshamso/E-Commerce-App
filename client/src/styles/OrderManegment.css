@@ -41,7 +41,7 @@
 
 .mgnt-single-order {
     transition: background-color 0.2s ease  ;
-    border-bottom: 1px solid #f0ebe1  ;
+    border-bottom: 1px solid #bbbbbb  ;
 }
 
 .mgnt-single-order:last-child {
