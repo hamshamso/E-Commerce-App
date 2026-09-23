@@ -100,8 +100,8 @@ const filtredOrders = orders.filter((order) => {
                     value={selectedDateSort}
                     onChange={(e) => setSelectedDateSort(e.target.value)}>
                         <option value="default">Default</option>
-                        <option value="old-new">📅 Oldest to Newest</option>
-                        <option value="new-old">📅 Newest to Oldest</option>
+                        <option value="old-new">Oldest to Newest</option>
+                        <option value="new-old">Newest to Oldest</option>
                     </select>
                 </div>
                 <div className="filter-group">
