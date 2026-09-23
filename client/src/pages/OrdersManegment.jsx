@@ -138,6 +138,7 @@ const filtredOrders = orders.filter((order) => {
                         <td>Last update</td>
                         <td>Total</td>
                         <td>View</td>
+                        <td>Hide</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -196,6 +197,11 @@ const filtredOrders = orders.filter((order) => {
                                 <span className='mgnt-order-view'>
                                     <Link to={`${o._id}`}>view</Link>
                                 </span>
+                            </td>
+                            <td>
+                                <button className='mgnt-order-delete'>
+                                    ✕
+                                </button>
                             </td>
                         </tr>
                     ))}
