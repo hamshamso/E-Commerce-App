@@ -267,7 +267,18 @@ const canselOrder = async(req,res) => {
       return res.status(400).json({ success:false, msg:"Failed to cancele the order", message:err.message })
   }
 }
-
+const hideOrder = async(req,res) => {
+  try{
+    const id = req.params.id
+    const order = await Order.findByIdAndUpdate(id,{hidden:true})
+    if(order){
+      return res.status(200).json({msg:"Order hidden successfully"})
+    }
+    return res.status(404).json({success:false,msg:"No order match this ID"})
+  }catch(err){
+    return res.status(400).json({ success:false, msg:"Failed to hide the order", message:err.message })
+  }
+}
 export {createOrder,getMyOrders,updateOrderStatus,getAllOrders,getProductsInfo,cancelProductFromOrder,
-  deleteOrder,getDetailedOrders,getOrderById,confirmOrder,canselOrder
+  deleteOrder,getDetailedOrders,getOrderById,confirmOrder,canselOrder,hideOrder
 };
