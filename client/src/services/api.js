@@ -8,7 +8,7 @@ export const registerUser = async (userData) =>{
         body: JSON.stringify(userData)              //parse TEXT into a JSON
     })
     const data = await res.json()   //read the response and convert it into an object 
-    if(!res.success) throw new Error(data.msg ||"Regestration failed")
+    if(!res.ok) throw new Error(data.msg ||"Regestration failed")
         return data ;//the backend res (syccess/msg/data/token)
 }
 
@@ -19,7 +19,7 @@ export const loginUser = async(credentials) => {
         body: JSON.stringify(credentials)              
     })
     const data = await res.json() 
-    if(!res.success) throw new Error(data.msg || "Login failed")
+    if(!res.ok) throw new Error(data.msg || "Login failed")
         return data ;
 }
 //GET request so no need to (method, headers, body)
@@ -28,13 +28,13 @@ export const getProducts  = async() => {
     const data = await res.json()
     //if the server isn't running : The promise itself rejects, throwing somthing like TypeError: Failed to fetch
     //So best practice here is try catch 
-    if(!res.success) throw new Error(data.msg || "Failed to fetch products")
+    if(!res.ok) throw new Error(data.msg || "Failed to fetch products")
     return data
 }
 export const getProductById = async (id) => {
     const res = await fetch(`${API_BASE}/products/${id}`)
     const data = await res.json()
-    if(!res.success){
+    if(!res.ok){
         throw new Error(data.msg || `Failed to fetch product ${id}`)
     }
     return data
@@ -48,7 +48,7 @@ export const createOrder = async (orderData,token) => {
         body: JSON.stringify(orderData)
     })
     const data = await res.json()
-    if(!res.success) throw new Error(data.msg || "Failed to create order")
+    if(!res.ok) throw new Error(data.msg || "Failed to create order")
         return data 
 }
 
@@ -57,7 +57,7 @@ export const createOrder = async (orderData,token) => {
 export const getOrders = async () => {
     const res = await fetch(`${API_BASE}/orders`)
     const data = await res.json()
-    if(!res.success) throw new Error(data.msg || "Failed to fetch orders")
+    if(!res.ok) throw new Error(data.msg || "Failed to fetch orders")
     return data
 }
 //Users and thier orders
@@ -67,7 +67,7 @@ export const getMyOrders = async (token) => {
                 "Authorization":`Bearer ${token}`
         },})
     const data = await res.json()
-    if(!res.success) throw new Error(data.msg || "Failed to fetch your order")
+    if(!res.ok) throw new Error(data.msg || "Failed to fetch your order")
     return data
 }
 //Users and thier order
@@ -81,7 +81,7 @@ export const getOredersWithId = async (token, id) => {
   });
 
   const data = await res.json();
-  if (!res.success) throw new Error(data.msg || "Failed to fetch your order");
+  if (!res.ok) throw new Error(data.msg || "Failed to fetch your order");
   return data;
 };
 
@@ -92,7 +92,7 @@ export  const updateOrderStatus = async (id,status) => {
         body:JSON.stringify({status})
     })
     const data = await res.json()
-    if(!res.success){throw new Error(data.msg || "Failed to update status")}
+    if(!res.ok){throw new Error(data.msg || "Failed to update status")}
     return data
 }
 //100%
@@ -118,7 +118,7 @@ export const UpdateProduct = async (product,productId,token)=>{
         body:JSON.stringify(product)
     })
     const data = await res.json()
-    if(!res.success){
+    if(!res.ok){
        throw new Error(data.msg || "Failed to update products")
     }
     return data
@@ -132,7 +132,7 @@ export const deleteProduct = async(id,token) => {
         }
     })
     const data = await res.json()
-    if(!res.success){
+    if(!res.ok){
        throw new Error(data.msg || "Failed to delete the product")
     }
     return data
@@ -147,47 +147,23 @@ export const createNewproduct = async(product,token) =>{
     })
 
     const data = await res.json() 
-    if(!res.success) throw new Error(data.msg || "Product creation failed")
+    if(!res.ok) throw new Error(data.msg || "Product creation failed")
         return data ;
 }
 //aadmin only API
-// export const getDetailedOrders = async(token) => {
-//     const res = await fetch(`${API_BASE}/dashboard/orders`,{
-//         method:"GET",
-//         headers:{"Content-type":"application/json",
-//                 "Authorization":`Bearer ${token}`}
-//     })
+export const getDetailedOrders = async(token) => {
+    const res = await fetch(`${API_BASE}/dashboard/orders`,{
+        method:"GET",
+        headers:{"Content-type":"application/json",
+                "Authorization":`Bearer ${token}`}
+    })
 
-//     const data = await res.json()
-//     if(!res.success){
-//         throw new Error(data.msg || "Failed to fetch Detailed orders")
-//     }
-//     return data
-// }
-export const fetchOrders = async (token,showAll) => {
-    try {        
-        const url = showAll 
-            ? 'http://localhost:5000/api/dashboard/orders?showAll=true' 
-            : 'http://localhost:5000/api/dashboard/orders';
-
-        const res = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}` 
-            }
-        });
-
-        const data = await res.json();
-        
-        if (data.success) {
-            return data 
-        }
+    const data = await res.json()
+    if(!res.ok){
         throw new Error(data.msg || "Failed to fetch Detailed orders")
-    } catch (err) {
-        console.error("Failed to fetch orders:", err);
     }
-};
+    return data
+}
 export const getOrderById = async(token,id) =>{
     const res = await fetch(`${API_BASE}/dashboard/orders/${id}`,{
         method:"GET",
@@ -195,7 +171,7 @@ export const getOrderById = async(token,id) =>{
                  "Authorization":`Bearer ${token}`} 
     })
     const data = res.json()
-    if(!res.success){
+    if(!res.ok){
         throw new Error(res.msg || "Failed to fetch order by ID")
     }
     return data
@@ -207,7 +183,7 @@ export const confirmOrder = async(token,id) =>{
                 "Authorization":`Bearer ${token}`}
     })
     const data = await res.json();
-    if(!res.success){
+    if(!res.ok){
         throw new Error(data.msg || "Failed to confirm order")
     }
     return data
@@ -219,22 +195,8 @@ export const canselOrder = async(token,id) =>{
                 "Authorization":`Bearer ${token}`}
     })
     const data = await res.json();
-    if(!res.success){
+    if(!res.ok){
         throw new Error(data.msg || "Failed to cansel order")
     }
     return data
 }
-export const hideOrder =async(token,id) => {
-    const res = await fetch(`${API_BASE}/dashboard/orders/${id}/hide`,{
-        method:"PUT",
-        headers:{"Content-type":"application/json",
-                 "Authorization":`Bearer ${token}`}
-        }
-    )
-    const data = await res.json();
-    if(!res.success){
-        throw new Error(data.msg || "Failed to hide order")
-    }
-    return data
-}
-

@@ -1,20 +1,18 @@
 import '../styles/OrderManegment.css';
-import { fetchOrders } from '../services/api.js';
+import { getDetailedOrders } from '../services/api.js';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-//import { hideOrder } from '../services/api.js';
 export function OrderManegment (){
     const [orders,setOrders] = useState([])
     const [selectedTotal,setSelectedTotal] = useState("all")
     const [selectedStatus,setSelectedStatus] = useState("all")
     const [selectedName,setSelectedName] = useState("")
     const [selectedDateSort, setSelectedDateSort] = useState("default");
-    const [showHiddenFilter,setShowHiddenFilter] = useState("")
 useEffect(()=>{
     const fetchDetailedOrders = async() =>{
         try{
             const token = localStorage.getItem("token");
-            const res = await fetchOrders(token)
+            const res = await getDetailedOrders(token)
             console.log("API Response:", res);
             console.log("data",res.data)
             setOrders(res.data)
@@ -24,15 +22,6 @@ useEffect(()=>{
     }
     fetchDetailedOrders()
 },[])
-
- //const hundelHidding = async (id)=>{
- //   try{
- //       const token = localStorage.getItem("token")
- //       await hideOrder(token,id)
- //  }catch{
- //       console.error("Failed to hide order")
- //   }
- //}
 
 const filtredOrders = orders.filter((order) => {
 
@@ -136,17 +125,6 @@ const filtredOrders = orders.filter((order) => {
                     <option value="more-1000000">More then 1,000,000 </option>
                     </select>
                 </div>
-                <div className="filter-group">
-                    <label className="filter-label">Display Mode</label>
-                    <select 
-                        className="filter-select"
-                        value={showHiddenFilter}
-                        onChange={(e) => setShowHiddenFilter(e.target.value)}
-                    >
-                        <option value="active">Active Orders Only</option>
-                        <option value="all">All Orders (Include Hidden)</option>
-                    </select>
-                </div>
             </div>
             <h1 className="mgnt-title" >Orders</h1>
             <table className="mgnt-table" >
@@ -221,10 +199,9 @@ const filtredOrders = orders.filter((order) => {
                                 </span>
                             </td>
                             <td>
-                                <span className='mgnt-order-hide'
-                                    >{/*onClick={()=> hundelHidding(o._id)*/}
-                                    {o.hidden ? "YES" : "NO" }
-                                </span>
+                                <button className='mgnt-order-delete'>
+                                    {String(o.hidden)}
+                                </button>
                             </td>
                         </tr>
                     ))}
