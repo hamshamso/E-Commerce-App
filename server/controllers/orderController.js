@@ -164,20 +164,36 @@ const deleteOrder = async(req,res) => {
     return res.status(400).json({ success:false, msg:"Failed to delete order",message:ademozi.message })
   }
 }
-//only admin
-const getDetailedOrders = async(req,res) =>{
-  try{                                      //Filter empty orders
-    const detailedorders = await Order.find({"items.0": { $exists: true }}).populate('user','name')
+//only admin 
+// const getDetaileAlldOrders = async(req,res) =>{
+//   try{                                      //Filter empty orders          
+//     const detailedorders = await Order.find({"items.0": { $exists: true }}).populate('user','name')
+//     if (!detailedorders || detailedorders.length === 0) {
+//       return res.status(404).json({ success: false, msg: "Order doesn't exist" });
+//     }
+//   //we can use this but it use too much RAM
+//   //const filtredOrders = detailedorders.filter((order) => order.items && order.items.length > 0)
+//   return res.status(200).json( {success:true, data:detailedorders, msg:"Successfully get detailed orders" })
+//   }catch(err){
+//     return res.status(400).json({ success:false, msg:"Failed to get detailed order", message:err.message })
+//   }
+// }
+//admin only
+const getDetaileAlldOrders = async (req, res) => {
+  try { 
+    const query = { "items.0": { $exists: true } };
+    if (req.query.showAll !== 'true') {
+      query.hidden = { $ne: true };
+    }
+    const detailedorders = await Order.find(query).populate('user', 'name');
     if (!detailedorders || detailedorders.length === 0) {
       return res.status(404).json({ success: false, msg: "Order doesn't exist" });
     }
-  //we can use this but it use too much RAM
-  //const filtredOrders = detailedorders.filter((order) => order.items && order.items.length > 0)
-  return res.status(200).json( {success:true, data:detailedorders, msg:"Successfully get detailed orders" })
-  }catch(err){
-    return res.status(400).json({ success:false, msg:"Failed to get detailed order", message:err.message })
+    return res.status(200).json({success: true, data: detailedorders, msg: "Successfully get detailed orders" });
+  } catch (err) {
+    return res.status(400).json({success: false,msg: "Failed to get detailed order",message: err.message});
   }
-}
+};
 //only admin
 const getOrderById = async(req,res) => {
   try{
@@ -280,5 +296,5 @@ const hideOrder = async(req,res) => {
   }
 }
 export {createOrder,getMyOrders,updateOrderStatus,getAllOrders,getProductsInfo,cancelProductFromOrder,
-  deleteOrder,getDetailedOrders,getOrderById,confirmOrder,canselOrder,hideOrder
+  deleteOrder,getDetaileAlldOrders,getOrderById,confirmOrder,canselOrder,hideOrder
 };
