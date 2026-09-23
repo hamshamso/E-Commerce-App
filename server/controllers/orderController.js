@@ -175,7 +175,22 @@ const getDetailedOrders = async(req,res) =>{
   //const filtredOrders = detailedorders.filter((order) => order.items && order.items.length > 0)
   return res.status(200).json( {success:true, data:detailedorders, msg:"Successfully get detailed orders" })
   }catch(err){
-    return res.status(400).json({ success:false, msg:"Failed to get detailed order", message:err.message })
+    return res.status(400).json({ success:false, msg:"Failed to get detailed orders", message:err.message })
+  }
+}
+//admin only 
+const getDetailUnhiddenedOrders = async(req,res) =>{
+  try{                                                                         //Because hidden is a new property | $eq = equals != $ne
+    const detailunhiddenedorders = await Order.find({
+      "items.0": { $exists: true },
+      hidden: false
+  }).populate('user', 'name');
+    if (!detailunhiddenedorders || detailunhiddenedorders.length === 0) {
+      return res.status(404).json({ success: false,detailunhiddenedorders, msg: "Order doesn't exist" });
+    }
+  return res.status(200).json( {success:true, data:detailunhiddenedorders,msg:"Successfully get unhidden detailed orders" })
+  }catch(err){
+    return res.status(400).json({ success:false, msg:"Failed to get unhidden detailed orders", message:err.message })
   }
 }
 //only admin
@@ -280,5 +295,5 @@ const hideOrder = async(req,res) => {
   }
 }
 export {createOrder,getMyOrders,updateOrderStatus,getAllOrders,getProductsInfo,cancelProductFromOrder,
-  deleteOrder,getDetailedOrders,getOrderById,confirmOrder,canselOrder,hideOrder
+  deleteOrder,getDetailedOrders,getOrderById,confirmOrder,canselOrder,hideOrder,getDetailUnhiddenedOrders
 };
