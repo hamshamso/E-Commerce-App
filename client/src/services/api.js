@@ -200,3 +200,17 @@ export const canselOrder = async(token,id) =>{
     }
     return data
 }
+export const hideOrder =async(token,id) => {
+    const res = await fetch(`${API_BASE}/dashoard/orders/${id}/hide`,{
+        method:"PUT",
+        headers:{"Content-type":"application/json",
+            "Authorization":`Bearer ${token}`}
+        }
+    )
+    const data = await res.json();
+    if(!res.ok){
+        throw new Error(data.msg || "Failed to hide order")
+    }
+    return data
+}
+
