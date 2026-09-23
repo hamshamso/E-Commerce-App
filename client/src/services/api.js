@@ -162,8 +162,23 @@ export const getDetailedOrders = async(token) => {
     if(!res.ok){
         throw new Error(data.msg || "Failed to fetch Detailed orders")
     }
+    return data}
+//aadmin only API
+//dashboard/unhidden/orders
+export const getDetaileUnhiddendOrders = async(token) => {
+    const res = await fetch(`${API_BASE}/dashboard/unhidden/orders`,{
+        method:"GET",
+        headers:{"Content-type":"application/json",
+                "Authorization":`Bearer ${token}`}
+    })
+
+    const data = await res.json()
+    if(!res.ok){
+        throw new Error(data.msg || "Failed to fetch Detailed orders")
+    }
     return data
 }
+
 export const getOrderById = async(token,id) =>{
     const res = await fetch(`${API_BASE}/dashboard/orders/${id}`,{
         method:"GET",
