@@ -1,5 +1,3 @@
-/* OrderManegment.css */
-
 .mgnt-container {
     padding: 30px 40px  ;
     max-width: 1450px  ;
@@ -29,7 +27,7 @@
     width: 100%  ;
     border-collapse: collapse  ;
     text-align: left  ;
-    background-color: #FFFFFF  ;
+    background-color: #fffafa  ;
     font-family: "Libre Baskerville", sans-serif;
 }
 
@@ -40,13 +38,13 @@
     text-transform: uppercase  ;
     letter-spacing: 0.1em  ;
     font-weight: 700  ;
-    border-bottom: 2px solid #e6dec9  ;
+    border-bottom: 2px solid #bebfc0  ;
     font-family: 'Instrument Serif', serif;
 
 }
 
 .mgnt-titles td {
-    padding: 16px 24px  ;
+    padding: 16px 24px; 
 }
 
 .mgnt-single-order {
@@ -59,7 +57,7 @@
 }
 
 .mgnt-single-order:hover {
-    background-color: #faf7f2  ;
+    background-color: #f5f0e6  ;
 }
 
 .mgnt-single-order td {

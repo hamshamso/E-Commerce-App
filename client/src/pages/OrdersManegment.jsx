@@ -4,6 +4,10 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 export function OrderManegment (){
     const [orders,setOrders] = useState([])
+    const [selectedTotal,setSelectedTotal] = useState("all")
+    const [selectedStatus,setSelectedStatus] = useState("all")
+    const [selectedName,setSelectedName] = useState("")
+    const [selectedDateSort, setSelectedDateSort] = useState("default");
 useEffect(()=>{
     const fetchDetailedOrders = async() =>{
         try{
@@ -19,8 +23,109 @@ useEffect(()=>{
     fetchDetailedOrders()
 },[])
 
+const filtredOrders = orders.filter((order) => {
+
+      const matchesStatus = selectedStatus === "all" || order.status?.toLowerCase() === selectedStatus.toLowerCase();
+
+      const matchesName = selectedName.trim() === "" || order.user.name?.toLowerCase().includes(selectedName.toLowerCase());
+
+      let matchTotal = true;
+      const total = Number(order.total);
+
+      if (selectedTotal === "under-5000") matchTotal = total <= 5000;
+      else if (selectedTotal === "btw-5000-10000") matchTotal = total >= 5000 && total <= 10000;
+      else if (selectedTotal === "btw-10000-20000") matchTotal = total >= 10000 && total <= 20000;
+      else if (selectedTotal === "btw-20000-50000") matchTotal = total >= 20000 && total <= 50000;
+      else if (selectedTotal === "btw-50000-100000") matchTotal = total >= 50000 && total <= 100000;
+      else if (selectedTotal === "btw-100000-200000") matchTotal = total >= 100000 && total <= 200000;
+      else if (selectedTotal === "btw-200000-500000") matchTotal = total >= 200000 && total <= 500000;
+      else if (selectedTotal === "btw-500000-1000000") matchTotal = total >= 500000 && total <= 1000000;
+      else if (selectedTotal === "more-1000000") matchTotal = total >= 1000000;
+
+      return matchesStatus && matchesName && matchTotal
+    })
+
+    .sort((a, b) => {
+          const dateA = new Date(a.createdAt).getTime() || 0;
+          const dateB = new Date(b.createdAt).getTime() || 0;
+
+          if (selectedDateSort === "old-new") return dateA - dateB; 
+          if (selectedDateSort === "new-old") return dateB - dateA; 
+
+          const totalA = Number(a.total) || 0;
+          const totalB = Number(b.total) || 0;
+
+          if (selectedTotal === "low-high") return totalA - totalB;
+          if (selectedTotal === "high-low") return totalB - totalA;
+
+          return 0;
+    });
     return(
         <>
+            <div className="search-section">
+                <div className="filter-group">
+                    <label className="filter-label">Search</label>
+                    <input 
+                    type="text" 
+                    className="filter-input" 
+                    placeholder="Search orders by owner name..." 
+                    value={selectedName}
+                    onChange={(e) => setSelectedName(e.target.value)}
+                    />
+                </div>
+
+                <div className="filter-group">
+                    <label className="filter-label">Status</label>
+                    <select 
+                    name="status" 
+                    id="status-select" 
+                    className="filter-select" 
+                    value={selectedStatus}
+                    onChange={(e) => setSelectedStatus(e.target.value)}
+                    >
+                    <option value="all">All statuses</option>
+                    <option value="pending">pending</option>
+                    <option value="confirmed">confirmed</option>
+                    <option value="shipped">shipped</option>
+                    <option value="delivered">delivered</option>
+                    <option value="cancelled">cancelled</option>
+                    </select>
+                </div>
+                <div className="filter-group">
+                    <label className="filter-label">Date Order</label>
+                    <select 
+                    name="dateSort" 
+                    id="date-select" 
+                    className="filter-select"
+                    value={selectedDateSort}
+                    onChange={(e) => setSelectedDateSort(e.target.value)}>
+                        <option value="default">Default</option>
+                        <option value="old-new">📅 Oldest to Newest</option>
+                        <option value="new-old">📅 Newest to Oldest</option>
+                    </select>
+                </div>
+                <div className="filter-group">
+                    <label className="filter-label">Total</label>
+                    <select name="Total" 
+                    id="Total-select" 
+                    className="filter-select"
+                    value={selectedTotal}
+                    onChange={(e) => setSelectedTotal(e.target.value)}>
+                    <option value="all">All Total</option>
+                    <option value="low-high">Total: Low to High</option>
+                    <option value="high-low">Total: High to Low</option>
+                    <option value="under-5000">5,000 or under -</option>
+                    <option value="btw-5000-10000">Between 5,000 - 10,000</option>
+                    <option value="btw-10000-20000">Between 10,000 - 20,000</option>
+                    <option value="btw-20000-50000">Between 20,000 - 50,000</option>
+                    <option value="btw-50000-100000">50,000 - 100,000</option>
+                    <option value="btw-100000-200000">100,000 - 200,000</option>
+                    <option value="btw-200000-500000">200,000 - 500,000</option>
+                    <option value="btw-500000-1000000">500,000 - 1,000,000</option>
+                    <option value="more-1000000">More then 1,000,000 </option>
+                    </select>
+                </div>
+            </div>
             <h1 className="mgnt-title" >Orders</h1>
             <table className="mgnt-table" >
                 <thead>
@@ -36,7 +141,7 @@ useEffect(()=>{
                     </tr>
                 </thead>
                 <tbody>
-                    {orders.map( (o) => (
+                    {filtredOrders.map( (o) => (
                         <tr key={o._id} className='mgnt-single-order'>
                             <td>
                                 <span className={`status-mgnt-${o.status}`}>
