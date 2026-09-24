@@ -204,7 +204,7 @@ export const confirmOrder = async(token,id) =>{
     return data
 }
 export const canselOrder = async(token,id) =>{
-    const res = await fetch(`${API_BASE}/dashboard/orders/${id}/cansel`,{
+    try{const res = await fetch(`${API_BASE}/dashboard/orders/${id}/cansel`,{
         method:"PUT",
         headers:{"Content-type":"application/json",
                 "Authorization":`Bearer ${token}`}
@@ -214,4 +214,24 @@ export const canselOrder = async(token,id) =>{
         throw new Error(data.msg || "Failed to cansel order")
     }
     return data
+    }catch(err){
+        console.error(err)
+    }
+}
+export const hideOrder =async(token,id) => {
+    try{
+    const res = await fetch(`${API_BASE}/dashboard/orders/${id}/hide`,{
+        method:"PUT",
+        headers:{"Content-type":"application/json",
+                 "Authorization":`Bearer ${token}`}
+        }
+    )
+    const data = await res.json();
+    if(!res.ok){
+        throw new Error(data.msg || "Failed to hide order")
+    }
+    return data
+    }catch(err){
+        console.error(err)
+    }
 }

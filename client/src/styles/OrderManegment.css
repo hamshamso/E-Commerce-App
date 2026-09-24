@@ -154,7 +154,7 @@ body {
 .search-section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 5px;
+    gap: 10px;
     padding: 24px;
     width: 92%;
     background-color: #fffffc;
@@ -215,4 +215,10 @@ body {
 .mgnt-order-hide{
     color:#1a1a1a;
     padding: 5px 15px;
+}
+.No-orders{
+    white-space: nowrap;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }

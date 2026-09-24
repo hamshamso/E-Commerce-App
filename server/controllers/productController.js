@@ -16,7 +16,7 @@ import Product from "../models/Product.js" //add .js because of ES Module
     }
 }
 
- const createProduct = async (req,res) => {
+const createProduct = async (req,res) => {
     try {
         const {name,price,quantity,category,image} = req.body
         if(!name|| !price || !quantity || !category || !image){

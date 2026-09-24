@@ -180,14 +180,8 @@ const getDetailedOrders = async(req,res) =>{
 }
 //admin only 
 const getDetailUnhiddenedOrders = async(req,res) =>{
-  try{                                                                         //Because hidden is a new property | $eq = equals != $ne
-    const detailunhiddenedorders = await Order.find({
-      "items.0": { $exists: true },
-      hidden: false
-  }).populate('user', 'name');
-    if (!detailunhiddenedorders || detailunhiddenedorders.length === 0) {
-      return res.status(404).json({ success: false,detailunhiddenedorders, msg: "Order doesn't exist" });
-    }
+  try{
+    const detailunhiddenedorders = await Order.find({"items.0": { $exists: true },hidden: false}).populate('user', 'name');
   return res.status(200).json( {success:true, data:detailunhiddenedorders,msg:"Successfully get unhidden detailed orders" })
   }catch(err){
     return res.status(400).json({ success:false, msg:"Failed to get unhidden detailed orders", message:err.message })
@@ -261,6 +255,10 @@ const confirmOrder = async (req, res) => {
 //admin only
 const canselOrder = async(req,res) => {
   const id = req.params.id
+  const find = await Order.findById(id)
+  if(find.hidden){
+    return res.status(404).json({Success:false,msg:"Order is already hidden"})
+  }
   const order = await Order.findById(id)
   try{
     if(!order){

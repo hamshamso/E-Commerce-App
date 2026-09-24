@@ -1,5 +1,5 @@
 import '../styles/OrderManegment.css';
-import { getDetailedOrders } from '../services/api.js';
+import { getDetailedOrders ,getDetaileUnhiddendOrders,hideOrder} from '../services/api.js';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 export function OrderManegment (){
@@ -8,26 +8,42 @@ export function OrderManegment (){
     const [selectedStatus,setSelectedStatus] = useState("all")
     const [selectedName,setSelectedName] = useState("")
     const [selectedDateSort, setSelectedDateSort] = useState("default");
-useEffect(()=>{
-    const fetchDetailedOrders = async() =>{
-        try{
-            const token = localStorage.getItem("token");
-            const res = await getDetailedOrders(token)
-            console.log("API Response:", res);
-            console.log("data",res.data)
-            setOrders(res.data)
-        }catch{
-            console.error("failed to fetch Detailed orders")
-        }
-    }
-    fetchDetailedOrders()
-},[])
+    const [selectedVisibility,setSelectedVisibility] = useState("all")
 
+useEffect(() => {
+    const fetchOrdersBasedOnMode = async () => {
+        try {
+            const token = localStorage.getItem("token");
+            let res;
+            if (selectedVisibility === "all") {
+                res = await getDetailedOrders(token); 
+            } else {
+                res = await getDetaileUnhiddendOrders(token);
+            }
+            setOrders(res.data);
+        } catch (err) {
+            console.error("Failed to fetch orders", err);
+        }
+    };
+
+    fetchOrdersBasedOnMode();
+}, [selectedVisibility]); 
+const handelHidding =async(id) => {
+    try{
+        const token = localStorage.getItem("token");
+        await hideOrder(token,id)
+        setOrders(prevOrders => prevOrders.filter(order => order._id !== id));
+    }catch(err){
+        console.error("Failed to fetch orders", err);
+    }
+}
 const filtredOrders = orders.filter((order) => {
 
       const matchesStatus = selectedStatus === "all" || order.status?.toLowerCase() === selectedStatus.toLowerCase();
 
       const matchesName = selectedName.trim() === "" || order.user.name?.toLowerCase().includes(selectedName.toLowerCase());
+
+      const matchVisibility = selectedVisibility === "all" || order.hidden === false;
 
       let matchTotal = true;
       const total = Number(order.total);
@@ -42,7 +58,7 @@ const filtredOrders = orders.filter((order) => {
       else if (selectedTotal === "btw-500000-1000000") matchTotal = total >= 500000 && total <= 1000000;
       else if (selectedTotal === "more-1000000") matchTotal = total >= 1000000;
 
-      return matchesStatus && matchesName && matchTotal
+      return matchesStatus && matchVisibility &&matchesName && matchTotal
     })
 
     .sort((a, b) => {
@@ -125,88 +141,105 @@ const filtredOrders = orders.filter((order) => {
                     <option value="more-1000000">More then 1,000,000 </option>
                     </select>
                 </div>
+                <div className="filter-group">
+                    <label className="filter-label">Visibility</label>
+                    <select 
+                    name="Visibility" 
+                    id="Visibility-select" 
+                    className="filter-select"
+                    value={selectedVisibility}
+                    onChange={(e) => setSelectedVisibility(e.target.value)}>
+                        <option value="all">All</option>
+                        <option value="active">Active orders only</option>
+                    </select>
+                </div>
             </div>
-            <h1 className="mgnt-title" >Orders</h1>
-            <table className="mgnt-table" >
-                <thead>
-                    <tr className="mgnt-titles">
-                        <td>Status</td>
-                        <td>Name</td>
-                        <td>Adress</td>
-                        <td>Phone</td>
-                        <td>Creation</td>
-                        <td>Last update</td>
-                        <td>Total</td>
-                        <td>View</td>
-                        <td>Hide</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {filtredOrders.map( (o) => (
-                        <tr key={o._id} className='mgnt-single-order'>
-                            <td>
-                                <span className={`status-mgnt-${o.status}`}>
-                                    {o.status}
-                                </span>
-                            </td>
-                            <td>
-                                <span className='mgnt-order-name'>
-                                    {o.user?.name}
-                                </span>
-                            </td>
-                            <td>
-                                <span className='mgnt-order-adress'>
-                                    {o.adress}
-                                </span>
-                            </td>
-                            <td>
-                                <span className='mgnt-order-phone'>
-                                    {o.phone}
-                                </span>
-                            </td>
-                            <td>
-                                <span className='mgnt-order-creation'>
-                                    {new Date(o.createdAt).toLocaleDateString('en-GB', {
-                                    day: '2-digit',
-                                    month: 'short',
-                                    year: 'numeric',
-                                    hour: '2-digit',
-                                    minute: '2-digit',
-                                    hour12: true //24h system
-                                })}
-                                </span>
-                            </td>
-                            <td>
-                                <span className='mgnt-order-modification'>
-                                    {new Date(o.updatedAt).toLocaleDateString('en-GB', {
-                                    day: '2-digit',
-                                    month: 'short',
-                                    year: 'numeric',
-                                    hour: '2-digit',
-                                    minute: '2-digit',
-                                    hour12: true
-                                })}
-                                </span>
-                            </td>
-                            <td>
-                                <span className='mgnt-order-total'>
-                                    {o.total.toLocaleString()}
-                                </span>
-                            </td>
-                            <td>
-                                <span className='mgnt-order-view'>
-                                    <Link to={`${o._id}`}>view</Link>
-                                </span>
-                            </td>
-                            <td>
-                                <button className='mgnt-order-delete'>
-                                    {String(o.hidden)}
-                                </button>
-                            </td>
+            {(filtredOrders.length === 0) ? <><h1 className="No-orders">No orders match this filter!</h1></> : 
+            <>
+                <h1 className="mgnt-title" >Orders</h1>
+                <table className="mgnt-table" >
+                    <thead>
+                        <tr className="mgnt-titles">
+                            <td>Status</td>
+                            <td>Name</td>
+                            <td>Adress</td>
+                            <td>Phone</td>
+                            <td>Creation</td>
+                            <td>Last update</td>
+                            <td>Total</td>
+                            <td>View</td>
+                            {selectedVisibility === "active" && <td>Hide</td>}
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        
+                        {filtredOrders.map( (o) => (
+                            <tr key={o._id} className='mgnt-single-order'>
+                                <td>
+                                    <span className={`status-mgnt-${o.status}`}>
+                                        {o.status}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span className='mgnt-order-name'>
+                                        {o.user?.name}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span className='mgnt-order-adress'>
+                                        {o.adress}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span className='mgnt-order-phone'>
+                                        {o.phone}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span className='mgnt-order-creation'>
+                                        {new Date(o.createdAt).toLocaleDateString('en-GB', {
+                                        day: '2-digit',
+                                        month: 'short',
+                                        year: 'numeric',
+                                        hour: '2-digit',
+                                        minute: '2-digit',
+                                        hour12: true //24h system
+                                    })}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span className='mgnt-order-modification'>
+                                        {new Date(o.updatedAt).toLocaleDateString('en-GB', {
+                                        day: '2-digit',
+                                        month: 'short',
+                                        year: 'numeric',
+                                        hour: '2-digit',
+                                        minute: '2-digit',
+                                        hour12: true
+                                    })}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span className='mgnt-order-total'>
+                                        {o.total.toLocaleString()}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span className='mgnt-order-view'>
+                                        <Link to={`${o._id}`}>view</Link>
+                                    </span>
+                                </td>
+                                {selectedVisibility === "active" &&<td>
+                                    <button className='mgnt-order-delete'
+                                    onClick={()=>handelHidding(o._id)}>
+                                        ✕
+                                    </button>
+                                </td>}
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </>}
         </>
     )
 }
