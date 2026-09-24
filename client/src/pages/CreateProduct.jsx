@@ -47,14 +47,18 @@ function CreateProduct(){
                 <input id="image" name="image" type="text" placeholder="Please provide a URL" value={formdata.image} onChange={handleChange} required />
 
                 <label htmlFor="name">Name</label>
-                <input id="name" name="name" type="text" value={formdata.name} onChange={handleChange} required />
-
-                <label htmlFor="price">price</label>
-                <input id="price" name="price" type="text" min="0" value={formdata.price} onChange={handleChange} required />
-
-                <label htmlFor="quantity">Quantity</label>
-                <input id="quantity" name="quantity" type="number" min="0" value={formdata.quantity} onChange={handleChange} required />
-
+                <input id="name" name="name" type="text" placeholder="Enter your product name" value={formdata.name} onChange={handleChange} required />
+                <div className="two">
+                    <div className="price">
+                        <label htmlFor="price">Price</label>
+                        <input id="price" name="price" type="text" min="0" placeholder="Enter your product price" value={formdata.price} onChange={handleChange} required />
+                    </div>
+                    <div className="quantity">
+                        <label htmlFor="quantity">Quantity</label>
+                        <input id="quantity" name="quantity" type="number" min="0" value={formdata.quantity} onChange={handleChange} required />
+                    </div>
+                </div>
+                
                 <label htmlFor="category">Category</label>
                 <select
                 id="category" 

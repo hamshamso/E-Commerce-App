@@ -34,16 +34,16 @@ function Register () {
             <form className="auth-form" onSubmit={handleSubmit}>
                 <h1>Create an account</h1>
                 {error ? <p className="auth-error">{error}</p> : null }
-                <label htmlFor="name">Name</label>
-                <input id="name" name="name" type="text" value={formData.name} onChange={handleChange} required />
+                <label className="auth-Name" htmlFor="name">Name</label>
+                <input  id="name" name="name" type="text" value={formData.name} onChange={handleChange} required />
 
-                <label htmlFor="email">Email</label>
+                <label className="auth-Email" htmlFor="email">Email</label>
                 <input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required />
 
-                <label htmlFor="phone">Phone</label>
+                <label className="auth-phone" htmlFor="phone">Phone</label>
                 <input id="phone" name="phone" type="tel" value={formData.phone} onChange={handleChange} required />
 
-                <label htmlFor="password">Password</label>
+                <label className="auth-Password" htmlFor="password">Password</label>
                 <input id="password" name="password" type="password" value={formData.password} onChange={handleChange} required minLength={6} />
 
                 <button type="submit" disabled={loading}>

@@ -24,6 +24,7 @@
     gap: 14px;
     border: 1px solid rgba(6, 78, 59, 0.1);
     margin: auto; 
+    margin-top: 2%;
 }
 
 .create-product-form h1 {
@@ -50,6 +51,7 @@
     color: #1e293b;
     background-color: #ffffff;
     transition: all 0.2s ease-in-out;
+    font-family: inherit;
 }
 
 .create-product-form input:focus,
@@ -67,6 +69,7 @@
     font-size: 15px;
     font-weight: 600;
     border: none;
+    font-family: "Libre Baskerville",serif;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.2s;
@@ -89,4 +92,18 @@
     font-size: 13px;
     text-align: center;
     border: 1px solid #fecaca;
+}
+.two{
+  display: flex;
+  gap: 15px;
+  width: 100%;
+}
+.create-product-form .two .price,
+.create-product-form .two .quantity {
+  flex: 1;
+}
+
+.create-product-form .two input {
+  width: 100%;
+  box-sizing: border-box;
 }

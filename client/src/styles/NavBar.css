@@ -4,24 +4,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #F8E7C9; 
-  padding: 12px 36px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  font-family: 'Libre Baskervilles', serif;
+  background-color: #edecec;
+  padding: 8px 36px; 
+  border-bottom: 2px solid rgba(6, 78, 59, 0.15);
+  
   position: fixed;
-  font-size: 1rem;
   top: 0;
   left: 0;
   width: 100%;
   box-sizing: border-box;
   z-index: 1000;
+  font-family: 'Libre Baskerville', sans-serif;
 }
 
 .links {
   display: flex;
   align-items: center;
-  font-family: "Libre Baskerville", sans-serif;
-  gap: 28px;
 }
 
 .nav-link {
@@ -61,7 +59,7 @@
   border: 1.5px solid #064E3B;
   padding: 8px 20px;
   border-radius: 20px;
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Libre Baskerville', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;
@@ -69,6 +67,7 @@
 }
 
 .loginbtn:hover {
+  transform: translateY(-1px);
   background-color: rgba(6, 78, 59, 0.08);
 }
 .nbr-items{
@@ -89,7 +88,7 @@
   border: none;
   padding: 9px 20px;
   border-radius: 20px;
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Libre Baskerville', sans-serif;
   font-weight: 700;
   font-size: 0.9rem;
   cursor: pointer;
@@ -122,12 +121,37 @@
 
 .hi {
   color: #064E3B;
-  font-size: 0.95rem;
+  font-size: 15px;
   font-weight: 700;
   margin: 0;
-  font-family: 'Libre Baskerville', sans-serif;
 }
 
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #064E3B;
+  color: #F8E7C9;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-family: "Libre Baskerville",serif;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: rgba(6, 78, 59, 0.08);
+  
+}
+
+.logout-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
 .dashboard-container {
   position: relative;
   min-height: 100vh;
@@ -163,7 +187,6 @@
   font-size: 1.25rem;
   color: #0a4332;
 }
-
 .sidebar {
   position: fixed;
   top: 0;
@@ -178,9 +201,6 @@
   flex-direction: column;
 }
 
-.admin-e-Commerce{
-font-family: "Libre Baskerville",serif;
-}
 .sidebar.open {
   left: 0;
 }
@@ -189,8 +209,8 @@ font-family: "Libre Baskerville",serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem;
-  border-bottom: 1px solid rgba(251, 238, 224, 0.15);
+  padding: 1.0rem;
+  border-bottom: 1px solid rgb(158, 158, 158);
 }
 
 .close-btn {
@@ -202,17 +222,14 @@ font-family: "Libre Baskerville",serif;
   transition: all 0.2s ease;
 }
 .close-btn:hover{
-transform: rotate(90deg) ;
+transform: rotate(273deg) ;
 }
+
 .sidebar-menu {
   list-style: none;
   padding: 1rem 0;
-  font-family: 'Libre Baskerville', serif;
   margin: 0;
-  font-size: 1rem;
-  border-top: 1px solid #949393;
 }
-
 .sidebar-menu li a {
   display: block;
   padding: 0.85rem 1.5rem;
@@ -226,12 +243,7 @@ transform: rotate(90deg) ;
   background-color: rgba(251, 238, 224, 0.12);
   padding-left: 1.8rem;
 }
-.Dashboard-admin{
-  font-family: "Libre Baskerville",serif;
-  font-size: 1.2rem;
-  margin-top: 1.3rem;
-  margin-left: -5px;
-}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -244,15 +256,18 @@ transform: rotate(90deg) ;
 body {
   margin: 0;
   padding-top: 60px; 
+  background-color: var(--bg-light);
+  font-family: 'Libre Baskerville',  sans-serif;
+  color: var(--text-dark);
 }
 
 .admin-top-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #efefef;
+  background-color: #edecec;
   padding: 8px 36px; 
-  border-bottom: 2px solid rgb(139, 139, 139);
+  border-bottom: 2px solid rgba(6, 78, 59, 0.15);
   
   position: fixed;
   top: 0;
@@ -315,16 +330,48 @@ body {
     transition: all 0.2s;
 }
 
-.logout-admin-btn:hover {
-    background-color: #064E3B;
-    color: #ffffff;
-}
 
-.logout-admin-btn:hover .logout-admin-icon {
-    filter: brightness(0) invert(1);
+.logout-admin-btn:hover  {
+    background-color: rgba(6, 78, 59, 0.08);
+    transform: translateY(-2px);
 }
 
 .logout-admin-icon {
     width: 18px;
     height: 18px;
+}
+.nav-link {
+  position: relative;
+}
+
+@media (max-width: 900px) {
+  .nav-link span:not(.nbr-items) {
+    display: none;
+  }
+
+  .nav-link {
+    padding: 8px 10px;
+  }
+
+  
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    padding: 8px 14px;
+  }
+
+  .hi {
+    display: none;
+  }
+
+  .logout-btn span {
+    display: none;
+  }
+
+  .loginbtn,
+  .signupbtn {
+    padding: 7px 12px;
+    font-size: 15px;
+  }
 }
