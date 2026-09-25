@@ -99,43 +99,48 @@ function EditProduct() {
       <form onSubmit={handleSubmit} className="edit-product-form">
         <h2>Edit Product</h2>
         {error && <p className="error">{error}</p>}
-
-        <label>Name</label>
-        <input
-          type="text"
-          name="name"
-          value={product.name}
-          onChange={handleChange}
-        />
-
-        <label>Price</label>
-        <input
-          type="number"
-          name="price"
-          value={product.price}
-          onChange={handleChange}
-          min="0"
-          onKeyDown={(e) => ["e", "E", "+", "-"].includes(e.key) && e.preventDefault()}
-        />
-
-        <label>Quantity</label>
-        <input
-          type="number"
-          name="quantity"
-          value={product.quantity}
-          onChange={handleChange}
-          min="0"
-          onKeyDown={(e) => ["e", "E", "+", "-"].includes(e.key) && e.preventDefault()}
-        />
-
-        <label>Category</label>
-        <input
-          type="text"
-          name="category"
-          value={product.category}
-          onChange={handleChange}
-        />
-
+        <div className="edit-product-divs">
+          <label>Name</label>
+          <input
+            type="text"
+            name="name"
+            value={product.name}
+            onChange={handleChange}
+          />
+        </div>
+        
+        <div className="edit-product-divs">
+          <label>Price</label>
+          <input
+            type="number"
+            name="price"
+            value={product.price}
+            onChange={handleChange}
+            min="0"
+            onKeyDown={(e) => ["e", "E", "+", "-"].includes(e.key) && e.preventDefault()}
+          />
+        </div>
+        <div className="edit-product-divs">
+            <label>Quantity</label>
+            <input
+            type="number"
+            name="quantity"
+           value={product.quantity}
+           onChange={handleChange}
+           min="0"
+            onKeyDown={(e) => ["e", "E", "+", "-"].includes(e.key) && e.preventDefault()}
+            />
+        </div>
+        <div className="edit-product-divs">
+          <label>Category</label>
+          <input
+            type="text"
+            name="category"
+            value={product.category}
+            onChange={handleChange}
+          />
+        </div>
+        
         <button type="submit" disabled={loading} className="btn-save">
           {loading ? "Saving..." : "Save"}
         </button>
