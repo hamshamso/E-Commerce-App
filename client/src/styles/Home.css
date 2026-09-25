@@ -55,7 +55,7 @@ body {
 .shop-title::after {
   content: '';
   display: block;
-  width: 60px;
+  width: 4.5rem;
   height: 4px;
   background-color: var(--bg-cream);
   margin: 10px auto 0;
@@ -65,7 +65,7 @@ body {
 .shop-status {
   text-align: center;
   font-size: 1.2rem;
-  color: #F8E7C9;
+  color: #064E3B;
 }
 
 .shop-error {
@@ -79,10 +79,9 @@ body {
   gap: 30px;
 }
 
-/* Footer Section */
 footer {
   background-color: #022C22;
-  color: #94A3B8;
+  color: #f1f1f1;
   padding: 40px 20px;
   display: flex;
   justify-content: space-between;
@@ -95,15 +94,17 @@ footer {
 footer .rights {
   margin: 0;
   font-size: 0.9rem;
+  color: #dcdcdc;
 }
 
 footer .fot {
   display: flex;
   gap: 20px;
+  color: #dcdcdc;
 }
 
 footer .fot a {
-  color: #94A3B8;
+  color: #dcdcdc;
   text-decoration: none;
   font-size: 0.9rem;
   cursor: pointer;
@@ -135,7 +136,7 @@ footer .fot a:hover {
   border: 1px solid rgba(251, 238, 224, 0.2);
   backdrop-filter: blur(8px);
   border-radius: 12px;
-  padding: 20px 24px;
+  padding: 44px 25px;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 16px;

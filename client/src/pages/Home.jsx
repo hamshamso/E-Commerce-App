@@ -117,7 +117,7 @@ function Home() {
           </div>
         </div>
 
-        {loading && <p className="shop-status">Loading products...</p>}
+        {loading && <p className="loading">Loading products...</p>}
         {error && <p className="shop-status shop-error">{error}</p>}
 
         {!loading && !error && (
