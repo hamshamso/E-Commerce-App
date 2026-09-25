@@ -38,65 +38,76 @@ export function Orders() {
     if (error) return <h1 className="error">Error loading orders!</h1>;
 
     return (
-        <div className="page-wrapper">
-            <div className="orders-container">
-                <div className="header">
-                    <h1>Your Previous Orders</h1>
-                </div>
+        <div className="mgnt-container">
+            <h1 className="mgnt-title">Your Previous Orders</h1>
 
-                {orders.length === 0 ? (
-                    <p className="no-orders">No orders found.</p>
-                ) : (
-                    <div className="items">
-                        <table>
-                            <thead>
-                                <tr className="head">
-                                    <th>Status</th>
-                                    <th>Phone</th>
-                                    <th>Address</th>
-                                    <th>Date</th>
-                                    <th>Total</th>
-                                    <th>Details</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {orders.map((o) => (
-                                    <tr key={o._id || o.id} className="card">
+            {orders.length === 0 ? (
+                <p className="No-orders">No orders found.</p>
+            ) : (
+                <div className="mgnt-table-wrapper">
+                    <table className="mgnt-table">
+                        <thead>
+                            <tr className="mgnt-titles">
+                                <td>Status</td>
+                                <td>Phone</td>
+                                <td>Address</td>
+                                <td>Creation</td>
+                                <td>Total</td>
+                                <td>View</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {orders.map((o) => {
+                                const statusClass = o.status ? o.status.toLowerCase() : 'pending';
+                                return (
+                                    <tr key={o._id || o.id} className="mgnt-single-order">
                                         <td>
-                                            <span className={`status status-${o.status}`}>
+                                            <span className={`status-mgnt-${statusClass}`}>
                                                 {o.status}
                                             </span>
                                         </td>
-                                        <td>
-                                            <p className="phone">
-                                                📞 {o.phone || o.address?.phone || o.adress?.phone || "N/A"}
-                                            </p>
+                                        <td className="mgnt-order-phone">
+                                             {o.phone || o.address?.phone || o.adress?.phone || "N/A"}
                                         </td>
-                                        <td>
-                                            <p className="address">
-                                                🏠 {o.address || o.adress || "N/A"}
-                                            </p>
+                                        <td className="mgnt-order-adress">
+                                             {o.address || o.adress || "N/A"}
                                         </td>
-                                            <td>
-                                                <p>
-                                                    {new Date(o.createdAt).toLocaleDateString()}
-                                                </p>
-                                            </td>
-                                        <td>
-                                            <p className="total">💰 {o.total.toLocaleString() ?? 0} DZD</p>
+                                        <td className="mgnt-order-creation">
+                                            {o.createdAt ? (
+                                                <div className="date-time-wrapper">
+                                                    <span className="order-date">
+                                                        {new Date(o.createdAt).toLocaleDateString('en-GB', {
+                                                            day: 'numeric',
+                                                            month: 'short',
+                                                            year: 'numeric'
+                                                        })}
+                                                    </span>
+                                                    <span className="order-time">
+                                                        {new Date(o.createdAt).toLocaleTimeString('en-GB', {
+                                                            hour: '2-digit',
+                                                            minute: '2-digit'
+                                                        })}
+                                                    </span>
+                                                </div>
+                                            ) : (
+                                                "N/A"
+                                            )}
                                         </td>
-                                        <td>
-                                            <Link className="view" to={`/orders/${o._id || o.id}`}>
-                                                View Details 🛒
+                                        <td className="mgnt-order-total">
+                                             {(o.total ?? 0).toLocaleString()} DZD
+                                        </td>
+                                        <td className="mgnt-order-view">
+                                            <Link to={`/orders/${o._id || o.id}`}>
+                                                View 
                                             </Link>
                                         </td>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                )}
-            </div>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
+            )}
         </div>
     );
 }
