@@ -1,138 +1,142 @@
-.page-wrapper {
-    background-color: #F8E7C9;
-    min-height: 100vh;
-    padding: 30px 16px;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-}
-
-.orders-container {
-    max-width: 1100px;
+.mgnt-container {
+    padding: 24px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 28px;
-    background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(6, 78, 59, 0.08);
 }
 
 .header-section {
     display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 24px;
-}
-
-.back-btn {
-    color: #064E3B;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.95rem;
-}
-
-.order-meta {
-    display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 24px;
 }
-
-.order-meta h1 {
-    font-size: 1.6rem;
-    color: #064E3B;
-    margin: 0;
+.mgnt-title {
+    font-size: 1.5rem;
     font-weight: 700;
+    color:  #1f1f1f;
 }
 
-.items {
+.mgnt-table-wrapper {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.mgnt-table {
     width: 100%;
-    overflow-x: auto;
-}
-
-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 10px;
-}
-
-th {
-    padding: 14px 18px;
+    border-collapse: collapse;
     text-align: left;
-    color: #064E3B;
-    font-size: 0.85rem;
-    font-weight: 700;
+}
+
+.mgnt-titles td {
+    background-color: #f8f9fa;
+    padding: 14px 16px;
+    font-weight: 600;
+    color:  #444444;
+    border-bottom: 1px solid #e9ecef;
+    font-size: 0.88rem;
     text-transform: uppercase;
-    border-bottom: 2px solid #F8E7C9;
+    letter-spacing: 0.5px;
 }
 
-tbody tr.card {
-    background-color: #fffdf9;
-    transition: all 0.2s ease-in-out;
+.mgnt-single-order {
+    border-bottom: 1px solid #f1f3f5;
+    transition: background-color 0.2s ease;
 }
 
-tbody tr.card:hover {
-    transform: translateY(-2px);
-    background-color: #ffffff;
-    box-shadow: 0 6px 16px rgba(6, 78, 59, 0.12);
+.mgnt-single-order:hover {
+    background-color: #fdfdfd;
 }
 
-td {
-    padding: 16px 18px;
-    color: #1f2937;
-    font-size: 0.95rem;
+.mgnt-single-order td {
+    padding: 16px;
     vertical-align: middle;
 }
 
-td:first-child {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-}
-
-td:last-child {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-
-.table-img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-.name-text {
+/* Text Elements inside Table */
+.mgnt-order-name {
     font-weight: 600;
-    color: #064E3B;
+    color: #2c2825;
 }
 
-.category-text {
-    color: #64748b;
-    font-size: 0.85rem;
+.mgnt-order-adress, 
+.mgnt-order-total, 
+.mgnt-order-phone {
+    color: #495057;
+    font-size: 0.95rem;
 }
 
-.cancel-btn {
-    background-color: #fee2e2;
-    color: #dc2626;
+/* Back Link & Buttons */
+.mgnt-order-view {
+    color: #007bff;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.mgnt-order-view:hover {
+    text-decoration: underline;
+}
+
+.mgnt-single-order button {
+    background-color: #dc3545;
+    color: #fff;
     border: none;
     padding: 8px 14px;
-    border-radius: 8px;
-    font-weight: 600;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background-color 0.2s;
 }
 
-.cancel-btn:hover {
-    background-color: #fca5a5;
+.mgnt-single-order button:hover {
+    background-color: #c82333;
 }
 
-.status {
-    padding: 6px 14px;
+/* Status Badges */
+.status-mgnt-pending {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 6px 12px;
     border-radius: 20px;
     font-size: 0.85rem;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: capitalize;
-    display: inline-block;
 }
 
-.status-pending { background-color: #e5e7eb; color: #374151; }
-.status-confirmed { background-color: #dcfce7; color: #15803d; }
-.status-shipped { background-color: #dbeafe; color: #1d4ed8; }
-.status-delivered { background-color: #064E3B; color: #F8E7C9; }
-.status-cancelled { background-color: #fee2e2; color: #b91c1c; }
+.status-mgnt-confirmed {
+    background-color: #cce5ff;
+    color: #004085;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.status-mgnt-shipped {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.status-mgnt-cancelled {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+/* Empty State */
+.No-orders {
+    color: #6c757d;
+    font-style: italic;
+}
