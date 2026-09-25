@@ -195,29 +195,49 @@ const filtredOrders = orders.filter((order) => {
                                         {o.phone}
                                     </span>
                                 </td>
-                                <td>
-                                    <span className='mgnt-order-creation'>
-                                        {new Date(o.createdAt).toLocaleDateString('en-GB', {
-                                        day: '2-digit',
-                                        month: 'short',
-                                        year: 'numeric',
-                                        hour: '2-digit',
-                                        minute: '2-digit',
-                                        hour12: true //24h system
-                                    })}
-                                    </span>
+                                <td className="mgnt-order-creation">
+                                    {o.createdAt ? (
+                                        <div className="date-time-wrapper">
+                                            <span className="order-date">
+                                                {new Date(o.createdAt).toLocaleDateString('en-GB', {
+                                                    day: '2-digit',
+                                                    month: 'short',
+                                                    year: 'numeric'
+                                                })}
+                                            </span>
+                                            <span className="order-time">
+                                                {new Date(o.createdAt).toLocaleTimeString('en-GB', {
+                                                    hour: '2-digit',
+                                                    minute: '2-digit',
+                                                    hour12: true
+                                                })}
+                                            </span>
+                                        </div>
+                                    ) : (
+                                        "N/A"
+                                    )}
                                 </td>
-                                <td>
-                                    <span className='mgnt-order-modification'>
-                                        {new Date(o.updatedAt).toLocaleDateString('en-GB', {
-                                        day: '2-digit',
-                                        month: 'short',
-                                        year: 'numeric',
-                                        hour: '2-digit',
-                                        minute: '2-digit',
-                                        hour12: true
-                                    })}
-                                    </span>
+                                <td className="mgnt-order-modification">
+                                    {o.updatedAt ? (
+                                        <div className="date-time-wrapper">
+                                            <span className="order-date">
+                                                {new Date(o.updatedAt).toLocaleDateString('en-GB', {
+                                                    day: '2-digit',
+                                                    month: 'short',
+                                                    year: 'numeric'
+                                                })}
+                                            </span>
+                                            <span className="order-time">
+                                                {new Date(o.updatedAt).toLocaleTimeString('en-GB', {
+                                                    hour: '2-digit',
+                                                    minute: '2-digit',
+                                                    hour12: true
+                                                })}
+                                            </span>
+                                        </div>
+                                    ) : (
+                                        "N/A"
+                                    )}
                                 </td>
                                 <td>
                                     <span className='mgnt-order-total'>

@@ -2,7 +2,7 @@
     padding: 30px 40px  ;
     max-width: 1450px  ;
     margin: 0 auto  ;
-    background-color: var(--bg-cream, #F8E7C9)  ;
+    background-color: #ffffff  ;
     min-height: calc(100vh - 70px);
 }
 
@@ -11,7 +11,6 @@
     background-color: #FFFFFF  ;
     border-radius: 16px  ;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05)  ;
-    border: 1px solid #e6dec9  ;
     overflow: hidden  ;
 }
 
@@ -169,7 +168,22 @@ body {
     display: flex;
     flex-direction: column;
 }
+.date-time-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
 
+.order-date {
+    font-weight: 600;
+    color: var(--text-dark, #2c2825);
+}
+
+.order-time {
+    color: var(--text-muted, #8c857b);
+    font-size: 0.78rem;
+    letter-spacing: 0.5px;
+}
 .filter-label {
     font-size: 13px;
     font-weight: 700;
