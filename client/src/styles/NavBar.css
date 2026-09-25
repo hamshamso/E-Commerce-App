@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #edecec;
+  background-color: #fffdf7;
   padding: 8px 36px; 
   border-bottom: 2px solid rgba(6, 78, 59, 0.15);
   
@@ -265,7 +265,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #edecec;
+  background-color: #fffdf7;
   padding: 8px 36px; 
   border-bottom: 2px solid rgba(6, 78, 59, 0.15);
   

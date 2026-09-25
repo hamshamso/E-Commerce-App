@@ -102,7 +102,21 @@ footer .fot {
   gap: 20px;
   color: #dcdcdc;
 }
+.brand {
+  display: inline-block;
+  color: #F8E7C9;
+  font-weight: 700;
+  animation: pulse 2.5s ease-in-out infinite;
+}
 
+@keyframes pulse {
+  0%, 100% {
+    text-shadow: 0 0 6px rgba(248, 231, 201, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 18px rgba(248, 231, 201, 0.75);
+  }
+}
 footer .fot a {
   color: #dcdcdc;
   text-decoration: none;
@@ -121,6 +135,7 @@ footer .fot a:hover {
   margin: 0 auto;
   padding: 20px 16px;
   box-sizing: border-box;
+  background-color: #fffdf7;
 }
 
 .shop-title {

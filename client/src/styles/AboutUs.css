@@ -1,0 +1,245 @@
+.about-page {
+  background-color: #fffdf7;
+  font-family: "Libre Baskerville", serif;
+  color: #1a1a1a;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #b08d57;
+}
+
+.eyebrow-light {
+  color: #F8E7C9;
+}
+
+.divider {
+  width: 50px;
+  height: 2px;
+  margin: 14px auto 22px;
+  background-color: #F8E7C9;
+  border-radius: 2px;
+}
+
+.about-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 72px 24px 64px;
+  text-align: center;
+  background: linear-gradient(135deg, #064E3B 0%, #0a3d2e 50%, #042e22 100%);
+  color: #ffffff;
+}
+
+.hero-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  stroke: rgba(248, 231, 201, 0.15);
+  stroke-width: 1;
+  fill: none;
+  pointer-events: none;
+}
+
+.about-hero h1 {
+  position: relative;
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 700;
+}
+
+.about-hero .brand {
+  color: #F8E7C9;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { text-shadow: 0 0 6px rgba(248, 231, 201, 0.3); }
+  50% { text-shadow: 0 0 18px rgba(248, 231, 201, 0.75); }
+}
+
+.hero-sub {
+  position: relative;
+  max-width: 520px;
+  margin: 18px auto 0;
+  font-size: clamp(0.9rem, 2vw, 1.02rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.about-story {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 72px 24px 56px;
+  text-align: center;
+}
+
+.about-story h2 {
+  margin: 0;
+  font-size: clamp(1.5rem, 4vw, 1.9rem);
+  color: #064E3B;
+}
+
+.about-story p:last-child {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #4a453d;
+}
+
+.about-values {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px 72px;
+  text-align: center;
+}
+
+.about-values h2 {
+  margin: 0;
+  font-size: clamp(1.5rem, 4vw, 1.9rem);
+  color: #064E3B;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.value-card {
+  padding: 24px 20px;
+  background-color: #ffffff;
+  border: 1px solid rgba(6, 78, 59, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(6, 78, 59, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.value-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(6, 78, 59, 0.1);
+}
+
+.value-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  margin-bottom: 14px;
+  border-radius: 10px;
+  background-color: #FBEFD9;
+  color: #b08d57;
+}
+
+.value-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.value-card h3 {
+  margin: 0 0 6px;
+  font-size: 0.98rem;
+  color: #064E3B;
+}
+
+.value-card p {
+  margin: 0;
+  font-size: 0.83rem;
+  line-height: 1.55;
+  color: #666058;
+}
+
+.about-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 32px;
+  text-align: left;
+  background: linear-gradient(120deg, #FBEFD9, #FFFDF7 60%);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(6, 78, 59, 0.06);
+}
+
+.about-cta .eyebrow {
+  text-align: left;
+  margin-bottom: 6px;
+}
+
+.about-cta h2 {
+  margin: 0;
+  font-size: clamp(1.15rem, 3vw, 1.45rem);
+  color: #064E3B;
+}
+
+.about-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  padding: 13px 24px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #F8E7C9;
+  background-color: #064E3B;
+  border-radius: 24px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.about-btn:hover {
+  background-color: #04392B;
+  transform: translateY(-1px);
+}
+
+.about-btn .arrow {
+  transition: transform 0.2s;
+}
+
+.about-btn:hover .arrow {
+  transform: translateX(3px);
+}
+
+
+@media (max-width: 900px) {
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .about-cta {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .about-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-hero {
+    padding: 56px 20px 48px;
+  }
+
+  .about-story,
+  .about-values {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

@@ -83,7 +83,7 @@ function NavBar() {
             <span>Shop</span>
           </Link>
 
-          <Link to="/" className="nav-link">
+          <Link to="/about" className="nav-link">
             <img src={aboutIcon} alt="About" className="nav-icon" />
             <span>About Us</span>
           </Link>

@@ -56,7 +56,7 @@ function Home() {
     <>
       <div className="landing">
         <div className="welcome">
-          <h1>{isuser() ? (isAdmin() ? "Welcome back Admin" : "Welcome to our store") : "Wellcome to our store"}</h1>
+          <h1>{isuser() ? (isAdmin() ? "Welcome back Admin" : <> Welcome to <span className="brand"> Velora</span></>) : <> Welcome to <span className="brand"> Velora</span></>}</h1>
           <h2>{isAdmin ?"Manage your store products and orders with ease":"Every Purchase Will Be Made With Pleasure"}</h2>
           <p>{isAdmin ? "Control panel for inventory, sales, and modern technology items": "Discover premium quality products with modern technology"}</p>
         </div>
@@ -136,18 +136,6 @@ function Home() {
           </div>
         )}
       </section>
-
-      <footer>
-        <div>
-          <p className="rights">© 2026 E-Commerce. All rights reserved.</p>
-        </div>
-        <div className="fot">
-          <a>Legal Notice</a>
-          <a>Privacy</a>
-          <a>Terms</a>
-          <a>· Algérie</a>
-        </div>
-      </footer>
     </>
   );
 }
