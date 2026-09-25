@@ -117,12 +117,11 @@ export function Checkout() {
                                     <span>Total Amount:</span>
                                     <strong>{cartTotal} DA</strong>
                                 </div>
-                            </div>
+                            </div>  
                         </div>
                     </div>
                 ) : (
                     <div className="success-box">
-                        <span className="success-badge">🎉</span>
                         <h1>Order Placed Successfully!</h1>
                         <p>Thank you for your purchase. We are processing your request.</p>
                         <div className="btn-group">

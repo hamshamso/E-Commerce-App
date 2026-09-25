@@ -1,5 +1,5 @@
 .checkout-page-wrapper {
-    background-color: #F8E7C9;
+    background-color: #ffffff;
     min-height: calc(100vh - 70px);
     padding: 40px 20px;
     display: flex;
@@ -9,12 +9,13 @@
 }
 
 .checkout-card {
-    background-color: #ffffff;
+    background-color: #f2f2f2;
     width: 100%;
     max-width: 950px;
+    margin-top: 2%;
     padding: 40px;
     border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px rgb(191, 191, 191);
 }
 
 .checkout-header {
