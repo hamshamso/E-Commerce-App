@@ -1,55 +1,172 @@
-:root {
-  --primary-color: #064E3B;
-  --primary-hover: #04392B;
-  --bg-cream: #F8E7C9;
-  --bg-light: #FAFAF9;
-  --text-dark: #1E293B;
-  --text-muted: #64748B;
-  --card-bg: #FFFFFF;
-}
-
-body {
-  margin: 0;
-  background-color: var(--bg-light);  
-  color: var(--text-dark);
-}
-
-.landing {
-  background: linear-gradient(135deg, var(--primary-color) 0%, #022C22 100%);
-  color: #FFFFFF;
-  padding: 10px 20px 30px 20px; 
+.home-hero {
+  position: relative;
+  overflow: hidden;
+  margin-top: 4.5rem;
+  padding: 64px 24px 56px;
   text-align: center;
-  margin-top: 2rem;
-}
-.welcome h1 {
-  font-size: 2.8rem;
-  margin-bottom: 12px;
-  letter-spacing: -0.5px;
-  font-family: "Libre Baskerville",serif;
+  background: linear-gradient(135deg, #064E3B 0%, #0a3d2e 50%, #042e22 100%);
+  color: #ffffff;
+  font-family: "Libre Baskerville", serif;
 }
 
-.welcome h2 {
-  font-size: 1.5rem;
-  color: var(--bg-cream);
-  margin-bottom: 16px;
-  font-family: "Libre Baskerville",serif;
+.hero-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  stroke: rgba(248, 231, 201, 0.15);
+  stroke-width: 1;
+  fill: none;
+  pointer-events: none;
 }
 
-.welcome p {
-  font-size: 1.05rem;
-  color: #A7F3D0;
+.hero-year {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  writing-mode: vertical-rl;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: rgba(248, 231, 201, 0.5);
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 0 0 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #b08d57;
+}
+
+.eyebrow-light {
+  color: #F8E7C9;
+}
+
+.eyebrow .rule {
+  width: 28px;
+  height: 1px;
+  background-color: currentColor;
+  opacity: 0.6;
+}
+
+.home-hero h1 {
+  position: relative;
+  margin: 4px 0 0;
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  font-weight: 700;
+}
+
+.brand-italic {
+  font-style: italic;
+  color: #F8E7C9;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { text-shadow: 0 0 6px rgba(248, 231, 201, 0.3); }
+  50% { text-shadow: 0 0 18px rgba(248, 231, 201, 0.75); }
+}
+
+.hero-tagline {
+  margin: 16px 0 4px;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 700;
+  color: #F8E7C9;
+}
+
+.hero-desc {
+  max-width: 480px;
+  margin: 0 auto;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  padding-bottom: 4px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  transition: border-color 0.2s;
+}
+
+.hero-cta:hover {
+  border-color: #ffffff;
+}
+
+.hero-cta .arrow {
+  transition: transform 0.2s;
+}
+
+.hero-cta:hover .arrow {
+  transform: translateY(2px);
+}
+
+.shop-section {
+  background-color: #fffdf7;
+  padding-bottom: 60px;
+  font-family: "Libre Baskerville", serif;
+}
+
+.collection-heading {
   max-width: 600px;
   margin: 0 auto;
-  font-family: "Libre Baskerville",serif; 
+  padding: 56px 24px 8px;
+  text-align: center;
 }
 
-/* Shop Section */
-.shop-section {
-  max-width: 1200px;
-  margin: 0 auto;
+.shop-title {
+  margin: 0;
+  font-size: clamp(1.7rem, 4.5vw, 2.1rem);
+  color: #064E3B;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.loading,
+.shop-status {
+  text-align: center;
   padding: 40px 20px;
+  color: #666058;
 }
 
+.shop-error {
+  color: #991b1b;
+}
+
+@media (max-width: 900px) {
+  .search-section-home {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.divider {
+  width: 50px;
+  height: 2px;
+  margin: 14px auto;
+  background-color: #F8E7C9;
+  border-radius: 2px;
+}
+
+.collection-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #4a453d;
+}
 
 
 .shop-title::after {
@@ -103,7 +220,6 @@ footer .fot {
   color: #dcdcdc;
 }
 .brand {
-  display: inline-block;
   color: #F8E7C9;
   font-weight: 700;
   animation: pulse 2.5s ease-in-out infinite;
@@ -146,20 +262,20 @@ footer .fot a:hover {
   font-family: "Libre Baskerville",serif;
 }
 
-.search-section {
+.search-section-home {
   background-color: rgba(255, 255, 255, 0.08); 
-  border: 1px solid rgba(251, 238, 224, 0.2);
+  border: 1px solid rgb(201, 201, 201);
   backdrop-filter: blur(8px);
   border-radius: 12px;
-  padding: 44px 25px;
+  padding: 25px 25px;
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 16px;
-  margin-bottom: 32px;
+  margin: 3rem auto;
 }
 
 @media (min-width: 768px) {
-  .search-section {
+  .search-section-home {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
   }
@@ -167,7 +283,6 @@ footer .fot a:hover {
 
 .filter-group {
   display: flex;
-  flex-direction: column;
 }
 
 .filter-label {

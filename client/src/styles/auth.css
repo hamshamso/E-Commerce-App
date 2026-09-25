@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 6px;
   width: min(100% - 32px, 440px);
-  margin: 40px auto;
+  margin: 8rem auto;
   padding: clamp(20px, 5vw, 36px);
   box-sizing: border-box;
   background-color: #fffffd;
@@ -102,7 +102,7 @@
 
 @media (max-width: 480px) {
   .auth-form {
-    margin: 20px auto;
+    margin: 8rem auto;
     border-radius: 14px;
   }
 }

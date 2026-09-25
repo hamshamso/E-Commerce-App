@@ -1,7 +1,7 @@
 .mgnt-container {
     padding: 30px 40px;
     max-width: 1450px;
-    margin: 0 auto;
+    margin: 8rem auto;
     background-color: #fffffc;
     min-height: calc(100vh - 70px);
 }
@@ -29,7 +29,7 @@
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-weight: 700;
-    margin: 40px 0rem 30px 0rem;
+    margin: 4.5rem 0 20px 0;
     border-bottom: 2px solid #bebfc0;
     font-family: "Libre Baskerville", serif;
 }

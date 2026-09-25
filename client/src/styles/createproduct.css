@@ -23,8 +23,7 @@
     flex-direction: column;
     gap: 14px;
     border: 1px solid rgba(6, 78, 59, 0.1);
-    margin: auto; 
-    margin-top: 2%;
+    margin: 7rem auto; 
 }
 
 .create-product-form h1 {

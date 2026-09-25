@@ -54,18 +54,49 @@ function Home() {
     });
   return (
     <>
-      <div className="landing">
-        <div className="welcome">
-          <h1>{isuser() ? (isAdmin() ? "Welcome back Admin" : <> Welcome to <span className="brand"> Velora</span></>) : <> Welcome to <span className="brand"> Velora</span></>}</h1>
-          <h2>{isAdmin ?"Manage your store products and orders with ease":"Every Purchase Will Be Made With Pleasure"}</h2>
-          <p>{isAdmin ? "Control panel for inventory, sales, and modern technology items": "Discover premium quality products with modern technology"}</p>
+      <section className="home-hero">
+        <svg className="hero-lines" viewBox="0 0 1000 300" preserveAspectRatio="none">
+          <path d="M -50 60 Q 200 -20 450 60 T 950 40" />
+          <path d="M 550 260 Q 750 340 1050 250" />
+        </svg>
+
+        <span className="hero-year">EST. 2026</span>
+
+        <p className="eyebrow eyebrow-light">
+          <span className="rule" /> Thoughtfully Made, Beautifully Lived <span className="rule" />
+        </p>
+
+        <h1>
+          {isuser() && isAdmin() ? (
+            "Welcome back Admin"
+          ) : (
+            <>Welcome to <span className="brand-italic">Velora</span></>
+          )}
+        </h1>
+
+        <p className="hero-tagline">
+          {isAdmin() ? "Manage your store products and orders with ease" : "Every Purchase   Will Be Made With Pleasure"}
+        </p>
+
+        <p className="hero-desc">
+          {isAdmin() ? "Control panel for inventory, sales, and modern technology items" : "Discover premium quality products with modern technology"}
+        </p>
+
+        <a href="#collection" className="hero-cta">
+          Explore the collection <span className="arrow">↓</span>
+        </a>
+      </section>
+
+      <section className="shop-section" id="collection">
+        <div className="collection-heading">
+          <p className="eyebrow">The Velora Edit</p>
+          <h2 className="shop-title">{isAdmin() ? "My" : "Our"} Collection</h2>
+          <div className="divider" />
+          <p className="collection-desc">
+            Discover a considered collection of quiet luxuries, made with care and meant to be cherished.
+          </p>
         </div>
-      </div>
-
-      <section className="shop-section">
-        <h2 className="shop-title">{isAdmin ? "My" :"Our"} Collection</h2>
-
-        <div className="search-section">
+        <div className="search-section-home">
           <div className="filter-group">
             <label className="filter-label">Search</label>
             <input 

@@ -13,6 +13,7 @@ import CreateProduct from './pages/CreateProduct';
 import {OrderManegment} from './pages/OrdersManegment';
 import { EditOrdersStatus } from './pages/EditOrdersStatus';
 import {AdminRoute} from './context/AdminRoute'
+import { AboutUs } from './pages/AboutUs';
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
         <Route path='/checkout' element={<Checkout/>}/>
         <Route path='/orders' element={<Orders/>}/>
         <Route path='/orders/:id' element={<OrderDetails/>}/>
-
+        <Route path='/about' element={<AboutUs/>}/>
         {/*Admin routes*/}
         <Route 
                 path='/products/:id' 
@@ -57,6 +58,12 @@ function App() {
                   <EditOrdersStatus/>
                 </AdminRoute>}/>
       </Routes>
+      {/* Global Footer lives here so it appears at the bottom of all pages */}
+            <footer className="about-footer">
+                <p className="footer-brand">Velora</p>
+                <p className="footer-tagline">Beautiful things, thoughtfully chosen.</p>
+                <p className="footer-copy">© 2026 Velora</p>
+            </footer>
     </div>
     </>
   )

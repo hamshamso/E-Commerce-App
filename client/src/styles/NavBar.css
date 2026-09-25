@@ -1,377 +1,205 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Stack+Sans+Notch:wght@200..700&display=swap');
-
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fffdf7;
-  padding: 8px 36px; 
-  border-bottom: 2px solid rgba(6, 78, 59, 0.15);
-  
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  height: 4.5rem;
   box-sizing: border-box;
   z-index: 1000;
-  font-family: 'Libre Baskerville', sans-serif;
-}
-
-.links {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 10px 32px;
+  background-color: #fffdf7;
+  border-bottom: 1px solid rgba(6, 78, 59, 0.1);
+  font-family: "Libre Baskerville", serif;
 }
 
-.nav-link {
+.brand {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #064E3B; 
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.brand-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #064E3B;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.nav-link {
+  position: relative;
+  padding: 8px 16px;
+  border-radius: 20px;
+  color: #4a453d;
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.95rem;
-  padding: 8px 14px;
-  border-radius: 12px;
-  transition: all 0.2s ease-in-out;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .nav-link:hover {
-  background-color: rgba(6, 78, 59, 0.08);
-  transform: translateY(-1px);
+  background-color: rgba(6, 78, 59, 0.06);
 }
 
-.nav-icon {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-}
-
-.login {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.loginbtn {
-  background: transparent;
+.nav-link.active {
+  background-color: #e8f5f0;
   color: #064E3B;
-  border: 1.5px solid #064E3B;
-  padding: 8px 20px;
-  border-radius: 20px;
-  font-family: 'Libre Baskerville', sans-serif;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.2s;
 }
 
-.loginbtn:hover {
-  transform: translateY(-1px);
-  background-color: rgba(6, 78, 59, 0.08);
-}
-.nbr-items{
-  display: flex;
-  font-size: 9px;
-  font-weight: bold;
-  position: absolute;
-  margin-left: 1rem;
-  margin-bottom: 0.8rem;
-  border: 1px solid #064E3B;
-  padding: 0px 3px;
+.nbr-items {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  margin-left: 6px;
+  padding: 0 4px;
   border-radius: 50%;
-  background-color: #fed793;
-}
-.signupbtn {
   background-color: #064E3B;
   color: #F8E7C9;
-  border: none;
-  padding: 9px 20px;
-  border-radius: 20px;
-  font-family: 'Libre Baskerville', sans-serif;
+  font-size: 0.65rem;
   font-weight: 700;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.signupbtn:hover {
-  background-color: #04392B;
-  transform: translateY(-1px);
 }
 
 .state {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 14px;
+  flex-shrink: 0;
 }
 
-.user-profile {
+.user-info {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.user-avatar-icon {
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-}
-
-.hi {
-  color: #064E3B;
-  font-size: 15px;
-  font-weight: 700;
-  margin: 0;
-}
-
-.logout-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background-color: #064E3B;
-  color: #F8E7C9;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-weight: 600;
-  font-family: "Libre Baskerville",serif;
-  font-size: 15px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.logout-btn:hover {
-  background-color: rgba(6, 78, 59, 0.08);
-  
-}
-
-.logout-icon {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-}
-.dashboard-container {
-  position: relative;
-  min-height: 100vh;
-  background-color: #fbeee0;
-}
-
-.top-navbar {
-  display: flex;
-  align-items: center;
-  padding: 1rem 1.5rem;
-  background-color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.menu-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
+.avatar {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 6px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #FBEFD9;
+  color: #b08d57;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.user-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.user-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.user-role {
+  font-size: 0.7rem;
+  color: #8c857b;
+}
+
+.logout-btn {
+  padding: 8px 18px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #064E3B;
+  background-color: #ffffff;
+  border: 1px solid rgba(6, 78, 59, 0.3);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.logout-btn:hover {
+  background-color: #064E3B;
+  color: #F8E7C9;
+}
+
+.login {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.loginbtn {
+  padding: 8px 20px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #064E3B;
+  background: transparent;
+  border: 1.5px solid #064E3B;
+  border-radius: 20px;
+  cursor: pointer;
   transition: background-color 0.2s;
 }
 
-.menu-btn:hover {
-  background-color: rgba(10, 67, 50, 0.1);
+.loginbtn:hover {
+  background-color: rgba(6, 78, 59, 0.06);
 }
 
-.dashboard-title {
-  margin-left: 1rem;
-  font-size: 1.25rem;
-  color: #0a4332;
-}
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: -260px; 
-  width: 260px;
-  height: 100vh;
-  background-color: #fefbf0;
-  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
-  transition: left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 1100;
-  display: flex;
-  flex-direction: column;
-}
-
-.sidebar.open {
-  left: 0;
-}
-
-.sidebar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.0rem;
-  border-bottom: 1px solid rgb(158, 158, 158);
-}
-
-.close-btn {
-  background: none;
+.signupbtn {
+  padding: 9px 20px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #F8E7C9;
+  background-color: #064E3B;
   border: none;
-  color: #000000;
-  font-size: 1.2rem;
+  border-radius: 20px;
   cursor: pointer;
-  transition: all 0.2s ease;
-}
-.close-btn:hover{
-transform: rotate(273deg) ;
+  transition: background-color 0.2s;
 }
 
-.sidebar-menu {
-  list-style: none;
-  padding: 1rem 0;
-  margin: 0;
-}
-.sidebar-menu li a {
-  display: block;
-  padding: 0.85rem 1.5rem;
-  color: #000000 ;
-  text-decoration: none;
-  font-weight: 500;
-  transition: background 0.2s, padding-left 0.2s;
-}
-
-.sidebar-menu li a:hover {
-  background-color: rgba(251, 238, 224, 0.12);
-  padding-left: 1.8rem;
-}
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.4);
-  z-index: 1050;
-}
-body {
-  margin: 0;
-  padding-top: 60px; 
-  background-color: var(--bg-light);
-  font-family: 'Libre Baskerville',  sans-serif;
-  color: var(--text-dark);
-}
-
-.admin-top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fffdf7;
-  padding: 8px 36px; 
-  border-bottom: 2px solid rgba(6, 78, 59, 0.15);
-  
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  box-sizing: border-box;
-  z-index: 1000;
-  font-family: 'Libre Baskerville', sans-serif;
-}
-
-.admin-menu-btn {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    margin: 0.6rem;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-
-
-.admin-login {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.admin-profile {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.admin-avatar-icon {
-    width: 24px;
-    height: 24px;
-}
-
-.admin-top-bar .hi {
-    font-size: 15px;
-    font-weight: 600;
-    color: #064E3B;
-    margin: 0;
-}
-
-.logout-admin-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background-color: transparent;
-    border: 1px solid #064E3B;
-    color: #064E3B;
-    padding: 8px 14px;
-    border-radius: 8px;
-    font-family: "Libre Baskerville",serif;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-
-.logout-admin-btn:hover  {
-    background-color: rgba(6, 78, 59, 0.08);
-    transform: translateY(-2px);
-}
-
-.logout-admin-icon {
-    width: 18px;
-    height: 18px;
-}
-.nav-link {
-  position: relative;
+.signupbtn:hover {
+  background-color: #04392B;
 }
 
 @media (max-width: 900px) {
-  .nav-link span:not(.nbr-items) {
-    display: none;
+  .navbar {
+    flex-wrap: wrap;
+    row-gap: 10px;
   }
 
-  .nav-link {
-    padding: 8px 10px;
+  .nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: flex-start;
   }
-
-  
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .navbar {
-    padding: 8px 14px;
+    padding: 10px 16px;
   }
 
-  .hi {
+  .nav-link span,
+  .brand-name {
+    font-size: 0.85rem;
+  }
+
+  .user-text {
     display: none;
-  }
-
-  .logout-btn span {
-    display: none;
-  }
-
-  .loginbtn,
-  .signupbtn {
-    padding: 7px 12px;
-    font-size: 15px;
   }
 }

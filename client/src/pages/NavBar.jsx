@@ -1,151 +1,95 @@
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, NavLink } from "react-router-dom";
 import "../styles/NavBar.css";
-import { useState} from "react";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/ProductContext";
-import homeIcon from "../assets/home.png"
-import shopIcon from "../assets/shop.png"
-import aboutIcon from "../assets/about.png"
-import cartIcon from "../assets/cart.png"
-import ordersIcon from "../assets/orders.png"
-import userIcon from "../assets/user.png"
-import logoutIcon from "../assets/logout.png"
-import dashboard from "../assets/Dashboard.png"
+
+function Brand() {
+  return (
+    <Link to="/" className="brand">
+      <svg className="brand-mark" viewBox="0 0 40 40" width="34" height="34">
+        <rect x="8" y="8" width="24" height="24" rx="5" transform="rotate(45 20 20)" fill="none" stroke="#064E3B" strokeWidth="1.5" />
+        <text x="20" y="25" textAnchor="middle" fontFamily="'Libre Baskerville', serif" fontSize="14" fontWeight="700" fill="#064E3B">V</text>
+      </svg>
+      <span className="brand-name">Velora</span>
+    </Link>
+  );
+}
+
+function UserBadge({ name, role, onLogout }) {
+  const initials = name ? name.trim().split(/\s+/).map(w => w[0]).slice(0, 2).join("").toUpperCase() : "?";
+  return (
+    <div className="state">
+      <div className="user-info">
+        <div className="avatar">{initials}</div>
+        <div className="user-text">
+          <span className="user-name">{name}</span>
+          <span className="user-role">{role}</span>
+        </div>
+      </div>
+      <button className="logout-btn" onClick={onLogout}>Log out</button>
+    </div>
+  );
+}
 
 function NavBar() {
   const navigate = useNavigate();
   const { isuser, logout, user, isAdmin } = useAuth();
-  const [isOpen, setIsOpen] = useState(false);
-  const {cart} = useCart();
+  const { cart } = useCart();
 
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
+  const totalItems = cart.reduce((total, item) => total + (item.quantity || 0), 0);
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
   };
 
-  const getTotalItemsCount = () => {
-    return cart.reduce((total, item) => total + (item.quantity || 0), 0);    
-  };
+  const linkClass = ({ isActive }) => `nav-link${isActive ? " active" : ""}`;
 
-  if(isAdmin()) {
+  if (isAdmin()) {
     return (
-      <div>
-        <div className="admin-top-bar">
-          <Link className="admin-menu-btn" onClick={toggleSidebar}>
-            <img src={dashboard} alt="Dashboard" className="nav-icon" />
-          </Link>
+      <nav className="navbar">
+        <Brand />
 
-          <div className="admin-login">
-            <div className="admin-profile">
-              <img src={userIcon} alt="User" className="admin-avatar-icon" />
-              <h2 className="hi">Hi {user?.name}</h2>
-            </div>
-            <button 
-              className="logout-admin-btn" 
-              onClick={() => { logout(); navigate("/"); }}
-            >
-              <img src={logoutIcon} alt="Logout" className="logout-admin-icon" />
-              <span>Logout</span>
-            </button>
-          </div>
+        <div className="nav-links">
+          <NavLink to="/" end className={linkClass}>Products</NavLink>
+          <NavLink to="/products/create" className={linkClass}>Add product</NavLink>
+          <NavLink to="/dashboard/orders" className={linkClass}>Orders</NavLink>
+          <NavLink to="/dashboard/users" className={linkClass}>Users</NavLink>
+          <NavLink to="/dashboard/statistics" className={linkClass}>Statistics</NavLink>
         </div>
-        
-        {isOpen && <div className="overlay" onClick={toggleSidebar}></div>}
 
-        <aside className={`sidebar ${isOpen ? "open" : ""}`}>
-          <div className="sidebar-header">
-            <h3 className="Dashboard-admin">Admin Dashboard</h3>
-            <button className="close-btn" onClick={toggleSidebar}>✕</button>
-          </div>
-
-          <ul className="sidebar-menu">
-            <li><Link to='/' onClick={toggleSidebar}>Products</Link></li>
-            <li><Link to='/products/create' onClick={toggleSidebar}>Add new product</Link></li>
-            <li><Link to='/dashboard/orders' onClick={toggleSidebar}>Orders</Link></li>
-            <li><Link onClick={toggleSidebar}>Users</Link></li>
-            <li><Link onClick={toggleSidebar}>Statistics</Link></li>
-          </ul>
-        </aside>
-      </div>
+        <UserBadge name={user?.name} role="Admin" onLogout={handleLogout} />
+      </nav>
     );
   }
-      
+
   return (
-    <div>
-      <nav className="navbar">
-        <div className="links">        
-          <Link to="/" className="nav-link">
-            <img src={homeIcon} alt="Home" className="nav-icon" />
-            <span>Home</span>
-          </Link>
+    <nav className="navbar">
+      <Brand />
 
-          <Link to="/" className="nav-link">
-            <img src={cartIcon} alt="Shop" className="nav-icon" />
-            <span>Shop</span>
-          </Link>
-
-          <Link to="/about" className="nav-link">
-            <img src={aboutIcon} alt="About" className="nav-icon" />
-            <span>About Us</span>
-          </Link>
-
-          {isuser() && (
-            <Link to="/cart" className="nav-link">
-              <img src={shopIcon} alt="Cart" className="nav-icon" />
-              <span>My Cart</span>
-              {getTotalItemsCount() > 0 && <span className="nbr-items">{getTotalItemsCount()}</span>}
-            </Link>
-          )}
-          {isuser() && (
-            <Link to="/orders" className="nav-link">
-              <img src={ordersIcon} alt="Orders" className="nav-icon" />
-              <span>My Orders</span>
-            </Link>
-          )}
-        </div>
-
-        {!isuser() ? (
-          <div className="login">
-            <button className="loginbtn" onClick={() => navigate("/login")}>
-              Log In
-            </button>
-            <button className="signupbtn" onClick={() => navigate("/register")}>
-              Register
-            </button>
-          </div>
-        ) : (
-          <div className="state">
-            <div className="user-profile">
-              <img src={userIcon} alt="User" className="user-avatar-icon" />
-              <h2 className="hi">Hi {user?.name}</h2>
-            </div>
-            <button 
-              className="logout-btn" 
-              onClick={() => { logout(); navigate("/"); }}
-            >
-              <img src={logoutIcon} alt="Logout" className="logout-icon" />
-              <span>Logout</span>
-            </button>
-          </div>
+      <div className="nav-links">
+        <NavLink to="/" className={linkClass}>Collections</NavLink>
+        <NavLink to="/about" className={linkClass}>Our Story</NavLink>
+        {isuser() && (
+          <NavLink to="/cart" className={linkClass}>
+            Cart
+            {totalItems > 0 && <span className="nbr-items">{totalItems}</span>}
+          </NavLink>
         )}
-      </nav>
-      
-      {isOpen && <div className="overlay" onClick={toggleSidebar}></div>}
+        {isuser() && (
+          <NavLink to="/orders" className={linkClass}>Orders</NavLink>
+        )}
+      </div>
 
-      <aside className={`sidebar ${isOpen ? "open" : ""}`}>
-        <div className="sidebar-header">
-          <h3 className="admin-e-Commerce">E-Commerce Admin</h3>
-          <button className="close-btn" onClick={toggleSidebar}>✕</button>
+      {!isuser() ? (
+        <div className="login">
+          <button className="loginbtn" onClick={() => navigate("/login")}>Log In</button>
+          <button className="signupbtn" onClick={() => navigate("/register")}>Register</button>
         </div>
-
-        <ul className="sidebar-menu">
-          <li><Link to="/">Products</Link></li>
-          <li><Link to='/products/create'>Add new product</Link></li>
-          <li><Link>Orders</Link></li>
-          <li><Link>Users</Link></li>
-          <li><Link>Statistics</Link></li>
-        </ul>
-      </aside>
-    </div>    
+      ) : (
+        <UserBadge name={user?.name} role="Member" onLogout={handleLogout} />
+      )}
+    </nav>
   );
 }
 

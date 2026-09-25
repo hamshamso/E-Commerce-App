@@ -125,8 +125,9 @@
 
 .btn {
   flex: 1;
-  background-color: var(--primary-color);
-  color: var(--bg-cream);
+  background-color:#064E3B;
+  color: #ffffff;
+  font-family: "Libre Baskerville",serif;
   border: none;
   padding: 12px;
   border-radius: 8px;
@@ -152,22 +153,21 @@
 }
 
 .btn-link {
-  text-decoration: none;
   flex: 1;
-  display: flex;
-  background-color: #064E3B;
+  background-color:#064E3B;
+  color: #ffffff;
+  font-family: "Libre Baskerville",serif;
   border: none;
-  border-radius: 8px;
-  color: #F8E7C9;
-  font-size: 0.95rem;
   padding: 12px;
-  justify-content: center;
-  align-items: center;
-  transition: background-color 0.2s, transform 0.2s ease-in-out;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s, opacity 0.2s, transform 0.2s ease-in-out;
+  text-align: center;
 }
 
 .btn-link:hover {
-  background-color: #053b2d;
+  background-color: rgb(12, 54, 44);
   transform: translateY(-2px);
-  color: #F8E7C9;
 }
