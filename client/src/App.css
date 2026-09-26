@@ -17,6 +17,7 @@
 .app-main {
   flex: 1 0 auto;
   padding-top: 60px;
+  padding-bottom: 10rem;
 }
 
 .about-footer {
