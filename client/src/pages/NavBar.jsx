@@ -6,9 +6,21 @@ import { useCart } from "../context/ProductContext";
 function Brand() {
   return (
     <Link to="/" className="brand">
-      <svg className="brand-mark" viewBox="0 0 40 40" width="34" height="34">
-        <rect x="8" y="8" width="24" height="24" rx="5" transform="rotate(45 20 20)" fill="none" stroke="#064E3B" strokeWidth="1.5" />
-        <text x="20" y="25" textAnchor="middle" fontFamily="'Libre Baskerville', serif" fontSize="14" fontWeight="700" fill="#064E3B">V</text>
+      <svg className="brand-mark" viewBox="0 0 200 200">
+        <defs>
+          <linearGradient id="bgShade" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#0a5c46" />
+            <stop offset="100%" stopColor="#043829" />
+          </linearGradient>
+        </defs>
+
+        <rect x="0" y="0" width="200" height="200" rx="44" fill="url(#bgShade)" />
+
+        <g transform="translate(20,18)">
+          <path d="M60,38 Q22,96 80,158 Q58,96 60,38 Z" fill="#F8E7C9" opacity="0.92" />
+          <path d="M100,38 Q138,96 80,158 Q102,96 100,38 Z" fill="#F8E7C9" />
+          <circle cx="80" cy="36" r="7" fill="#0a3d2e" />
+        </g>
       </svg>
       <span className="brand-name">Velora</span>
     </Link>

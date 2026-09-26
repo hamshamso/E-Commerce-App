@@ -19,6 +19,7 @@
 .brand {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   text-decoration: none;
   flex-shrink: 0;
@@ -202,4 +203,7 @@
   .user-text {
     display: none;
   }
+}
+.brand-mark{
+  width: 28px;
 }
