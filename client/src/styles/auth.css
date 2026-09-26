@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 6px;
   width: min(100% - 32px, 440px);
-  margin: 8rem auto;
+  margin: 3rem auto;
   padding: clamp(20px, 5vw, 36px);
   box-sizing: border-box;
   background-color: #fffffd;

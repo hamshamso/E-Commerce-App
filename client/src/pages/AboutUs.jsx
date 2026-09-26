@@ -9,7 +9,7 @@ export function AboutUs() {
         </svg>
 
         <p className="eyebrow eyebrow-light">Our Story, Thoughtfully Told</p>
-        <h1>About <span className="brand">Velora</span></h1>
+        <h1 className="about-title">About&nbsp;<span className="about-brand">Velora</span></h1>
         <p className="hero-sub">
           Curating beautiful things for considered living, one lasting piece at a time.
         </p>

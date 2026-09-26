@@ -5,43 +5,30 @@
   background-color: #389161;
   color: white;
 }
-.page-wrapper, 
-.orders-container {
-    display: flex;
-    flex-direction: column;
-    min-height: calc(100vh - 70px); 
-    box-sizing: border-box;
+.app-main {
+  flex: 1 0 auto;
 }
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-main {
+  flex: 1 0 auto;
+  padding-top: 60px;
+}
+
 .about-footer {
-    margin-top: auto; 
-    width: 100%;
-    padding: 32px 24px;
-    text-align: center;
-    border-top: 1px solid rgba(6, 78, 59, 0.1);
-    background-color: #fffbf1;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 3rem;
-    border-top: 1px solid #e0e0e0;
-}
-
-.footer-brand {
-    margin: 0 0 4px;
-    font-size: 1rem;
-    font-weight: 700;
-    color: #064E3B;
-}
-
-.footer-tagline {
-    margin: 0 0 6px;
-    font-size: 0.8rem;
-    color: #7a715f;
-}
-
-.footer-copy {
-    margin: 0;
-    font-size: 0.75rem;
-    color: #a39a84;
+  flex-shrink: 0;
+  width: 100%;
+  padding: 22px 24px;
+  text-align: center;
+  border-top: 1px solid rgba(6, 78, 59, 0.1);
+  background-color: #fffbf1;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #584f35;
 }

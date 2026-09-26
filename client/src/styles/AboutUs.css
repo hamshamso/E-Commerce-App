@@ -25,10 +25,11 @@
   background-color: #F8E7C9;
   border-radius: 2px;
 }
-
+.about-title{
+  flex-wrap: nowrap;
+}
 .about-hero {
   position: relative;
-  margin-top: 4.5rem;
   overflow: hidden;
   padding: 72px 24px 64px;
   text-align: center;
@@ -49,12 +50,14 @@
 
 .about-hero h1 {
   position: relative;
-  margin: 0;
+  display: relative;
+  margin: 0px;
   font-size: clamp(2rem, 6vw, 3rem);
   font-weight: 700;
+  white-space: nowrap;
 }
 
-.about-hero .brand {
+.about-hero .about-brand {
   color: #F8E7C9;
   animation: pulse 2.5s ease-in-out infinite;
 }
