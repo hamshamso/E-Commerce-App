@@ -1,142 +1,242 @@
-.mgnt-container {
-    padding: 24px;
-    max-width: 1200px;
-    margin: 0 auto;
+.odt-page {
+  min-height: calc(100vh - 60px);
+  padding: 40px 20px;
+  box-sizing: border-box;
+  background-color: #fffdf7;
+  font-family: "Libre Baskerville", serif;
 }
 
-.header-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
-}
-.mgnt-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color:  #1f1f1f;
+.odt-container {
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.mgnt-table-wrapper {
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
+.odt-back {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #064E3B;
+  text-decoration: none;
 }
 
-.mgnt-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
+.odt-back:hover {
+  text-decoration: underline;
 }
 
-.mgnt-titles td {
-    background-color: #f8f9fa;
-    padding: 14px 16px;
-    font-weight: 600;
-    color:  #444444;
-    border-bottom: 1px solid #e9ecef;
-    font-size: 0.88rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+.odt-card {
+  position: relative;
+  padding: 32px;
+  background-color: #ffffff;
+  border: 1px solid rgba(6, 78, 59, 0.15);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(6, 78, 59, 0.06);
 }
 
-.mgnt-single-order {
-    border-bottom: 1px solid #f1f3f5;
-    transition: background-color 0.2s ease;
+.odt-status {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
-.mgnt-single-order:hover {
-    background-color: #fdfdfd;
+.odt-status-pending {
+  background-color: #fef3c7;
+  color: #92400e;
 }
 
-.mgnt-single-order td {
-    padding: 16px;
-    vertical-align: middle;
+.odt-status-confirmed {
+  background-color: #d1fae5;
+  color: #065f46;
 }
 
-/* Text Elements inside Table */
-.mgnt-order-name {
-    font-weight: 600;
-    color: #2c2825;
+.odt-status-shipped {
+  background-color: #dbeafe;
+  color: #1d4ed8;
 }
 
-.mgnt-order-adress, 
-.mgnt-order-total, 
-.mgnt-order-phone {
-    color: #495057;
-    font-size: 0.95rem;
+.odt-status-cancelled {
+  background-color: #fee2e2;
+  color: #991b1b;
 }
 
-/* Back Link & Buttons */
-.mgnt-order-view {
-    color: #007bff;
-    font-weight: 500;
-    text-decoration: none;
+.odt-title {
+  margin: 0 0 24px;
+  font-size: clamp(1.3rem, 4vw, 1.6rem);
+  color: #1a1a1a;
 }
 
-.mgnt-order-view:hover {
-    text-decoration: underline;
+.odt-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid rgba(6, 78, 59, 0.1);
+  border-radius: 14px;
 }
 
-.mgnt-single-order button {
-    background-color: #dc3545;
-    color: #fff;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s;
+.odt-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 560px;
 }
 
-.mgnt-single-order button:hover {
-    background-color: #c82333;
+.odt-head-row {
+  background-color: #f3f1ea;
 }
 
-/* Status Badges */
-.status-mgnt-pending {
-    background-color: #fff3cd;
-    color: #856404;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: capitalize;
+.odt-head-row th {
+  padding: 14px 18px;
+  text-align: left;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5c5346;
+  white-space: nowrap;
 }
 
-.status-mgnt-confirmed {
-    background-color: #cce5ff;
-    color: #004085;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: capitalize;
+.odt-row {
+  border-top: 1px solid rgba(6, 78, 59, 0.08);
+  transition: background-color 0.2s;
 }
 
-.status-mgnt-shipped {
-    background-color: #d4edda;
-    color: #155724;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: capitalize;
+.odt-row:hover {
+  background-color: #faf8f2;
 }
 
-.status-mgnt-cancelled {
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: capitalize;
+.odt-row td {
+  padding: 14px 18px;
+  vertical-align: middle;
 }
 
-/* Empty State */
-.No-orders {
-    color: #6c757d;
-    font-style: italic;
+.odt-img {
+  width: 52px;
+  height: 52px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid rgba(6, 78, 59, 0.1);
+}
+
+.odt-name {
+  margin: 0;
+  font-weight: 600;
+  color: #1a1a1a;
+  font-size: 0.9rem;
+}
+
+.odt-category {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #8c857b;
+  text-transform: capitalize;
+}
+
+.odt-price {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: #064E3B;
+}
+
+.odt-qty {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #4a453d;
+}
+
+.odt-empty {
+  text-align: center;
+  padding: 24px;
+  color: #8c857b;
+}
+
+.odt-summary {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px dashed rgba(6, 78, 59, 0.2);
+  font-size: 0.9rem;
+  color: #4a453d;
+}
+
+.odt-summary strong {
+  color: #1a1a1a;
+}
+
+.odt-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.odt-confirm-btn,
+.odt-cancel-btn {
+  flex: 1;
+  padding: 12px;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.odt-confirm-btn {
+  color: #F8E7C9;
+  background-color: #064E3B;
+  border: none;
+}
+
+.odt-confirm-btn:hover {
+  background-color: #04392B;
+  transform: translateY(-1px);
+}
+
+.odt-cancel-btn {
+  color: #991b1b;
+  background-color: #ffffff;
+  border: 1px solid #fca5a5;
+}
+
+.odt-cancel-btn:hover {
+  background-color: #fee2e2;
+  transform: translateY(-1px);
+}
+
+.loading,
+.error {
+  text-align: center;
+  margin-top: 80px;
+  font-family: "Libre Baskerville", serif;
+  color: #064E3B;
+}
+
+.error {
+  color: #991b1b;
+}
+
+@media (max-width: 600px) {
+  .odt-page {
+    padding: 24px 14px;
+  }
+
+  .odt-card {
+    padding: 22px 18px;
+  }
+
+  .odt-status {
+    top: 18px;
+    right: 18px;
+  }
+
+  .odt-title {
+    padding-right: 90px;
+  }
 }

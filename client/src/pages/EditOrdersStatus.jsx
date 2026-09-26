@@ -1,16 +1,16 @@
-import { useState, useEffect } from "react"; 
+import { useState, useEffect } from "react";
 import { getOrderById } from "../services/api";
-import { useParams, Link, useNavigate} from "react-router-dom";
-import {confirmOrder,canselOrder} from '../services/api.js'
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { confirmOrder, canselOrder } from "../services/api.js";
 import "../styles/ordersDetails.css";
 
 export function EditOrdersStatus() {
     const [order, setOrder] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
-    const navigate = useNavigate()
-    const [edit, setEdit] = useState(false)
-    const [status,setStatus] = useState("")
+    const navigate = useNavigate();
+    const [edit, setEdit] = useState(false);
+    const [status, setStatus] = useState("");
     const { id } = useParams();
 
     useEffect(() => {
@@ -19,8 +19,8 @@ export function EditOrdersStatus() {
                 setLoading(true);
                 setError(false);
                 const token = localStorage.getItem("token");
-                const data= await getOrderById(token, id)
-                setOrder(data.data)
+                const data = await getOrderById(token, id);
+                setOrder(data.data);
             } catch (err) {
                 setError(true);
                 console.error("Failed to fetch order details:", err);
@@ -31,105 +31,124 @@ export function EditOrdersStatus() {
 
         if (id) fetchMyOrder();
     }, [id]);
-    const handelConfirmation = async(e,id,o) => {
-        e.preventDefault()
-        const token = localStorage.getItem("token")
+
+    useEffect(() => {
+        if (edit) navigate("/dashboard/orders");
+    }, [edit, navigate]);
+
+    const handelConfirmation = async (e, orderId, o) => {
+        e.preventDefault();
+        const token = localStorage.getItem("token");
         try {
-            await confirmOrder(token,id)
-            setStatus(o.status)
-            setEdit(true)
-            //navigate('//dashboard/orders')
+            await confirmOrder(token, orderId);
+            setStatus(o.status);
+            setEdit(true);
         } catch (error) {
-            console.error(error)
-            setError(true)
+            console.error(error);
+            setError(true);
         }
-    }
-    const handelCanselation = async(e,id,o) => {
-        const token = localStorage.getItem("token")
+    };
+
+    const handelCanselation = async (e, orderId, o) => {
+        e.preventDefault();
+        const token = localStorage.getItem("token");
         try {
-            await canselOrder(token,id)
-            setStatus(o.status)
-            setEdit(true)
+            await canselOrder(token, orderId);
+            setStatus(o.status);
+            setEdit(true);
         } catch (error) {
-            console.error(error)
-            setError(true)
+            console.error(error);
+            setError(true);
         }
-    }
+    };
+
     if (loading) return <h1 className="loading">Loading order items...</h1>;
     if (error || !order) return <h1 className="error">Error loading order items!</h1>;
-    if(edit) return <h1>Order status is now : {status}  {navigate("/dashboard/orders")} </h1>
-    //if (order.empty) return <h1>This order is empty</h1>
-    return (
-        <div className="page-wrapper">
-            <div className="orders-container">
-                <div className="header-section">
-                    <Link to="/orders" className="back-btn">← Back to Orders</Link>
-                    <div className="order-meta">
-                        <h1>Order items</h1>
-                        <span className={`status status-${order.status}`}>
-                            {order.status}
-                        </span>
-                    </div>
-                </div>
+    if (edit) return <h1>Order status is now: {status}</h1>;
 
-                <div className="items">
-                    <table>
-                        <thead>
-                            <tr className="head">
-                                <th>Product image</th>
-                                <th>Name</th>
-                                <th>Category</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {order.items && order.items.length > 0 ? (
-                                order.items.map((item) => {
-                                    const itemId = item._id || item.id || item.product?._id;
-                                    return (
-                                        <tr key={itemId} className="card">
-                                            <td>
-                                                <img 
-                                                    src={item.product?.image || item.image} 
-                                                    className="table-img"
-                                                />
-                                            </td>
-                                            <td>
-                                                <p className="name-text">{item.name}</p>
-                                            </td>
-                                            <td>
-                                                <p className="category-text">{item.product?.category || "N/A"}</p>
-                                            </td>
-                                            <td>
-                                                <p className="price-text">💰 {item.price.toLocaleString()} DZD</p>
-                                            </td>
-                                            <td>
-                                                <p className="quantity-text">x{item.quantity}</p>
-                                            </td>
-                                        </tr>
-                                    );
-                                })
-                            ) : (
-                                <tr>
-                                    <td colSpan="6" style={{ textAlign: "center" }}>
-                                        No items found in this order.
-                                    </td>
+    return (
+        <div className="odt-page">
+            <div className="odt-container">
+                <Link to="/orders" className="odt-back">← Back to Orders</Link>
+
+                <div className="odt-card">
+                    <span className={`odt-status odt-status-${order.status}`}>
+                        {order.status}
+                    </span>
+
+                    <h1 className="odt-title">Order items</h1>
+
+                    <div className="odt-table-wrapper">
+                        <table className="odt-table">
+                            <thead>
+                                <tr className="odt-head-row">
+                                    <th>Product image</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
                                 </tr>
-                            )}
-                        </tbody>
-                    </table>
-                    <div className="name-total">
-                            <span>Client name: {order.user.name}</span >
-                            <br />
-                            <span>Total : {order.total}</span>
+                            </thead>
+                            <tbody>
+                                {order.items && order.items.length > 0 ? (
+                                    order.items.map((item) => {
+                                        const itemId = item._id || item.id || item.product?._id;
+                                        return (
+                                            <tr key={itemId} className="odt-row">
+                                                <td>
+                                                    <img
+                                                        src={item.product?.image || item.image}
+                                                        className="odt-img"
+                                                        alt={item.name}
+                                                    />
+                                                </td>
+                                                <td>
+                                                    <p className="odt-name">{item.name}</p>
+                                                </td>
+                                                <td>
+                                                    <p className="odt-category">{item.product?.category || "N/A"}</p>
+                                                </td>
+                                                <td>
+                                                    <p className="odt-price">{item.price.toLocaleString()} DZD</p>
+                                                </td>
+                                                <td>
+                                                    <p className="odt-qty">x{item.quantity}</p>
+                                                </td>
+                                            </tr>
+                                        );
+                                    })
+                                ) : (
+                                    <tr>
+                                        <td colSpan="5" className="odt-empty">
+                                            No items found in this order.
+                                        </td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div className="odt-summary">
+                        <span>Client: <strong>{order.user.name}</strong></span>
+                        <span>Total: <strong>{order.total.toLocaleString()} DZD</strong></span>
+                    </div>
+
+                    {(order.status === "pending" || order.status === "confirmed") && (
+                        <div className="odt-actions">
+                            <button
+                                className="odt-confirm-btn"
+                                onClick={(e) => handelConfirmation(e, order._id, order)}
+                            >
+                                Confirm ✓
+                            </button>
+                            <button
+                                className="odt-cancel-btn"
+                                onClick={(e) => handelCanselation(e, order._id, order)}
+                            >
+                                Cancel ✕
+                            </button>
                         </div>
-                        {(order.status === "pending" || order.status === "confirmed") && (
-                            <div className="hundel-order-pending" >
-                                <button onClick={(e)=>handelConfirmation(e,order._id,order)}>Confirm ✓</button>
-                                <button onClick={(e)=>handelCanselation(e,order._id,order)}>Cansel ✕</button>
-                            </div>) 
-                        }
+                    )}
                 </div>
             </div>
         </div>
