@@ -13,16 +13,22 @@ const getActiveUsersLastMonth = async (req,res) => {
         $lte: endOfLastMonth
       }
     });
+    const nbOfUsers = await User.countDocuments()
+    const nbNewUsers = await User.countDocuments({
+        createdAt:{
+            $gte:startOfLastMonth,
+            $lte: endOfLastMonth
+        }
+    });
 
-    console.log(`Active users last month ${activeUsersCount}`);
     return res.status(200).json({
             success: true,
-            msg: "Acitveusers",
-            data: activeUsersCount,})
+            msg: "Acitveusers and number of all users and new users",
+            data: activeUsersCount, nbOfUsers, nbNewUsers})
   } catch (error) {
     console.error("Failed to load active users", error);
     return res.status(400).json({success: false, msg: "Something went wrong" })
   }
 };
 
-export { getActiveUsersLastMonth }
+export { getActiveUsersLastMonth}
