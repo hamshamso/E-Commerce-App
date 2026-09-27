@@ -5,7 +5,7 @@ import connectDB from "./config/db.js";
 import authRoute from './routes/authRoute.js';
 import productRouter from './routes/productRoute.js'
 import orderRouter from './routes/orderRoute.js'
-
+import statisicsRouter from './routes/statisticsRoute.js'
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -17,8 +17,9 @@ app.use(cors({
 
 app.use(express.json());
 app.use('/api/auth', authRoute);
-app.use('/api',productRouter);  //then in productRouter use ('/products') and ('/products/:id')
+app.use('/api',productRouter);
 app.use('/api',orderRouter);
+app.use('/api',statisicsRouter)
 app.use((err, req, res, next) => {
     const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
     res.status(statusCode).json({
