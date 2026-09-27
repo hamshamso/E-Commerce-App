@@ -21,15 +21,15 @@ const registeruser = async(req,res) => {
         },process.env.JWT_SECRET,
         {expiresIn:"30d"}
         )
-        res.status(201).json({success:true,msg:"User created successfully", data:{name,email},token})
+        return res.status(201).json({success:true,msg:"User created successfully", data:{name,email},token})
     } catch (error) {
         console.error(error)
-        res.status(400).json({success:false, msg:"Somthing went wrong"})
+        return res.status(400).json({success:false, msg:"Somthing went wrong"})
     }
 }
     const loginuser = async(req,res) => {
     try{
-        const {email,password} = req.body  || {}
+        const {email,password} = req.body  ||  {}
         const user = await User.findOne({email})
 
         if(user && (await bcrypt.compare(password,user.password))){
@@ -38,16 +38,42 @@ const registeruser = async(req,res) => {
             process.env.JWT_SECRET,
             {expiresIn: "30d"}
         )
+        user.lastLogin = new Date();
+        await user.save();
         return res.status(200).json({
             success: true,
             msg: "Logged in successfully",
             data: { name: user.name, email: user.email ,role: user.role},
             token})
         }
-        res.status(401).json({success:false, msg:"Password or Email inccorect"})
+        return res.status(401).json({success:false, msg:"Password or Email inccorect"})
     }catch(err){
         console.error(err)
-        res.status(400).json({success: false, msg: "Something went wrong" })
+        return res.status(400).json({success: false, msg: "Something went wrong" })
     }
 }
-export default {registeruser, loginuser}
+const getActiveUsersLastMonth = async (req,res) => {
+  const now = new Date();//new Date(2026, 8, 27, 16, 30, 0) = 2026/8/27 16:30:00
+  //                                                   Get te last month | Is the first day
+  const startOfLastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1)//Date of first day in last month 
+  const endOfLastMonth = new Date(now.getFullYear(), now.getMonth(), 0, 23, 59, 59)//Day of end of last month
+
+  try {
+    const activeUsersCount = await User.countDocuments({
+      lastLogin: {
+        $gte: startOfLastMonth,
+        $lte: endOfLastMonth
+      }
+    });
+
+    console.log(`Active users last month ${activeUsersCount}`);
+    return res.status(200).json({
+            success: true,
+            msg: "Acitveusers",
+            data: activeUsersCount,})
+  } catch (error) {
+    console.error("Failed to load active users", error);
+    return res.status(400).json({success: false, msg: "Something went wrong" })
+  }
+};
+export {registeruser, loginuser,getActiveUsersLastMonth}
