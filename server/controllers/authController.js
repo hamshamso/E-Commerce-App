@@ -21,6 +21,8 @@ const registeruser = async(req,res) => {
         },process.env.JWT_SECRET,
         {expiresIn:"30d"}
         )
+        user.lastLogin = new Date();
+        await user.save();
         return res.status(201).json({success:true,msg:"User created successfully", data:{name,email},token})
     } catch (error) {
         console.error(error)
