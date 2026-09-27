@@ -224,11 +224,45 @@ export const hideOrder =async(token,id) => {
         method:"PUT",
         headers:{"Content-type":"application/json",
                  "Authorization":`Bearer ${token}`}
-        }
+                }
     )
     const data = await res.json();
     if(!res.ok){
         throw new Error(data.msg || "Failed to hide order")
+    }
+    return data
+    }catch(err){
+        console.error(err)
+    }
+}
+export const getUsersStatistics = async (token) => {
+    try{
+    const res = await fetch(`${API_BASE}/dashboard/users/statistics`,{
+        method:"GET",
+        headers:{"Content-type":"application/json",
+                 "Authorization":`Bearer ${token}`
+                }
+    })
+    const data = await res.json();
+    if(!res.ok){
+        throw new Error(data.msg || "Failed to get statistics")
+    }
+    return data
+    }catch(err){
+        console.error(err)
+    }
+}
+export const getAllUsers = async (token) => {
+    try{
+    const res = await fetch(`${API_BASE}/dashboard/users`,{
+        method:"GET",
+        headers:{"Content-type":"application/json",
+                 "Authorization":`Bearer ${token}`
+                }
+    })
+    const data = await res.json();
+    if(!res.ok){
+        throw new Error(data.msg || "Failed to get all users")
     }
     return data
     }catch(err){
