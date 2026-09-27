@@ -1,0 +1,217 @@
+.usr-page {
+  min-height: calc(100vh - 60px);
+  padding: 32px 20px;
+  box-sizing: border-box;
+  background-color: #fffdf7;
+  font-family: "Libre Baskerville", serif;
+}
+
+.usr-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.usr-search-section {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  padding: 24px;
+  margin-bottom: 32px;
+  background-color: #fffffc;
+  border: 1px solid rgba(6, 78, 59, 0.15);
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.usr-filter-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.usr-filter-label {
+  position: absolute;
+  top: -9px;
+  left: 14px;
+  padding: 0 6px;
+  background-color: #fffffc;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #222222;
+  letter-spacing: 0.3px;
+}
+
+.usr-filter-input,
+.usr-filter-select {
+  width: 100%;
+  box-sizing: border-box;
+  height: 3.1rem;
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: 0.88rem;
+  color: #333333;
+  background-color: #ffffff;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.usr-filter-input:hover,
+.usr-filter-select:hover {
+  border-color: #1a1a1a;
+}
+
+.usr-filter-input:focus,
+.usr-filter-select:focus {
+  border-color: #383838;
+  box-shadow: 0 0 0 2px rgba(17, 17, 17, 0.05);
+}
+
+.usr-title {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 20px;
+  letter-spacing: 1px;
+}
+
+.usr-table-wrapper {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e6dec9;
+  overflow: hidden;
+  overflow-x: auto;
+}
+
+.usr-table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+  text-align: left;
+  background-color: #fffffc;
+}
+
+.usr-head-row {
+  background-color: #e7e7e6;
+  border-bottom: 2px solid #bebfc0;
+}
+
+.usr-head-row th {
+  padding: 16px 24px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #5c5346;
+  white-space: nowrap;
+}
+
+.usr-row {
+  border-bottom: 1px solid #bbbbbb;
+  transition: background-color 0.2s ease;
+}
+
+.usr-row:last-child {
+  border-bottom: none;
+}
+
+.usr-row:hover {
+  background-color: #f1f1ef;
+}
+
+.usr-row td {
+  padding: 18px 24px;
+  vertical-align: middle;
+}
+
+.usr-name {
+  margin: 0;
+  font-weight: 600;
+  color: #1a1a1a;
+  font-size: 0.9rem;
+}
+
+.usr-email,
+.usr-phone {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #666058;
+}
+
+.usr-date {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #8c857b;
+}
+
+.usr-role {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.usr-role-admin {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.usr-role-user {
+  background-color: #e1f5fe;
+  color: #0277bd;
+}
+
+.usr-empty {
+  text-align: center;
+  padding: 40px;
+  color: #8c857b;
+}
+
+.usr-add-btn {
+  display: block;
+  width: 100%;
+  margin-top: 24px;
+  padding: 14px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #1a1a1a;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.usr-add-btn:hover {
+  background-color: #000000;
+}
+
+.usr-loading,
+.usr-error {
+  text-align: center;
+  margin-top: 80px;
+  font-family: "Libre Baskerville", serif;
+  color: #064E3B;
+}
+
+.usr-error {
+  color: #991b1b;
+}
+
+@media (max-width: 700px) {
+  .usr-search-section {
+    grid-template-columns: 1fr;
+  }
+
+  .usr-head-row th,
+  .usr-row td {
+    padding: 12px 14px;
+  }
+}

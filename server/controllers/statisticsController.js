@@ -3,6 +3,7 @@ import User from "../models/User.js";
 const getAllUsers = async(req,res) => {
   try {
   const allUsers = await User.find({},{name:1, email:1, phone:1, role:1, createdAt:1, lastLogin:1})
+  
     if(allUsers.length != 0){
       return res.status(200).json({success:true,allUsers, msg:"Succefully getall users"})
     }

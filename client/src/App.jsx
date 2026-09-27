@@ -14,7 +14,7 @@ import {OrderManegment} from './pages/OrdersManegment';
 import { EditOrdersStatus } from './pages/EditOrdersStatus';
 import {AdminRoute} from './context/AdminRoute'
 import { AboutUs } from './pages/AboutUs';
-
+import { Users } from './pages/users';
 function App() {
   return (
     <>
@@ -62,6 +62,14 @@ function App() {
         element={
           <AdminRoute>
             <EditOrdersStatus />
+          </AdminRoute>
+        }
+      />
+      <Route
+        path="/dashboard/users"
+        element={
+          <AdminRoute>
+            <Users />
           </AdminRoute>
         }
       />
