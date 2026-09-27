@@ -5,7 +5,37 @@
     border: 1px solid #d2d2d2;
     border-radius: 2rem;
 }
+.empty {
+  width: 100%;
+  padding: 20px 14px;
+  text-align: center;
+  background-color: #ffffff;
+}
 
+.empty h1 {
+  margin: 0 0 8px;
+  font-size: 1.4rem;
+  color: #2c2825;
+}
+
+.empty h2 {
+  margin: 0 0 32px;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #6c757d;
+}
+
+.shop-btn {
+  margin: 0 auto;
+  padding: 12px 28px;
+  width: fit-content;
+}
+
+.shop-btn img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
 .cart-mgnt-title {
     font-size: 1.5rem;
     font-weight: 700;

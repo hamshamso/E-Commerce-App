@@ -81,7 +81,7 @@ function NavBar() {
 
       <div className="nav-links">
         <NavLink to="/" className={linkClass}>Collections</NavLink>
-        <NavLink to="/about" className={linkClass}>Our Story</NavLink>
+        <NavLink to="/ourstory" className={linkClass}>Our Story</NavLink>
         {isuser() && (
           <NavLink to="/cart" className={linkClass}>
             Cart

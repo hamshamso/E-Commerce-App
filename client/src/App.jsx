@@ -30,7 +30,7 @@ function App() {
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/orders" element={<Orders />} />
       <Route path="/orders/:id" element={<OrderDetails />} />
-      <Route path="/about" element={<AboutUs />} />
+      <Route path="/ourstory" element={<AboutUs />} />
 
       {/* Admin routes */}
       <Route
