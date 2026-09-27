@@ -182,15 +182,17 @@
   font-size: 0.9rem;
   font-weight: 700;
   color: #ffffff;
-  background-color: #1a1a1a;
+  background-color: #000000;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease-in-out;
+  margin-top: 3rem;
 }
 
 .usr-add-btn:hover {
-  background-color: #000000;
+  background-color: #3b3b3b;
+  transform: translateY(-2px);
 }
 
 .usr-loading,
