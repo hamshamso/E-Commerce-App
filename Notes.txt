@@ -19,3 +19,8 @@ what i learned from this project :
 3. Host your database in your PC
 4. Don't pile up ( لا تكدس) your files/function in one parent  
 5. Add padding top-bottom to App.css
+6. Add last login to track active users
+        lastLogin: {
+              type: Date,
+              default: Date.now
+        }
