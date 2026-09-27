@@ -1,6 +1,18 @@
 import User from "../models/User.js";
 
-const getActiveUsersLastMonth = async (req,res) => {
+const getAllUsers = async(req,res) => {
+  try {
+  const allUsers = await User.find({},{name:1, email:1, phone:1, role:1, createdAt:1, lastLogin:1})
+    if(allUsers.length != 0){
+      return res.status(200).json({success:true,allUsers, msg:"Succefully getall users"})
+    }
+    return res.stauts(404).json({success:false,msg:"No users found"})
+  } catch (error) {
+    return res.status(500).json({success:false, error})
+  }
+}
+
+const getUsersStatistics = async (req,res) => {
   const now = new Date();//new Date(2026, 8, 27, 16, 30, 0) = 2026/8/27 16:30:00
   //                                                   Get te last month | Is the first day
   const startOfLastMonth = new Date(Date.UTC(now.getFullYear(), now.getMonth() - 1, 1))//Date of first day in last month 
@@ -9,15 +21,14 @@ const getActiveUsersLastMonth = async (req,res) => {
   try {
     const activeUsersCount = await User.countDocuments({
       lastLogin: {
-        $gte: startOfLastMonth        
+        $gte: startOfLastMonth
       }
     });
     const unactiveUsersCount = await User.countDocuments({
       lastLogin: {
         $lt: startOfLastMonth
       }
-    });                                         //1 : includ this field | 0 : ignor it
-    //const allUsers = await User.find({}, { name: 1, lastLogin: 1 });
+    });
     const nbOfUsers = await User.countDocuments()
     const nbNewUsers = await User.countDocuments({
         createdAt:{
@@ -36,4 +47,4 @@ const getActiveUsersLastMonth = async (req,res) => {
   }
 };
 
-export { getActiveUsersLastMonth}
+export { getAllUsers, getUsersStatistics}
