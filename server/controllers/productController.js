@@ -1,4 +1,4 @@
-import Product from "../models/Product.js" //add .js because of ES Module
+import Product from "../models/product.js"
 
  const getProductById = async (req,res) => {
     try {
