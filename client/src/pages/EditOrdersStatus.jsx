@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getOrderById } from "../services/api";
+import { getOrderById } from "../services/api.js";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { confirmOrder, canselOrder } from "../services/api.js";
 import "../styles/ordersDetails.css";
