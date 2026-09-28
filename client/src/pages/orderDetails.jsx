@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"; 
-import { getOredersWithId } from "../services/api";
+import { getOredersWithId } from "../services/api.js";
 import { useParams, Link } from "react-router-dom";
 import "../styles/ordersDetails.css";
-import { RemoveProductFromOrder } from '../services/api';
+import { RemoveProductFromOrder } from '../services/api.js';
 
 export function OrderDetails() {
     const [order, setOrder] = useState(null);
