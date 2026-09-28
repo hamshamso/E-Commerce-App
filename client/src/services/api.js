@@ -269,3 +269,20 @@ export const getAllUsers = async (token) => {
         console.error(err)
     }
 }
+export const addNewUser = async (token) => {
+    try{
+    const res = await fetch(`${API_BASE}/dashboard/users`,{
+        method:"POST",
+        headers:{"Content-type":"application/json",
+                 "Authorization":`Bearer ${token}`
+                }
+    })
+    const data = await res.json();
+    if(!res.ok){
+        throw new Error(data.msg || "Failed to get all users")
+    }
+    return data
+    }catch(err){
+        console.error(err)
+    }
+}
