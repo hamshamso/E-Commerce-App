@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getAllUsers } from "../services/api";
+import { getAllUsers, addNewUser } from "../services/api";
 import "../styles/Users.css";
 
 export function Users() {
@@ -9,7 +9,44 @@ export function Users() {
 
     const [search, setSearch] = useState("");
     const [roleFilter, setRoleFilter] = useState("all");
+    const [showModal, setShowModal] = useState(false);
+    const [submitting, setSubmitting] = useState(false);
+    const [formError, setFormError] = useState("");
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        password: "",
+        phone: "",
+        role: "",
+    });
 
+    const handleFormChange = (e) => {
+        setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    };
+
+    const resetForm = () => {
+        setFormData({ name: "", email: "", password: "", phone: "", role: "" });
+        setFormError("");
+    };
+
+    const handleAddUser = async (e) => {
+        e.preventDefault();
+        setFormError("");
+        setSubmitting(true);
+        try {
+            const token = localStorage.getItem("token");
+            const data = await addNewUser(token,formData);
+            console.log(data)
+            setUsers((prev) => [...prev, data.data]);
+            setShowModal(false);
+            resetForm();
+        } catch (err) {
+            console.error("Failed to add user", err);
+            setFormError(err.message || "Something went wrong");
+        } finally {
+            setSubmitting(false);
+        }
+    };
     useEffect(() => {
         const fetchUsers = async () => {
             try {
@@ -133,9 +170,95 @@ export function Users() {
                     </table>
                 </div>
 
-                <button type="button" className="usr-add-btn">
+                <button type="button" className="usr-add-btn" onClick={() => setShowModal(true)}>
                     + Add New User
                 </button>
+                {showModal && (
+    <div className="usr-modal-overlay" onClick={() => setShowModal(false)}>
+        <div className="usr-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="usr-modal-header">
+                <h2>Add New User</h2>
+                <button
+                    type="button"
+                    className="usr-modal-close"
+                    onClick={() => setShowModal(false)}
+                >
+                    ✕
+                </button>
+            </div>
+
+            <form className="usr-modal-form" onSubmit={handleAddUser}>
+                {formError && <p className="usr-modal-error">{formError}</p>}
+
+                <div className="field">
+                    <label htmlFor="name">Name</label>
+                    <input
+                        id="name"
+                        name="name"
+                        type="text"
+                        value={formData.name}
+                        onChange={handleFormChange}
+                        required
+                    />
+                </div>
+
+                <div className="field">
+                    <label htmlFor="email">Email</label>
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleFormChange}
+                        required
+                    />
+                </div>
+
+                <div className="field">
+                    <label htmlFor="password">Password</label>
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        value={formData.password}
+                        onChange={handleFormChange}
+                        required
+                        minLength={6}
+                    />
+                </div>
+
+                <div className="field">
+                    <label htmlFor="phone">Phone</label>
+                    <input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        value={formData.phone}
+                        onChange={handleFormChange}
+                        required
+                    />
+                </div>
+
+                <div className="field">
+                    <label htmlFor="role">Role</label>
+                    <select
+                        id="role"
+                        name="role"
+                        value={formData.role}
+                        onChange={handleFormChange}
+                    >
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+
+                <button type="submit" className="usr-modal-submit" disabled={submitting}>
+                    {submitting ? "Creating..." : "Create User"}
+                </button>
+            </form>
+        </div>
+    </div>
+)}
             </div>
         </div>
     );
