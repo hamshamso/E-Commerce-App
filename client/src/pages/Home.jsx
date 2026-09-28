@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getProducts } from "../services/api.js";
 import ProductCard from "../pages/ProductCard";
 import { useAuth } from "../context/AuthContext";
-import "../styles/home.css";
+import "../styles/Home.css";
 
 function Home() {
   const [products, setProducts] = useState([]);
