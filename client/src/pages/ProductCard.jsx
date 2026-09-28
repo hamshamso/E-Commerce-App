@@ -1,6 +1,6 @@
 import { useState,useRef } from "react";
-import { useCart } from "../context/ProductContext";
-import { useAuth } from "../context/AuthContext";
+import { useCart } from "../context/ProductContext.js";
+import { useAuth } from "../context/AuthContext.js";
 import { Link } from "react-router-dom";
 import "../styles/ProductCard.css";
 import plus from "../assets/plus.png"
