@@ -67,7 +67,6 @@ function NavBar() {
           <NavLink to="/products/create" className={linkClass}>Add product</NavLink>
           <NavLink to="/dashboard/orders" className={linkClass}>Orders</NavLink>
           <NavLink to="/dashboard/users" className={linkClass}>Users</NavLink>
-          <NavLink to="/dashboard/statistics" className={linkClass}>Statistics</NavLink>
         </div>
 
         <UserBadge name={user?.name} role="Admin" onLogout={handleLogout} />
