@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getAllUsers, addNewUser, removeUser} from "../services/api";
+import { getAllUsers, addNewUser, removeUser} from "../services/api.js";
 import trush from "../assets/trush.png"
 import "../styles/Users.css";
 
