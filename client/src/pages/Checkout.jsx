@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useCart } from "../context/ProductContext";
 import { Link } from "react-router-dom";
-import { createOrder } from "../services/api";
+import { createOrder } from "../services/api.js";
 import "../styles/checkkout.css";
 
 export function Checkout() {
