@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:5000/api"
+const API_BASE = import.meta.env.VITE_API_URL || "https://e-commerce-app-klrh.onrender.com/api";
 //Create "POST" a new user "text" parse it to JSON with stringify and send it to Backend 
 //and check if evreythink is good 
 export const registerUser = async (userData) =>{
