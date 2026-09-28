@@ -1,4 +1,4 @@
-import { getMyOrders } from "../services/api";
+import { getMyOrders } from "../services/api.js";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/orders.css";
