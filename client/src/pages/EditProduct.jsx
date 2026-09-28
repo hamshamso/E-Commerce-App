@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { getProductById, UpdateProduct, deleteProduct } from "../services/api";
+import { getProductById, UpdateProduct, deleteProduct } from "../services/api.js";
 import "../styles/editProduct.css";
 
 function EditProduct() {
