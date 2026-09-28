@@ -350,3 +350,18 @@
     padding: 20px 18px 24px;
   }
 }
+.removeIcon{
+  width: 2rem;
+  padding: 0.3rem;
+  border-radius: 1rem;
+  transition: all 0.1s ease-in-out;
+}
+.remove{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.removeIcon:hover{
+  background-color:#ff5959;
+  transform: translateY(-1px);
+}

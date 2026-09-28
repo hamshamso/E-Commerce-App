@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { getAllUsers, addNewUser } from "../services/api";
+import { getAllUsers, addNewUser, removeUser} from "../services/api";
+import trush from "../assets/trush.png"
 import "../styles/Users.css";
 
 export function Users() {
@@ -47,6 +48,15 @@ export function Users() {
             setSubmitting(false);
         }
     };
+    const handelRemove = async (id) =>{
+        try {
+            const token = localStorage.getItem("token")
+            removeUser(token,id)
+            window.location.reload();
+        } catch (error) {
+            throw new Error("Error in removing user", error)
+        }
+    }
     useEffect(() => {
         const fetchUsers = async () => {
             try {
@@ -131,6 +141,7 @@ export function Users() {
                                 <th>Role</th>
                                 <th>Created</th>
                                 <th>Last Login</th>
+                                <th>Remove user</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -156,6 +167,9 @@ export function Users() {
                                         </td>
                                         <td>
                                             <p className="usr-date">{formatDate(user.lastLogin)}</p>
+                                        </td>
+                                        <td className="remove">
+                                            <img src={trush} alt="removeuser" className="removeIcon" onClick={() => handelRemove(user._id)}/>
                                         </td>
                                     </tr>
                                 ))
