@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { getProducts } from "../services/api";
+import { getProducts } from "../services/api.js";
 import ProductCard from "../pages/ProductCard";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext.js";
 import "../styles/home.css";
 
 function Home() {
