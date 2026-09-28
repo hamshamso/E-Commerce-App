@@ -1,7 +1,7 @@
 import { useNavigate, Link, NavLink } from "react-router-dom";
 import "../styles/NavBar.css";
-import { useAuth } from "../context/AuthContext";
-import { useCart } from "../context/ProductContext";
+import { useAuth } from "../context/AuthContext.js";
+import { useCart } from "../context/ProductContext.js";
 
 function Brand() {
   return (
