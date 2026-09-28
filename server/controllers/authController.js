@@ -68,15 +68,23 @@ const addNewUser = async(req,res) =>{
             phone,
             role,
             lastLogin: new Date()})
-        const token = jwt.sign({
-            id:newuser._id,
-        },process.env.JWT_SECRET,
-        {expiresIn:"30d"}
-        )
         return res.status(201).json({success:true,msg:"User created successfully", data:{name,email,password:hashedpassword,phone,role}})
     } catch (error) {
         console.error(error)
         return res.status(400).json({success:false, msg:"Somthing went wrong"})
     }
 }
-export {registeruser, loginuser, addNewUser}
+const removeUser = async(req,res) =>{
+    try {
+        const id = req.params.id
+        const user = await User.findByIdAndDelete(id)
+        if(!user){
+            return res.status(400).json({success:false, msg:"User not exist"})
+        }
+        return res.status(200).json({success:true, msg:"successfully removed user"})
+    } catch (error) {
+        console.error(error)
+        return res.status(400).json({success:false, msg:"Somthing went wrong"})
+    }
+}
+export {registeruser, loginuser, addNewUser, removeUser}
