@@ -5,7 +5,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import {Route, Routes} from 'react-router-dom'
 import { Cart } from './pages/Cart';
-import { Checkout } from './pages/checkout';
+import { Checkout } from './pages/Checkout';
 import { Orders } from './pages/orders';
 import {OrderDetails} from './pages/orderDetails'
 import EditProduct from './pages/EditProduct';
