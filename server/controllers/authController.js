@@ -73,7 +73,7 @@ const addNewUser = async(req,res) =>{
         },process.env.JWT_SECRET,
         {expiresIn:"30d"}
         )
-        return res.status(201).json({success:true,msg:"User created successfully", data:{name,email},token})
+        return res.status(201).json({success:true,msg:"User created successfully", data:{name,email,password:hashedpassword,phone,role}})
     } catch (error) {
         console.error(error)
         return res.status(400).json({success:false, msg:"Somthing went wrong"})
