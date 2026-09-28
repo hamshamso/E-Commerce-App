@@ -234,7 +234,6 @@ const confirmOrder = async (req, res) => {
           product.quantity -= item.quantity
           await product.save();
         }
-        return res.status(404).json({success: false, msg: `Product ${product.name} is not longer availabel`})
       }
 
       order.status = "confirmed";
