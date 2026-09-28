@@ -189,9 +189,8 @@
 }
 
 .product-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 30px;
 }
 
@@ -339,7 +338,6 @@ footer .fot a:hover {
 }
 
 .product-card-animated {
-  flex: 0 1 260px;
   opacity: 0;
   animation: zoomInFade 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; 
 }
