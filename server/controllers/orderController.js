@@ -1,5 +1,5 @@
 import Order from "../models/order.js";
-import Product from "../models/Product.js";
+import Product from "../models/product.js";
 
 //70% 
 const createOrder = async (req, res) => {
