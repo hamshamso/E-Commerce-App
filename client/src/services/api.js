@@ -288,3 +288,21 @@ export const addNewUser = async (token,user) => {
         throw err
     }
 }
+export const removeUser = async (token,id) => {
+    try{
+    const res = await fetch(`${API_BASE}/auth/dashboard/users/${id}`,{
+        method:"DELETE",
+        headers:{"Content-Type":"application/json",
+                 "Authorization":`Bearer ${token}`
+                }
+    })
+    const data = await res.json();
+    if(!res.ok){
+        throw new Error(data.msg || "Failed to get all users")
+    }
+    return data
+    }catch(err){
+        console.error(err)
+        throw err
+    }
+}
