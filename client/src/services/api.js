@@ -154,7 +154,7 @@ export const createNewproduct = async(product,token) =>{
 export const getDetailedOrders = async(token) => {
     const res = await fetch(`${API_BASE}/dashboard/orders`,{
         method:"GET",
-        headers:{"Content-type":"application/json",
+        headers:{"Content-Type":"application/json",
                 "Authorization":`Bearer ${token}`}
     })
 
@@ -168,7 +168,7 @@ export const getDetailedOrders = async(token) => {
 export const getDetaileUnhiddendOrders = async(token) => {
     const res = await fetch(`${API_BASE}/dashboard/unhidden/orders`,{
         method:"GET",
-        headers:{"Content-type":"application/json",
+        headers:{"Content-Type":"application/json",
                 "Authorization":`Bearer ${token}`}
     })
 
@@ -182,7 +182,7 @@ export const getDetaileUnhiddendOrders = async(token) => {
 export const getOrderById = async(token,id) =>{
     const res = await fetch(`${API_BASE}/dashboard/orders/${id}`,{
         method:"GET",
-        headers:{"Content-type":"application/json",
+        headers:{"Content-Type":"application/json",
                  "Authorization":`Bearer ${token}`} 
     })
     const data = res.json()
@@ -194,7 +194,7 @@ export const getOrderById = async(token,id) =>{
 export const confirmOrder = async(token,id) =>{
     const res = await fetch(`${API_BASE}/dashboard/orders/${id}/confirm`,{
         method:"PUT",
-        headers:{"Content-type":"application/json",
+        headers:{"Content-Type":"application/json",
                 "Authorization":`Bearer ${token}`}
     })
     const data = await res.json();
@@ -206,7 +206,7 @@ export const confirmOrder = async(token,id) =>{
 export const canselOrder = async(token,id) =>{
     try{const res = await fetch(`${API_BASE}/dashboard/orders/${id}/cansel`,{
         method:"PUT",
-        headers:{"Content-type":"application/json",
+        headers:{"Content-Type":"application/json",
                 "Authorization":`Bearer ${token}`}
     })
     const data = await res.json();
@@ -222,7 +222,7 @@ export const hideOrder =async(token,id) => {
     try{
     const res = await fetch(`${API_BASE}/dashboard/orders/${id}/hide`,{
         method:"PUT",
-        headers:{"Content-type":"application/json",
+        headers:{"Content-Type":"application/json",
                  "Authorization":`Bearer ${token}`}
                 }
     )
@@ -239,7 +239,7 @@ export const getUsersStatistics = async (token) => {
     try{
     const res = await fetch(`${API_BASE}/dashboard/users/statistics`,{
         method:"GET",
-        headers:{"Content-type":"application/json",
+        headers:{"Content-Type":"application/json",
                  "Authorization":`Bearer ${token}`
                 }
     })
@@ -256,7 +256,7 @@ export const getAllUsers = async (token) => {
     try{
     const res = await fetch(`${API_BASE}/dashboard/users`,{
         method:"GET",
-        headers:{"Content-type":"application/json",
+        headers:{"Content-Type":"application/json",
                  "Authorization":`Bearer ${token}`
                 }
     })
@@ -269,13 +269,14 @@ export const getAllUsers = async (token) => {
         console.error(err)
     }
 }
-export const addNewUser = async (token) => {
+export const addNewUser = async (token,user) => {
     try{
-    const res = await fetch(`${API_BASE}/dashboard/users`,{
+    const res = await fetch(`${API_BASE}/auth/dashboard/users`,{
         method:"POST",
-        headers:{"Content-type":"application/json",
+        headers:{"Content-Type":"application/json",
                  "Authorization":`Bearer ${token}`
-                }
+                },
+        body:JSON.stringify(user)
     })
     const data = await res.json();
     if(!res.ok){
@@ -284,5 +285,6 @@ export const addNewUser = async (token) => {
     return data
     }catch(err){
         console.error(err)
+        throw err
     }
 }
