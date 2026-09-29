@@ -2,6 +2,7 @@ import { useNavigate, Link, NavLink } from "react-router-dom";
 import "../styles/NavBar.css";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/ProductContext";
+import { useState } from "react";
 
 function Brand() {
   return (
@@ -47,6 +48,7 @@ function NavBar() {
   const navigate = useNavigate();
   const { isuser, logout, user, isAdmin } = useAuth();
   const { cart } = useCart();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const totalItems = cart.reduce((total, item) => total + (item.quantity || 0), 0);
 
@@ -56,6 +58,10 @@ function NavBar() {
   };
 
   const linkClass = ({ isActive }) => `nav-link${isActive ? " active" : ""}`;
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
 
   if (isAdmin()) {
     return (
@@ -76,30 +82,106 @@ function NavBar() {
 
   return (
     <nav className="navbar">
+
+      <button
+        className="hamburger"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        aria-label="Toggle navigation menu"
+      >
+        {isMenuOpen ? "×" : "☰"}
+      </button>
+
       <Brand />
 
-      <div className="nav-links">
-        <NavLink to="/" className={linkClass}>Collections</NavLink>
-        <NavLink to="/ourstory" className={linkClass}>Our Story</NavLink>
+      <div className={`nav-links ${isMenuOpen ? "open" : ""}`}>
+
+        <NavLink
+          to="/"
+          className={linkClass}
+          onClick={closeMenu}
+        >
+          Collections
+        </NavLink>
+
+        <NavLink
+          to="/ourstory"
+          className={linkClass}
+          onClick={closeMenu}
+        >
+          Our Story
+        </NavLink>
+
         {isuser() && (
-          <NavLink to="/cart" className={linkClass}>
+          <NavLink
+            to="/cart"
+            className={linkClass}
+            onClick={closeMenu}
+          >
             Cart
-            {totalItems > 0 && <span className="nbr-items">{totalItems}</span>}
+            {totalItems > 0 && (
+              <span className="nbr-items">
+                {totalItems}
+              </span>
+            )}
           </NavLink>
         )}
+
         {isuser() && (
-          <NavLink to="/orders" className={linkClass}>Orders</NavLink>
+          <NavLink
+            to="/orders"
+            className={linkClass}
+            onClick={closeMenu}
+          >
+            Orders
+          </NavLink>
         )}
+
+        {/* Mobile user section */}
+        {isuser() && (
+          <div className="mobile-user-section">
+            <UserBadge
+              name={user?.name}
+              role="Member"
+              onLogout={handleLogout}
+            />
+          </div>
+        )}
+
       </div>
 
+      {/* Desktop user/login section */}
       {!isuser() ? (
         <div className="login">
-          <button className="loginbtn" onClick={() => navigate("/login")}>Log In</button>
-          <button className="signupbtn" onClick={() => navigate("/register")}>Register</button>
+          <button
+            className="loginbtn"
+            onClick={() => {
+              closeMenu();
+              navigate("/login");
+            }}
+          >
+            Log In
+          </button>
+
+          <button
+            className="signupbtn"
+            onClick={() => {
+              closeMenu();
+              navigate("/register");
+            }}
+          >
+            Register
+          </button>
         </div>
       ) : (
-        <UserBadge name={user?.name} role="Member" onLogout={handleLogout} />
+        <div className="desktop-user">
+          <UserBadge
+            name={user?.name}
+            role="Member"
+            onLogout={handleLogout}
+          />
+        </div>
       )}
+
     </nav>
   );
 }
