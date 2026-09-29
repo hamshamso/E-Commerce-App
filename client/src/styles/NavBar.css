@@ -186,6 +186,13 @@
     background-color: #04392B;
   }
 
+  .hamburger {
+    display: none;
+  }
+
+  .mobile-user-section {
+    display: none;
+  }
 
 @media (max-width: 900px) {
   .navbar {
@@ -201,6 +208,151 @@
   .user-text {
     display: none;
   } 
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 16px;
+    position: fixed;
+    height: 64px;
+  }
+
+  /* Hamburger - LEFT */
+  .hamburger {
+    display: block;
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    padding: 4px;
+    background: none;
+    border: none;
+
+    color: #064E3B;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+
+    z-index: 1002;
+  }
+
+  /* Brand - CENTER */
+  .brand {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Desktop navigation hidden */
+  .nav-links {
+    display: none;
+  }
+
+  /* Mobile navigation opened */
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+
+    position: absolute;
+    top: 64px;
+    left: 0;
+    width: 100%;
+
+    padding: 20px;
+    box-sizing: border-box;
+
+    background-color: #fffdf7;
+    border-bottom: 1px solid rgba(6, 78, 59, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+
+    z-index: 1001;
+  }
+
+  .nav-links .nav-link {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 16px;
+  }
+
+  /* Login / user area - RIGHT */
+  .login {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* We don't want the full user information on the right */
+  .user-text {
+    display: none;
+  }
+
+  .state {
+    gap: 0;
+  }
+
+  .avatar {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* For logged-out users */
+  .login {
+    gap: 0;
+  }
+
+  .loginbtn {
+    display: none;
+  }
+
+  .signupbtn {
+    padding: 7px 12px;
+    font-size: 0.75rem;
+  }
+
+  .mobile-user-section {
+    display: block;
+    margin-top: 10px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(6, 78, 59, 0.1);
+  }
+
+  .mobile-user-section .state {
+    position: static;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .mobile-user-section .user-info {
+    display: flex;
+  }
+
+  .mobile-user-section .user-text {
+    display: flex;
+  }
+
+  .mobile-user-section .logout-btn {
+    display: block;
+    width: 100%;
+  }
+
+  .desktop-user {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .desktop-user .logout-btn {
+    display: none;
+  }
 }
 
 @media (max-width: 480px) {
