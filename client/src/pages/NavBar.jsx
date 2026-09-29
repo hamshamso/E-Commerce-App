@@ -66,16 +66,75 @@ function NavBar() {
   if (isAdmin()) {
     return (
       <nav className="navbar">
+
+        {/* Hamburger */}
+        <button
+          className="hamburger"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle navigation menu"
+        >
+          {isMenuOpen ? "×" : "☰"}
+        </button>
+
+        {/* Brand */}
         <Brand />
 
-        <div className="nav-links">
-          <NavLink to="/" end className={linkClass}>Products</NavLink>
-          <NavLink to="/products/create" className={linkClass}>Add product</NavLink>
-          <NavLink to="/dashboard/orders" className={linkClass}>Orders</NavLink>
-          <NavLink to="/dashboard/users" className={linkClass}>Users</NavLink>
+        {/* Navigation */}
+        <div className={`nav-links ${isMenuOpen ? "open" : ""}`}>
+
+          <NavLink
+            to="/"
+            end
+            className={linkClass}
+            onClick={closeMenu}
+          >
+            Products
+          </NavLink>
+
+          <NavLink
+            to="/products/create"
+            className={linkClass}
+            onClick={closeMenu}
+          >
+            Add product
+          </NavLink>
+
+          <NavLink
+            to="/dashboard/orders"
+            className={linkClass}
+            onClick={closeMenu}
+          >
+            Orders
+          </NavLink>
+
+          <NavLink
+            to="/dashboard/users"
+            className={linkClass}
+            onClick={closeMenu}
+          >
+            Users
+          </NavLink>
+
+          {/* Mobile admin information + logout */}
+          <div className="mobile-user-section">
+            <UserBadge
+              name={user?.name}
+              role="Admin"
+              onLogout={handleLogout}
+            />
+          </div>
+
         </div>
 
-        <UserBadge name={user?.name} role="Admin" onLogout={handleLogout} />
+        {/* Desktop admin information */}
+        <div className="desktop-user">
+          <UserBadge
+            name={user?.name}
+            role="Admin"
+            onLogout={handleLogout}
+          />
+        </div>
+
       </nav>
     );
   }
