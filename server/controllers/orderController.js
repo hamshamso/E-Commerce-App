@@ -234,6 +234,9 @@ const confirmOrder = async (req, res) => {
           product.quantity -= item.quantity
           await product.save();
         }
+        if(product.quantity === 0){
+           await Product.findByIdAndDelete(product._id);
+        }
       }
 
       order.status = "confirmed";
